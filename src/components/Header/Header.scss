@@ -1,0 +1,40 @@
+.header {
+    background-color: var(--blackColor);
+    &__nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 33px 90px;
+    }
+    &__logo {
+        font-size: 35px;
+        font-weight: 600;
+        color: var(--whiteColor);
+        padding: 5px;
+    }
+    &__menu {
+        display: flex;
+        gap: 58px;
+    }
+    &__link {
+        font-size: 14px;
+        padding: 3px;
+        color: var(--whiteColor);
+        svg {
+            & * {
+                transition: fill 0.2s ease-in-out;
+            }
+        }
+        &.active {
+            color: var(--blueColor);
+            & * {
+                fill: var(--blueColor);
+            }
+        }
+    }
+    &__funcs {
+        display: flex;
+        gap: 20px;
+    }
+}
+
