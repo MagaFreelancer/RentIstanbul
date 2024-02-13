@@ -1,0 +1,49 @@
+.car-block {
+    position: relative;
+    max-width: 280px;
+    width: 100%;
+    &:hover {
+        .car-block__img {
+            img {
+                transform: scale(1.1);
+            }
+        }
+    }
+    &__img {
+        margin-bottom: 10px;
+        img {
+            max-width: 100%;
+            width: 100%;
+            transition: transform 0.1s ease-in-out;
+        }
+    }
+    &__title {
+        margin-bottom: 5px;
+        a {
+            color: var(--blackColor);
+        }
+    }
+    &__price {
+        margin-top: 30px;
+        font-size: 19px;
+        font-weight: 900;
+        font-family: "Work Sans", sans-serif;
+    }
+    &__type {
+        font-size: 16px;
+    }
+    &__favourite {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 999;
+    }
+    &__icon {
+        fill: #ffffff;
+
+        transition: all 0.2s ease-in-out;
+        &--active {
+            fill: var(--blackColor);
+        }
+    }
+}
