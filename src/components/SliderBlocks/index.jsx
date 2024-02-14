@@ -1,8 +1,8 @@
 import React from "react";
-import CarBlock from "../CarBlock";
+
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCars } from "../../redux/slices/carSlice";
-import CarSkeleton from "../CarSkeleton/CarSkeleton";
+import {CarSkeleton, CarBlock} from "../../components";
 import "./SliderBlocks.scss";
 export default function SliderBlocks() {
   const { items, status } = useSelector((state) => state.car);
@@ -16,14 +16,14 @@ export default function SliderBlocks() {
     dispatch(fetchCars());
     window.scrollTo(0, 0);
   }
-  const pizzas = items.map((obj, index) => <CarBlock key={index} {...obj} />);
-  const skeletons = [...new Array(5)].map((_, index) => (
+  const pizzas = items.slice(0,4).map((obj, index) => <CarBlock key={index} {...obj} />);
+  const skeletons = [...new Array(4)].map((_, index) => (
     <CarSkeleton key={index} />
   ));
   return (
     <section className="slider-block">
       <div className="container slider-block__container">
-        <h2 className="slider-block__title">Аренд машин</h2>
+        <h2 className="slider-block__title title">Аренд машин</h2>
         <div className="slider-block__content">
           {status === "success" ? pizzas : skeletons}
         </div>

@@ -45,6 +45,10 @@ ul {
     margin: 0 auto;
     padding: 0 15px;
 }
+.title {
+    font-size: 35px;
+    font-weight: 900;
+}
 .menu {
     &__link {
         transition: color 0.2s ease-in-out;

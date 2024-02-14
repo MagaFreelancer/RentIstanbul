@@ -17,7 +17,7 @@ export default function CarBlock({
         <img src={imageUrl} alt="car" />
       </div>
       <h3 className="car-block__title">
-        <Link to={`car/${id}`}>{name}</Link>
+        <Link to={`cars/${id}`}>{name}</Link>
       </h3>
       <div className="car-block__type">{type}</div>
 

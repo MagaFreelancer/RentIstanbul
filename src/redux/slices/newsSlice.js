@@ -1,11 +1,11 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchCars = createAsyncThunk(
-  "car/fetchCarsStatus",
+export const fetchNews = createAsyncThunk(
+  "news/fetchNewsStatus",
   async () => {
     const { data } = await axios.get(
-      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items`
+      `https://65cbf969efec34d9ed8851b2.mockapi.io/newBase`
     );
     return data;
   }
@@ -16,8 +16,8 @@ const initialState = {
   status: "loading",
 };
 
-const carSlice = createSlice({
-  name: "car",
+const newsSlice = createSlice({
+  name: "news",
   initialState,
   reducers: {
     setItems(state, action) {
@@ -26,21 +26,21 @@ const carSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCars.pending, (state) => {
+      .addCase(fetchNews.pending, (state) => {
         state.status = "loading";
         state.items = [];
       })
-      .addCase(fetchCars.fulfilled, (state, action) => {
+      .addCase(fetchNews.fulfilled, (state, action) => {
         state.items = action.payload;
         state.status = "success";
       })
-      .addCase(fetchCars.rejected, (state) => {
+      .addCase(fetchNews.rejected, (state) => {
         state.status = "error";
         state.items = [];
       });
   },
 });
 
-export const { setItems } = carSlice.actions;
+export const { setItems } = newsSlice.actions;
 
-export default carSlice.reducer;
+export default newsSlice.reducer;
