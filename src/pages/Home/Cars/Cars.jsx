@@ -31,16 +31,19 @@ const Cars = () => {
                     <div className="cars__table">           
                         <button onClick={() => setOpen(!open)}>Сортировать по <span>От дорогих к дешевым</span></button>
             
-                        <ul className={`cars__list-item ${open ? 'active' : ''}`}>
+                        <ul className={`cars__list-item${open ? '--active' : ''}`}>
                             <li className="cars__item">От дешевых к дорогим</li>
                             <li className="cars__item active">От дорогих к дешевым</li>
                             <li className="cars__item">по дате</li>
                         </ul>
                     </div>
                 </div>
-                <ul className="cars__list">
-                    {status === 'success' ? cars : skeletons}
-                </ul>
+                <div>
+                    <ul className="cars__list">
+                        {status === 'success' ? cars : skeletons}
+                    </ul>
+                </div>
+                
             </div>
         </section>
     );
