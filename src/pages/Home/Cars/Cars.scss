@@ -1,7 +1,7 @@
 .cars__list {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
     grid-column-gap: 10px;
     grid-row-gap: 10px;
 
@@ -21,4 +21,44 @@
 .cars__name {
     font-weight: 900;
     font-size: 31px;
+}
+
+.cars__table {
+    position: relative;
+    
+    button {
+        font-weight: 500;
+        font-size: 13px;
+        span {
+            font-weight: 600;
+        }
+    }
+
+    .cars__list-item {
+        position: absolute;
+        display: none;
+        max-width: 322px;
+        right: 0;
+        top: -10px;
+        z-index: 10;
+        font-size: 13px;
+        font-weight: 400;
+        border: 1px solid #F4F4F4;
+        background-color: white;
+        
+        .cars__item {
+            padding: 10px 12px;
+            font-weight: 400;
+            cursor: pointer;
+
+            &.active {
+                background-color: #F4F4F4;
+            }
+        }
+    
+        &.active {
+            display: block;
+        }
+    }
+    
 }
