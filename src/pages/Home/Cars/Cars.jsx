@@ -29,28 +29,33 @@ const Cars = () => {
                 <div className="cars__inner-block">
                     <div className="cars__filter">
                         
-                        <ul className="cras__price">
-                            <p className="cars__titprice">Цена в сутки</p>
-                            <li className="field">
-                                <input type="number" placeholder="10 ₽" value="0" />
-                                <span>-</span>
-                                <input type="number" placeholder="10 ₽" value="100000" />
-                            </li>
-                            <li className="cars__progress"></li>
-                        </ul>
+                        <div className="cras__price">
+                            
+                        </div>
+
+                        <div className="cars__years">
+                            <p className="cars__years-title">Год выпуска</p>
+
+                            <select className="cars__select">
+                                <option value="" defaultChecked>1970+</option>
+                                <option value="">test</option>
+                                <option value="">test</option>
+                                <option value="">test</option>
+                            </select>
+                        </div>
 
                         <ul className="cars__radio" action="">
                             <p className="cars__corobka">Коробка передач</p>
                             <li className="cars__gearbox">
-                                <input id="any" type="radio" value="any" name="gearbox" defaultChecked />
+                                <input id="any" type="radio" defaultValue="any" name="gearbox" defaultChecked />
                                 <label htmlFor="any">Любая</label>
                             </li>
                             <li className="cars__gearbox">
-                                <input id="mechanics" type="radio" value="mechanics" name="gearbox" />
+                                <input id="mechanics" type="radio" defaultValue="mechanics" name="gearbox" />
                                 <label htmlFor="mechanics">Механика</label>
                             </li>
                             <li className="cars__gearbox">
-                                <input id="auto" type="radio" value="auto" name="gearbox" />
+                                <input id="auto" type="radio" defaultValue="auto" name="gearbox" />
                                 <label htmlFor="auto">Автомат</label>
                             </li>
                         </ul>
@@ -58,15 +63,15 @@ const Cars = () => {
                         <ul className="cars__engine" action="">
                             <p className="cars__corobka">Двигатель</p>
                             <li className="cars__gearbox">
-                                <input id="petrol" type="checkbox" value="petrol" name="gearbox" defaultChecked />
+                                <input id="petrol" type="checkbox" defaultValue="petrol" name="gearbox" defaultChecked />
                                 <label htmlFor="petrol">Бензин</label>
                             </li>
                             <li className="cars__gearbox">
-                                <input id="diesel" type="checkbox" value="diesel" name="gearbox" />
+                                <input id="diesel" type="checkbox" defaultValue="diesel" name="gearbox" />
                                 <label htmlFor="diesel">Дизель</label>
                             </li>
                             <li className="cars__gearbox">
-                                <input id="electro" type="checkbox" value="electro" name="gearbox" />
+                                <input id="electro" type="checkbox" defaultValue="electro" name="gearbox" />
                                 <label htmlFor="electro">Электо/Гибрид</label>
                             </li>
                         </ul>

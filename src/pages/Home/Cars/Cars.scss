@@ -61,6 +61,76 @@
         border: 1px solid #E6E7EB;
         padding: 25px;
     }
+    &__slider {
+        position: relative;
+        height: 5px;
+        background-color: #F4F5F9;
+        border-radius: 5px;
+    }
+    &__progress {
+        position: absolute;
+        left: 25%;
+        right: 25%;
+        height: 5px;
+        background-color: #49D0FF;
+        border-radius: 5px;
+    }
+    &__field {
+        input {
+            appearance: textfield;
+        }
+    }
+    &__range {
+        position: relative;
+
+        input {
+            position: absolute;
+            top: -5px;
+            height: 5px;
+            width: 100%;
+            background: none;
+            appearance: none;
+            pointer-events: none;
+        }
+        input::-webkit-slider-thumb {
+            height: 17px;
+            width: 17px;
+            border-radius: 50%;
+            appearance: none;
+            background-color: #1fc7ff;
+            pointer-events: auto;
+        }
+    }
+
+    &__years {
+        padding: 25px;
+        border: 1px solid #E6E7EB;
+        margin-bottom: 30px;
+        
+
+        &-title {
+            font-weight: 900;
+            font-size: 13px;
+            margin-bottom: 20px;
+        }
+        
+
+        select {
+            width: 100%;
+            border: none;
+        }
+       
+        select::-webkit-scrollbar {
+            width: 4px;
+            background-color: #E1E1E1;
+        }
+        select::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            background-color: #121214
+        }
+    }
+
+  
 
     input {
         margin-right: 10px;
