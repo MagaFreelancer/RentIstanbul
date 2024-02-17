@@ -2,7 +2,7 @@ import React from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCars } from "../../redux/slices/carSlice";
-import {CarSkeleton, CarBlock} from "../../components";
+import { CarSkeleton, CarBlock } from "../../components";
 import "./SliderBlocks.scss";
 export default function SliderBlocks() {
   const { items, status } = useSelector((state) => state.car);
@@ -16,8 +16,10 @@ export default function SliderBlocks() {
     dispatch(fetchCars());
     window.scrollTo(0, 0);
   }
-  const pizzas = items.slice(0,4).map((obj, index) => <CarBlock key={index} {...obj} />);
-  const skeletons = [...new Array(4)].map((_, index) => (
+  const pizzas = items
+    .slice(0, 5)
+    .map((obj, index) => <CarBlock key={index} {...obj} />);
+  const skeletons = [...new Array(5)].map((_, index) => (
     <CarSkeleton key={index} />
   ));
   return (

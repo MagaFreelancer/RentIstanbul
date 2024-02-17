@@ -1,0 +1,60 @@
+.car-page {
+    &__container {
+        display: grid;
+        gap: 30px;
+        grid-template-columns: 40% 1fr;
+    }
+    &__imgs {
+    }
+    &__big-image {
+        img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        margin-bottom: 20px;
+    }
+    &__sm-image {
+        display: flex;
+        gap: 15px;
+        img {
+            width: 200px;
+            height: 130px;
+            object-fit: cover;
+            transition: opacity 0.2s ease-in-out;
+            cursor: pointer;
+            &:hover {
+                opacity: 0.8;
+            }
+        }
+    }
+    &__title {
+        font-size: 31px;
+        font-weight: 900;
+        margin-bottom: 30px;
+    }
+    &__heading {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    &__info {
+        ul {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 400px;
+        }
+        li {
+            font-size: 15px;
+            padding-bottom: 12px;
+            &:not(:last-child) {
+                border-bottom: 1px solid #dcdcdc;
+            }
+        }
+        span {
+            display: inline-block;
+            margin-right: 30px;
+            font-weight: 600;
+        }
+    }
+}

@@ -2,6 +2,7 @@
     position: relative;
     max-width: 280px;
     width: 100%;
+    color: var(--blackColor);
     &:hover {
         .car-block__img {
             img {
@@ -19,9 +20,6 @@
     }
     &__title {
         margin-bottom: 5px;
-        a {
-            color: var(--blackColor);
-        }
     }
     &__price {
         margin-top: 30px;
