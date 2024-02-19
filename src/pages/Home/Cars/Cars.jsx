@@ -17,7 +17,6 @@ const Cars = () => {
   const list = [
     { name: "цене (ASC)", sortProperty: "-price" },
     { name: "цене (DESC)", sortProperty: "price" },
-
     { name: "алфавиту (ASC)", sortProperty: "-title" },
     { name: "алфавиту (DESC)", sortProperty: "title" },
   ];
@@ -80,7 +79,14 @@ const Cars = () => {
       <div className="container">
         <div className="cars__inner-block">
           <div className="cars__filter">
+
             <div className="cars__price">
+              <p className="cars__paragraph">Фильтр по цене</p>
+              <div className="cars__inpnumber">
+                <input className="cars__min" type="number" placeholder="10 ₽"/>
+                <span>-</span>
+                <input className="cars__max" type="number" placeholder="1000 ₽"/>
+              </div>
               <Slider
                 getAriaLabel={() => "Minimum distance"}
                 value={value1}
@@ -105,7 +111,7 @@ const Cars = () => {
             </div>
 
             <ul className="cars__radio" action="">
-              <p className="cars__corobka">Коробка передач</p>
+              <p className="cars__box">Коробка передач</p>
               <li className="cars__gearbox">
                 <input
                   id="any"
@@ -137,7 +143,7 @@ const Cars = () => {
             </ul>
 
             <ul className="cars__engine" action="">
-              <p className="cars__corobka">Двигатель</p>
+              <p className="cars__box">Двигатель</p>
               <li className="cars__gearbox">
                 <input
                   id="petrol"
