@@ -6,73 +6,69 @@ import CarBlock from "../../../components/CarBlock";
 import CarSkeleton from "../../../components/CarSkeleton/CarSkeleton";
 import Slider from "@mui/material/Slider";
 
-//range slider
-function valuetext(value) {
-  return `${value}°C`;
-}
-//--range slider
-const minDistance = 10;
-
 const Cars = () => {
-  const list = [
-    { name: "цене (ASC)", sortProperty: "-price" },
-    { name: "цене (DESC)", sortProperty: "price" },
-    { name: "алфавиту (ASC)", sortProperty: "-title" },
-    { name: "алфавиту (DESC)", sortProperty: "title" },
-  ];
-  const [sort, setSort] = useState({
-    name: "цене (ASC)",
-    sortProperty: "-price",
-  });
-  //range slider
-  const [value1, setValue1] = React.useState([40, 60]);
+    const minDistance = 10;
 
-  const handleChange1 = (event, newValue, activeThumb) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
+    console.log(true);
 
-    if (activeThumb === 0) {
-      setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
-    } else {
-      setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
-    }
-  };
-  //--range slider
+    const list = [
+        { name: "цене (ASC)", sortProperty: "-price" },
+        { name: "цене (DESC)", sortProperty: "price" },
+        { name: "алфавиту (ASC)", sortProperty: "-title" },
+        { name: "алфавиту (DESC)", sortProperty: "title" },
+    ];
+    const [sort, setSort] = useState({
+        name: "цене (ASC)",
+        sortProperty: "-price",
+    });
+    //range slider
+    const [value1, setValue1] = React.useState([350, 650]);
 
-  const { items, status } = useSelector((state) => state.car);
-  const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
-  const sortRef = React.useRef();
+    const handleChange1 = (event, newValue, activeThumb) => {
+        if (!Array.isArray(newValue)) {
+          return;
+        }
 
-  const getCars = async () => {
-    dispatch(fetchCars());
-  };
-  const onChangeSort = (obj) => {
-    setSort(obj);
-    setOpen(false);
-  };
-  const cars = items.map((obj, index) => <CarBlock key={index} {...obj} />);
-  const skeletons = [...new Array(10)].map((_, index) => (
-    <CarSkeleton key={index} />
-  ));
+        if (activeThumb === 0) {
+            setValue1([Math.min(newValue[0], value1[1] - minDistance), value1[1]]);
+        } else {
+            setValue1([value1[0], Math.max(newValue[1], value1[0] + minDistance)]);
+        }
+    };
+    //--range slider
 
-  React.useEffect(() => {
-    getCars();
+    const { items, status } = useSelector((state) => state.car);
+    const dispatch = useDispatch();
+    const [open, setOpen] = useState(false);
+    const [yearOpen, setYearOpen] = useState(false);
+    const sortRef = React.useRef();
 
-    
-    const handleClickOutside = (event) => {
-      const path = event.composedPath ? event.composedPath() : event.path;
-      if (!path.includes(sortRef.current)) {
+    const getCars = async () => {
+        dispatch(fetchCars());
+    };
+    const onChangeSort = (obj) => {
+        setSort(obj);
         setOpen(false);
-      }
     };
-    document.body.addEventListener("click", handleClickOutside);
+    const cars = items.map((obj, index) => <CarBlock key={index} {...obj} />);
+    const skeletons = [...new Array(10)].map((_, index) => (
+        <CarSkeleton key={index} />
+    ));
 
-    return () => {
-      document.body.removeEventListener("click", handleClickOutside);
-    };
-  }, []);
+    React.useEffect(() => {
+        getCars();
+        const handleClickOutside = (event) => {
+            const path = event.composedPath ? event.composedPath() : event.path;
+            if (!path.includes(sortRef.current)) {
+                setOpen(false);
+            }
+        };
+        document.body.addEventListener("click", handleClickOutside);
+
+        return () => {
+            document.body.removeEventListener("click", handleClickOutside);
+        };
+    }, []);
 
   return (
     <section className="cars">
@@ -83,61 +79,49 @@ const Cars = () => {
             <div className="cars__price">
               <p className="cars__paragraph">Фильтр по цене</p>
               <div className="cars__inpnumber">
-                <input className="cars__min" type="number" placeholder="10 ₽"/>
+                <input className="cars__min" type="number" value={value1[0]} placeholder="10 ₽"/>
                 <span>-</span>
-                <input className="cars__max" type="number" placeholder="1000 ₽"/>
+                <input className="cars__max" type="number" value={value1[1]} placeholder="1000 ₽"/>
               </div>
               <Slider
                 getAriaLabel={() => "Minimum distance"}
                 value={value1}
                 onChange={handleChange1}
                 valueLabelDisplay="auto"
-                getAriaValueText={valuetext}
+                min={10}
+                max={1000}
                 disableSwap
               />
             </div>
 
             <div className="cars__years">
-              <p className="cars__years-title">Год выпуска</p>
-
-              <select className="cars__select">
-                <option value="" defaultChecked>
-                  1970+
-                </option>
-                <option value="">test</option>
-                <option value="">test</option>
-                <option value="">test</option>
-              </select>
+                <p className="cars__years-title">Год выпуска</p>
+                <button onClick={() => setYearOpen(!yearOpen)} className="cars__yars-button">
+                    1970+
+                    <svg className="cars__yars-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
+                    </svg>
+                </button>
+                <ul className={`cars__years-list${yearOpen ? '--active' : ''}`}>
+                    <li className="cars__years-item">test</li>
+                    <li className="cars__years-item">test</li>
+                    <li className="cars__years-item">test</li>
+                    <li className="cars__years-item">test</li>
+                </ul>
             </div>
 
             <ul className="cars__radio" action="">
               <p className="cars__box">Коробка передач</p>
               <li className="cars__gearbox">
-                <input
-                  id="any"
-                  type="radio"
-                  defaultValue="any"
-                  name="gearbox"
-                  defaultChecked
-                />
+                <input id="any" type="radio" defaultValue="any" name="gearbox" defaultChecked/>
                 <label htmlFor="any">Любая</label>
               </li>
               <li className="cars__gearbox">
-                <input
-                  id="mechanics"
-                  type="radio"
-                  defaultValue="mechanics"
-                  name="gearbox"
-                />
+                <input id="mechanics" type="radio"  defaultValue="mechanics" name="gearbox"/>
                 <label htmlFor="mechanics">Механика</label>
               </li>
               <li className="cars__gearbox">
-                <input
-                  id="auto"
-                  type="radio"
-                  defaultValue="auto"
-                  name="gearbox"
-                />
+                <input id="auto" type="radio" defaultValue="auto" name="gearbox"/>
                 <label htmlFor="auto">Автомат</label>
               </li>
             </ul>
@@ -145,31 +129,15 @@ const Cars = () => {
             <ul className="cars__engine" action="">
               <p className="cars__box">Двигатель</p>
               <li className="cars__gearbox">
-                <input
-                  id="petrol"
-                  type="checkbox"
-                  defaultValue="petrol"
-                  name="gearbox"
-                  defaultChecked
-                />
+                <input id="petrol" type="checkbox" defaultValue="petrol" name="gearbox" defaultChecked/>
                 <label htmlFor="petrol">Бензин</label>
               </li>
               <li className="cars__gearbox">
-                <input
-                  id="diesel"
-                  type="checkbox"
-                  defaultValue="diesel"
-                  name="gearbox"
-                />
+                <input id="diesel" type="checkbox" defaultValue="diesel" name="gearbox"/>
                 <label htmlFor="diesel">Дизель</label>
               </li>
               <li className="cars__gearbox">
-                <input
-                  id="electro"
-                  type="checkbox"
-                  defaultValue="electro"
-                  name="gearbox"
-                />
+                <input id="electro" type="checkbox" defaultValue="electro" name="gearbox"/>
                 <label htmlFor="electro">Электо/Гибрид</label>
               </li>
             </ul>
@@ -181,19 +149,12 @@ const Cars = () => {
                 <div className="cars__label" onClick={() => setOpen(!open)}>
                   Сортировать по: <span>{sort.name}</span>
                 </div>
-                <ul
-                  className={`cars__popup ${open ? "cars__popup--active" : ""}`}
-                >
+                <ul className={`cars__popup ${open ? "cars__popup--active" : ""}`}>
                   {list.map((obj, index) => (
                     <li
                       onClick={() => onChangeSort(obj)}
                       key={index}
-                      className={`cars__popup-item ${
-                        sort.sortProperty == obj.sortProperty
-                          ? "cars__popup-item--active"
-                          : ""
-                      }`}
-                    >
+                      className={`cars__popup-item ${sort.sortProperty == obj.sortProperty ? "cars__popup-item--active" : ""}`}>
                       {obj.name}
                     </li>
                   ))}

@@ -136,9 +136,9 @@
     }
 
     &__years {
-        padding: 25px;
-        border: 1px solid #e6e7eb;
         margin-bottom: 30px;
+        border: 1px solid #e6e7eb;
+        padding: 25px;
 
         &-title {
             font-weight: 900;
@@ -159,6 +159,14 @@
             border-radius: 10px;
             background-color: var(--blackColor);
         }
+    }
+    &__years-list {
+        display: none;
+        padding: 10px;
+    }
+
+    &__years-list--active {
+        padding: 10px;
     }
 
     &__price {
@@ -203,5 +211,23 @@
         font-size: 13px;
         appearance: textfield;
     }
+    &__yars-button {
+        position: relative;
+        color: var(--blackColor);
+        font-weight: 600;
+        font-size: 14px;
+        border: 1px solid #e6e7eb;
+        padding: 20px;
+        width: 100%;
+        text-align: left;
+    }
+    &__yars-icon {
+        position: absolute;
+        width: 15px;
+        height: 15px;
+        right: 20px;
+        top: 20px;
+    }
+    
 }
 
