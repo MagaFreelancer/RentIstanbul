@@ -142,8 +142,7 @@
 
         &-title {
             font-weight: 900;
-            font-size: 13px;
-            margin-bottom: 20px;
+            font-size: 13px
         }
 
         select {
@@ -159,10 +158,41 @@
             border-radius: 10px;
             background-color: var(--blackColor);
         }
+
     }
+
     &__years-list {
-        display: none;
-        padding: 10px;
+        overflow-y: scroll;
+        max-height: 266px;
+
+        &::-webkit-scrollbar {
+            width: 4px;
+            background-color: #f9f9fd;
+        }
+          
+        &::-webkit-scrollbar-thumb {
+            background-color: #121214;
+        }
+          
+        &::-webkit-scrollbar-track {
+            border-radius: 10px;
+            background-color: #E1E1E1;
+        }
+    }
+
+    &__years-title {
+        margin-bottom: 10px;
+    }
+    
+    &__years-item {
+        font-weight: 600;
+        font-size: 14px;
+        padding: 5px 0;
+        cursor: pointer;
+
+        &:hover {
+            background-color: #eaeaea;
+        }
     }
 
     &__years-list--active {

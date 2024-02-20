@@ -9,8 +9,6 @@ import Slider from "@mui/material/Slider";
 const Cars = () => {
     const minDistance = 10;
 
-    console.log(true);
-
     const list = [
         { name: "цене (ASC)", sortProperty: "-price" },
         { name: "цене (DESC)", sortProperty: "price" },
@@ -87,7 +85,6 @@ const Cars = () => {
                 getAriaLabel={() => "Minimum distance"}
                 value={value1}
                 onChange={handleChange1}
-                valueLabelDisplay="auto"
                 min={10}
                 max={1000}
                 disableSwap
@@ -96,17 +93,43 @@ const Cars = () => {
 
             <div className="cars__years">
                 <p className="cars__years-title">Год выпуска</p>
-                <button onClick={() => setYearOpen(!yearOpen)} className="cars__yars-button">
-                    1970+
-                    <svg className="cars__yars-icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-                    </svg>
-                </button>
-                <ul className={`cars__years-list${yearOpen ? '--active' : ''}`}>
-                    <li className="cars__years-item">test</li>
-                    <li className="cars__years-item">test</li>
-                    <li className="cars__years-item">test</li>
-                    <li className="cars__years-item">test</li>
+                <ul className="cars__years-list">
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
+                  <li className="cars__years-item">test</li>
                 </ul>
             </div>
 
