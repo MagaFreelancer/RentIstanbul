@@ -88,11 +88,53 @@
         font-weight: 600;
         display: flex;
         margin-bottom: 10px;
-        
-        input {
-            margin-right: 10px;
-        }
     }
+
+
+    
+
+    &__gearbox-checkbox {
+        width: 0;
+	    height: 0;
+	    opacity: 0;
+	    position: absolute;
+	    z-index: -1;
+    }
+
+    &__gearbox-custom {
+        position: relative;
+        display: inline-block;
+        width: 23px;
+        height: 23px;
+        background-color: #F8FAFB;
+        border-radius: 3px;
+        margin-right: 10px;
+        vertical-align: sub;
+    }
+   
+    &__gearbox-custom::before {
+        content: '';
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-image: url('../../assets/icons/checkbox.svg');
+        background-size: contain;
+        background-repeat: no-repeat;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0);
+        transition: .2s ease-in;
+       
+        
+    }
+
+    &__gearbox-checkbox:checked + &__gearbox-custom::before {
+        transform: translate(-50%, -50%) scale(1);
+        
+    }
+
+
     &__engine {
         border: 1px solid #e6e7eb;
         padding: 25px;
@@ -190,11 +232,11 @@
     &__years-item {
         font-weight: 600;
         font-size: 14px;
-        padding: 5px 0;
+        padding: 5px;
         cursor: pointer;
 
         &:hover {
-            background-color: #eaeaea;
+            background-color: #F4F4F4;
         }
     }
 
@@ -228,22 +270,23 @@
             padding: 6px 8px;
         }
     }
-    &__min {
-        background-color: #F8FAFB;
-        border: none;
-        padding: 6px 30px;
-        max-width: 115px;
-        margin-right: 0;
-        font-size: 13px;
-    }
-    &__max {
+    
+    &__price-input {
         background-color: #F8FAFB;
         border: none;
         padding: 6px 30px;
         max-width: 115px;
         font-size: 13px;
         appearance: textfield;
+        text-align: center;
+
+        &::-webkit-outer-spin-button,
+        &::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0; 
+        }
     }
+   
     &__yars-button {
         position: relative;
         color: var(--blackColor);
@@ -262,4 +305,7 @@
         top: 20px;
     }
     
+    
+    
 }
+

@@ -1,9 +1,9 @@
 import React from "react";
-import CarBlock from "../CarBlock";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCars } from "../../redux/slices/carSlice";
-import CarSkeleton from "../CarSkeleton/CarSkeleton";
+import { CarSkeleton, CarBlock } from "../../components";
 import "./SliderBlocks.scss";
+
 export default function SliderBlocks() {
   const { items, status } = useSelector((state) => state.car);
   const dispatch = useDispatch();
