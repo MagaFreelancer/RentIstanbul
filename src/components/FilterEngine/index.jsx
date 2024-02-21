@@ -6,17 +6,17 @@ const FilterEngine = () => {
                 <li className="cars__gearbox">
                   <input className="cars__gearbox-checkbox" id="petrol" type="checkbox" defaultValue="petrol" name="gearbox" defaultChecked/>
                   <span className="cars__gearbox-custom"></span>
-                  <label htmlFor="petrol">Бензин</label>
+                  <label className="cars__gearbox-label" htmlFor="petrol">Бензин</label>
                 </li>
                 <li className="cars__gearbox">
                   <input className="cars__gearbox-checkbox" id="diesel" type="checkbox" defaultValue="diesel" name="gearbox"/>
                   <span className="cars__gearbox-custom"></span>
-                  <label htmlFor="diesel">Дизель</label>
+                  <label className="cars__gearbox-label" htmlFor="diesel">Дизель</label>
                 </li>
                 <li className="cars__gearbox">
                   <input className="cars__gearbox-checkbox" id="electro" type="checkbox" defaultValue="electro" name="gearbox"/>
                   <span className="cars__gearbox-custom"></span>
-                  <label htmlFor="electro">Электо/Гибрид</label>
+                  <label className="cars__gearbox-label" htmlFor="electro">Электо/Гибрид</label>
                 </li>
             </ul>
         </div>

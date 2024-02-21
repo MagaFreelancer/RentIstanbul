@@ -4,29 +4,28 @@ const FilterSort = () => {
     const sortRef = useRef();
     const [open, setOpen] = useState(false);
     const [sort, setSort] = useState({
-        name: "цене (ASC)",
+        name: "От дешевых к дорогим",
         sortProperty: "-price",
     });
 
     const list = [
-        { name: "цене (ASC)", sortProperty: "-price" },
-        { name: "цене (DESC)", sortProperty: "price" },
-        { name: "алфавиту (ASC)", sortProperty: "-title" },
-        { name: "алфавиту (DESC)", sortProperty: "title" },
+      { name: "От дешевых к дорогим", sortProperty: "-price" },
+      { name: "От дорогих к дешевым", sortProperty: "price" },
+      { name: "По дате добавления", sortProperty: "-title" },
     ];
 
     useEffect(() => {
-      const handleClickOutside = (event) => {
-          const path = event.composedPath ? event.composedPath() : event.path;
-          if (!path.includes(sortRef.current)) {
-              setOpen(false);
-          }
-      };
-      document.body.addEventListener("click", handleClickOutside);
+        const handleClickOutside = (event) => {
+            const path = event.composedPath ? event.composedPath() : event.path;
+            if (!path.includes(sortRef.current)) {
+                setOpen(false);
+            }
+        };
+        document.body.addEventListener("click", handleClickOutside);
 
-      return () => {
-          document.body.removeEventListener("click", handleClickOutside);
-      };
+        return () => {
+            document.body.removeEventListener("click", handleClickOutside);
+        };
     }, []);
 
     const onChangeSort = (obj) => {

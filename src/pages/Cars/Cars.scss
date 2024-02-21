@@ -28,6 +28,8 @@
         position: relative;
     }
     &__label {
+        font-weight: 500;
+        font-size: 13px;
         color: var(--lightColor);
         cursor: pointer;
         span {
@@ -50,6 +52,8 @@
         transition: opacity 0.2s ease-in-out;
         z-index: 100;
         background-color: var(--whiteColor);
+        border: 1px solid #F4F4F4;
+        border-radius: 7px;
         box-shadow:
             inset 0 0 0.5px 1px hsla(0, 0%, 100%, 0.075),
             /* shadow ring 👇 */ 0 0 0 1px hsla(0, 0%, 0%, 0.05),
@@ -60,10 +64,15 @@
             opacity: 1;
         }
         &-item {
-            padding: 5px 10px;
-            font-size: 14px;
+            padding: 10px 29px 10px 12px;
+            font-size: 13px;
+            font-weight: 400;
             width: 100%;
             cursor: pointer;
+
+            &:hover {
+                background-color: #F4F4F4;
+            }
         }
         &-item--active {
             font-weight: 600;
@@ -91,8 +100,6 @@
     }
 
 
-    
-
     &__gearbox-checkbox {
         width: 0;
 	    height: 0;
@@ -110,13 +117,14 @@
         border-radius: 3px;
         margin-right: 10px;
         vertical-align: sub;
+        transition: 0.2s ease-in;
     }
    
     &__gearbox-custom::before {
         content: '';
         display: inline-block;
-        width: 16px;
-        height: 16px;
+        width: 9px;
+        height: 6px;
         background-image: url('../../assets/icons/checkbox.svg');
         background-size: contain;
         background-repeat: no-repeat;
@@ -125,13 +133,14 @@
         top: 50%;
         transform: translate(-50%, -50%) scale(0);
         transition: .2s ease-in;
-       
-        
     }
 
     &__gearbox-checkbox:checked + &__gearbox-custom::before {
         transform: translate(-50%, -50%) scale(1);
-        
+    }
+
+    &__gearbox-checkbox:checked + &__gearbox-custom {
+        background-color: #1fc7ff;
     }
 
 
