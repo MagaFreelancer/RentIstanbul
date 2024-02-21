@@ -2,12 +2,14 @@ import React from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./Car.scss";
-
+import FormReserv from "../../components/FormReserv";
+import SingleSlider from "../../components/SingleSlider";
 const Car = () => {
   const [carObj, setCarObj] = React.useState();
-  const [activeImg, setActivrImg] = React.useState(0);
   const { id } = useParams();
-
+  const [test, setTest] = React.useState(0);
+  const [active, setActive] = React.useState(0);
+  const menu = ["Детали", "Бронирование"];
   React.useEffect(() => {
     async function fetchCar() {
       try {
@@ -30,43 +32,60 @@ const Car = () => {
     <section className="car-page">
       <div className="container car-page__container">
         <div className="car-page__col">
-          <div className="car-page__imgs">
-            <div className="car-page__big-image">
-              <img src={carObj.imgs[activeImg]} alt="car" />
-            </div>
-            <div className="car-page__sm-image">
-              {carObj.imgs.map((src, index) => (
-                <img
-                  onClick={() => {
-                    setActivrImg(index);
-                  }}
-                  key={index}
-                  src={src}
-                  alt="car"
-                />
-              ))}
-            </div>
-          </div>
+          <SingleSlider carObj={carObj} />
         </div>
         <div className="car-page__col">
           <h2 className="car-page__title">{carObj.name}</h2>
-
           <div className="car-page__info">
-            <h4 className="car-page__heading">Детали</h4>
-            <ul>
-              <li className="car-page__item">
-                <span>Price</span> {carObj.price}
-              </li>
-              <li className="car-page__item">
-                <span>Type</span> {carObj.type}
-              </li>
-              <li className="car-page__item">
-                <span>Place</span> {carObj.place}
-              </li>
-              <li className="car-page__item">
-                <span>date</span> {carObj.date}
-              </li>
+            <ul className="car-page__menu">
+              {menu.map((item, index) => (
+                <li
+                  onClick={() => {
+                    setActive(index);
+                    setTest(index);
+                  }}
+                  key={index}
+                  className="car-page__menu-item"
+                >
+                  <button
+                    className={`car-page__menu-btn ${
+                      index === active ? "car-page__menu-btn--active" : ""
+                    }`}
+                  >
+                    {item}
+                  </button>
+                </li>
+              ))}
             </ul>
+            <div className="car-page__content">
+              <div
+                className={`car-page__block ${
+                  test == 0 && "car-page__block--active"
+                }`}
+              >
+                <ul className="car-page__params">
+                  <li>
+                    <span>Price</span> {carObj.price}
+                  </li>
+                  <li>
+                    <span>Type</span> {carObj.type}
+                  </li>
+                  <li>
+                    <span>Place</span> {carObj.place}
+                  </li>
+                  <li>
+                    <span>date</span> {carObj.date}
+                  </li>
+                </ul>
+              </div>
+              <div
+                className={`car-page__block ${
+                  test == 1 && "car-page__block--active"
+                }`}
+              >
+                <FormReserv />
+              </div>
+            </div>
           </div>
         </div>
       </div>
