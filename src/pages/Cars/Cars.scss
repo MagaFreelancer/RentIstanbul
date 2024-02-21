@@ -1,4 +1,7 @@
 .cars {
+    &__container {
+        display: flex;
+    }
     &__inner {
         display: flex;
         align-items: center;
@@ -260,4 +263,3 @@
     }
     
 }
-

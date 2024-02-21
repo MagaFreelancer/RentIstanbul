@@ -2,7 +2,8 @@ import Home from "./pages/Home";
 import { Route, Routes } from "react-router-dom";
 import { Header, Footer } from "./components";
 import "./App.scss";
-import Cars from "./pages/Home/Cars/Cars";
+import Cars from "./pages/Cars";
+
 function App() {
   return (
     <div className="app">
