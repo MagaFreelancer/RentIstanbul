@@ -118,22 +118,23 @@
         margin-right: 10px;
         vertical-align: sub;
         transition: 0.2s ease-in;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 9px;
+            height: 6px;
+            background-image: url('../../assets/icons/checkbox.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: .2s ease-in;
+        }
     }
    
-    &__gearbox-custom::before {
-        content: '';
-        display: inline-block;
-        width: 9px;
-        height: 6px;
-        background-image: url('../../assets/icons/checkbox.svg');
-        background-size: contain;
-        background-repeat: no-repeat;
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%) scale(0);
-        transition: .2s ease-in;
-    }
 
     &__gearbox-checkbox:checked + &__gearbox-custom::before {
         transform: translate(-50%, -50%) scale(1);
@@ -142,6 +143,50 @@
     &__gearbox-checkbox:checked + &__gearbox-custom {
         background-color: #1fc7ff;
     }
+
+    &__gearbox-radio {
+        width: 0;
+	    height: 0;
+	    opacity: 0;
+	    position: absolute;
+	    z-index: -1;
+    }
+
+    &__radio-custom {
+        position: relative;
+        display: inline-block;
+        transition: 0.2s ease-in;
+        vertical-align: sub;
+        margin-right: 10px;
+        width: 23px;
+        height: 23px;
+        border: 2px solid var(--blueColor);
+        border-radius: 50%;
+
+        &::before {
+            content: '';
+            display: inline-block;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background-color: var(--blueColor);
+            background-size: contain;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            transition: .2s ease-in;
+        }
+    }
+
+    &__gearbox-radio:checked + &__radio-custom::before {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+   
+
+    
 
 
     &__engine {
