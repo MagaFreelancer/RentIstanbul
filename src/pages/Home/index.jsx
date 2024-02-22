@@ -1,4 +1,4 @@
-import { SliderBlocks, Heading } from "../../components";
+import { SliderBlocks, Heading, Advantages } from "../../components";
 import "./Home.scss";
 export default function Home() {
   return (
@@ -7,6 +7,7 @@ export default function Home() {
       <SliderBlocks title={"Люкс"} />
       <SliderBlocks title={"Средний класс"} />
       <SliderBlocks title={"Компактные"} />
+      <Advantages />
     </>
   );
 }

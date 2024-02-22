@@ -4,5 +4,14 @@ import CarBlock from "./CarBlock";
 import CarSkeleton from "./CarSkeleton";
 import SliderBlocks from "./SliderBlocks";
 import Heading from "./Heading";
+import Advantages from "./Advantages";
 
-export { Footer, Header, CarBlock, CarSkeleton, SliderBlocks, Heading };
+export {
+  Footer,
+  Header,
+  CarBlock,
+  CarSkeleton,
+  SliderBlocks,
+  Heading,
+  Advantages,
+};

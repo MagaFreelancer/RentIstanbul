@@ -1,0 +1,32 @@
+.advantages {
+    background-color: #fafafa;
+    padding: 50px 0;
+    &__title {
+        margin-bottom: 40px;
+    }
+    &__content {
+        background-color: var(--whiteColor);
+        max-width: 900px;
+        padding: 50px;
+        box-shadow: 0px 2px 27px rgba(0, 0, 0, 0.03);
+        border-radius: 4px;
+    }
+    &__col {
+        display: grid;
+        grid-template-columns: 1fr 75%;
+        gap: 40px;
+        &:not(:last-child) {
+            margin-bottom: 50px;
+            padding-bottom: 50px;
+            border-bottom: 1px solid #d3d3d3;
+        }
+    }
+    &__heading {
+        font-weight: 900;
+    }
+    &__descr {
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 25px;
+    }
+}
