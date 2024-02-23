@@ -1,23 +1,27 @@
+import React from "react";
+
 const FilterBox = () => {
+    const [gearadios, setGeaRadios] = React.useState({
+        gearbox: 'any', title: 'Любая'
+    }); 
+
+    const gearboxs = [
+        {gearbox: 'any', title: 'Любая'},
+        {gearbox: 'mechanics', title: 'Механика'},
+        {gearbox: 'auto', title: 'Автомат'},
+    ]
+
     return (
         <div className="cars__radio">
             <h2 className="cars__box">Коробка передач</h2>
             <ul>
-              <li className="cars__gearbox">
-                <input className="cars__gearbox-radio" id="any" type="radio" defaultValue="any" name="gearbox" defaultChecked/>
-                <span className="cars__radio-custom"></span>
-                <label className="cars__radio-label" htmlFor="any">Любая</label>
-              </li>
-              <li className="cars__gearbox">
-                <input className="cars__gearbox-radio" id="mechanics" type="radio"  defaultValue="mechanics" name="gearbox"/>
-                <span className="cars__radio-custom"></span>
-                <label className="cars__radio-label" htmlFor="mechanics">Механика</label>
-              </li>
-              <li className="cars__gearbox">
-                <input className="cars__gearbox-radio" id="auto" type="radio" defaultValue="auto" name="gearbox"/>
-                <span className="cars__radio-custom"></span>
-                <label className="cars__radio-label" htmlFor="auto">Автомат</label>
-              </li>
+                {gearboxs.map((obj, index) => {
+                    return <li onClick={() => setGeaRadios(obj)}  className="cars__gearbox" key={index}>
+                    <input className={`cars__gearbox-radio ${gearadios.gearbox === obj.gearbox ? 'cars__gearbox-radio--active' : ''}`} id={obj.gearbox} type="radio" value={obj.gearbox} name="gearbox"/>
+                    <span className="cars__radio-custom"></span>
+                    <label className="cars__radio-label" htmlFor={obj.gearbox}>{obj.title}</label>
+                  </li>
+                })}
             </ul>
         </div>
     );

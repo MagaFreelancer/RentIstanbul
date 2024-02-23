@@ -43,6 +43,9 @@ const FilterPrice = () => {
         min={10}
         max={1000}
         disableSwap
+        sx={{
+          color: '#49D0FF',
+        }}
       />
     </div>
   );
