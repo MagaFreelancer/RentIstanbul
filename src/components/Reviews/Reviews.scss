@@ -1,0 +1,42 @@
+.reviews {
+    background-color: #fafafa;
+    padding: 50px 0;
+
+    &__title {
+        font-size: 35px;
+        font-weight: 900;
+        margin-bottom: 38px;
+    }
+
+    &__list {
+        display: flex;
+        justify-content: space-between;
+
+        &-item {
+            background-color: #cecece;
+            padding: 35px ;
+            border-radius: 10px;
+            text-align: center;
+            max-width: 360px;
+        }
+
+        &-name {
+            color: var(--blackColor);
+            margin-bottom: 25px;
+        }
+
+        &-avatar {
+            width: 65px;
+            height: 65px;
+            margin-bottom: 10px;
+        }
+
+        &-comment {
+            color: var(--blackColor);
+            margin-bottom: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 25px;
+        }
+    }
+}
