@@ -7,7 +7,7 @@
     }
     &__content {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr 45%;
         gap: 40px;
     }
     &__search {
@@ -62,7 +62,7 @@
     }
     &__text {
         font-size: 14px;
-        font-weight: 500;
+        font-weight: 400;
         line-height: 25px;
         max-height: 0;
         overflow: hidden;
@@ -110,19 +110,19 @@
         align-items: center;
         gap: 10px;
         background-color: #f7f7f7;
-        padding: 7px 15px;
+        padding: 10px 15px;
         border-radius: 7px;
         color: var(--blackColor);
         font-weight: 500;
-        transition: background-color .2s ease-in-out;
+        transition: background-color 0.2s ease-in-out;
         &:hover {
             background-color: #f0f0f0;
         }
     }
     &__img {
-        width: 25px;
+        width: 19px;
         &--telegram {
-            width: 26px;
+            width: 20px;
         }
     }
     &__bg-img {
