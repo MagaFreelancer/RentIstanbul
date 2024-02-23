@@ -26,6 +26,9 @@ const FilterPrice = () => {
           className="cars__price-input"
           type="number"
           value={value1[0]}
+          onChange={(e) => {
+            setValue1([+e.target.value, value1[1]]);
+          }}
           placeholder="10 ₽"
         />
         <span>-</span>
@@ -33,18 +36,21 @@ const FilterPrice = () => {
           className="cars__price-input"
           type="number"
           value={value1[1]}
+          onChange={(e) => {
+            setValue1([value1[0], +e.target.value]);
+          }}
           placeholder="1000 ₽"
         />
       </div>
       <Slider
         getAriaLabel={() => "Minimum distance"}
-        value={value1}
         onChange={handleChange1}
+        value={value1}
         min={10}
         max={1000}
         disableSwap
         sx={{
-          color: '#49D0FF',
+          color: "#49D0FF",
         }}
       />
     </div>
