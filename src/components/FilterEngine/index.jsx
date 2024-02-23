@@ -21,9 +21,11 @@ const FilterEngine = () => {
             <ul>
                 {gearboxs.map((obj, index) => {
                     return <li onClick={() => onClickCheckbox(obj)} className="cars__gearbox" key={index}>
+                    <label className="cars__gearbox-label" htmlFor={obj.gearbox}>
                     <input className={`cars__gearbox-checkbox ${obj.gearbox === checkBox[0].gearbox ? 'cars__gearbox-checkbox--active' : ''}`} id={obj.gearbox} type="checkbox" value={obj.gearbox}/>
                     <span className="cars__gearbox-custom"></span>
-                    <label className="cars__gearbox-label" htmlFor={obj.gearbox}>{obj.title}</label>
+                        {obj.title}
+                    </label>
                   </li>
                 })}
             </ul>
