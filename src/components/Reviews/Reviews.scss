@@ -2,14 +2,24 @@
     background-color: #232A36;
     padding: 50px 0;
 
+    .slick-arrow::before {
+       display: none !important;
+    }
+
+    .slick-dots li.slick-active button:before {
+        color: white;
+    }
+
+    .slick-dots li button:before {
+        color: #dbdbdb;
+    }
+
     &__title {
         font-size: 35px;
         font-weight: 900;
         margin-bottom: 38px;
         color: var(--whiteColor);
     }
-
-    
 
     &__list {
         display: flex;
