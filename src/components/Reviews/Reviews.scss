@@ -2,8 +2,43 @@
     background-color: #232A36;
     padding: 50px 0;
 
-    .slick-arrow::before {
-       display: none !important;
+    // .slick-arrow::before {
+    //    display: none !important;
+    // }
+
+    .slick-prev{
+        position: absolute;
+        top: -28px;
+        width: 36px;
+        height: 2px;
+        background-color: #ffffff;
+        left: 980px;
+    }
+
+    .slick-prev::before {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 2px;
+        top: -6px;
+        right: 21px;
+        background-color: #ffffff;
+        transform: rotate(-45deg);
+
+        &:hover {
+            pointer-events: none;
+        }
+    }
+    .slick-prev::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 2px;
+        top: 6px;
+        right: 20px;
+        background-color: #ffffff;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        transform: rotate(45deg);
     }
 
     .slick-dots li.slick-active button:before {
@@ -13,6 +48,48 @@
     .slick-dots li button:before {
         color: #dbdbdb;
     }
+
+    .slick-next {
+        position: absolute;
+        top: -28px;
+        width: 36px;
+        height: 2px;
+        background-color: #ffffff;
+        right: 20px;
+    }
+    
+    .slick-next::before {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 2px;
+        top: -7px;
+        right: -2px;
+        background-color: #ffffff;
+        transform: rotate(45deg);
+
+        &:hover {
+            pointer-events: none;
+        }
+    }
+
+    .slick-next::after {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 2px;
+        top: 6px;
+        right: -2px;
+        background-color: #ffffff;
+        box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+        transform: rotate(-45deg);
+
+        &:hover {
+            pointer-events: none;
+        }
+    }
+
+    
 
     &__title {
         font-size: 35px;

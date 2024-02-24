@@ -6,8 +6,8 @@ export default function Home() {
     <>
       <Heading />
       <SliderBlocks title={"Люкс"} />
-      <SliderBlocks title={"Средний класс"} />
-      <SliderBlocks title={"Компактные"} />
+      {/* <SliderBlocks title={"Средний класс"} />
+      <SliderBlocks title={"Компактные"} /> */}
       <Advantages />
       <Reviews/>
       <FAQ />
