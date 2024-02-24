@@ -1,6 +1,4 @@
 .slider-block {
-    padding-bottom: 50px;
-
     &__title {
         margin-bottom: 40px;
     }
@@ -9,15 +7,5 @@
         justify-content: center;
         gap: 45px;
         margin-bottom: 60px;
-    }
-
-    .slick-prev:before, .slick-next:before {
-        font-family: 'slick';
-        font-size: 20px;
-        line-height: 1;
-        opacity: .75;
-        color: #100f0f;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
     }
 }
