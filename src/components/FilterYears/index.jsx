@@ -6,6 +6,8 @@ import { setYearCar } from "../../redux/slices/filterSlice";
 import closeSvg from "../../assets/icons/sm-close.svg";
 
 const FilterYears = () => {
+  const inputRef = React.useRef();
+
   const yearCar = useSelector((e) => e.filter.yearCar);
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = React.useState("");
@@ -69,12 +71,16 @@ const FilterYears = () => {
   for (let year = 1970; year < 2024; year++) {
     listYears.push(year);
   }
-
+  const onClickClear = () => {
+    setSearchValue("");
+    inputRef.current.focus();
+  };
   return (
     <div className="cars__years">
       <h2 className="cars__years-title">Год выпуска</h2>
       <div className="cars__search">
         <input
+          ref={inputRef}
           onChange={(e) => setSearchValue(e.target.value)}
           value={searchValue}
           placeholder="2000..."
@@ -82,7 +88,7 @@ const FilterYears = () => {
         />
         {searchValue && (
           <img
-            onClick={() => setSearchValue("")}
+            onClick={onClickClear}
             className="cars__close"
             src={closeSvg}
             alt=""

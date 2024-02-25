@@ -9,15 +9,23 @@
         margin-bottom: 20px;
     }
     &__top-search {
+        position: relative;
         margin-bottom: 20px;
         input {
-            padding: 10px 10px 7px;
+            padding: 15px 20px 15px 7px;
             width: 100%;
             &::placeholder {
                 font-size: 18px;
                 font-weight: 300;
             }
         }
+    }
+    &__top-close {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
     }
     &__tabs {
         display: flex;
@@ -34,7 +42,9 @@
         font-weight: 500;
         border-radius: 10px;
         cursor: pointer;
-        transition: background-color .2s ease-in-out, color .2s ease-in-out;
+        transition:
+            background-color 0.2s ease-in-out,
+            color 0.2s ease-in-out;
         &:hover {
             background-color: var(--blackColor);
             color: var(--whiteColor);
@@ -96,11 +106,10 @@
             /* multiple soft shadows 👇 */ 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
             0 0.9px 1.5px hsla(0, 0%, 0%, 0.045),
             0 3.5px 6px hsla(0, 0%, 0%, 0.09);
-            pointer-events: none;
+        pointer-events: none;
         &--active {
             opacity: 1;
             pointer-events: all;
-
         }
         &-item {
             padding: 10px 29px 10px 12px;

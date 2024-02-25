@@ -6,11 +6,11 @@ const initialState = {
   price: [350, 650],
   yearCar: 1970,
   engine: [
-    { gearbox: "petrol", title: "Бензин", checked: false },
-    { gearbox: "diesel", title: "Дизель", checked: false },
-    { gearbox: "electro", title: "Электо/Гибрид", checked: false },
+    { gearbox: "petrol", title: "Бензин", checked: true },
+    { gearbox: "diesel", title: "Дизель", checked: true },
+    { gearbox: "electro", title: "Электо/Гибрид", checked: true },
   ],
-  box: 1,
+  box: 0,
   sort: {
     name: "От дешевых к дорогим",
     sortProperty: "-price",

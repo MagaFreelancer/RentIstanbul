@@ -1,29 +1,40 @@
-
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPrice } from "../../redux/slices/filterSlice";
+import debounce from "lodash.debounce";
 
 import Slider from "@mui/material/Slider";
 
 const FilterPrice = () => {
   const value1 = useSelector((e) => e.filter.price);
-  console.log(value1);
   const dispatch = useDispatch();
   const handleChange = (event, newValue) => {
-    dispatch(setPrice([...newValue]));
+    dispatch(setPrice(newValue));
+    updatePriceValue(newValue);
   };
-  const changeValueOne = (value) => {
-    if (+value >= value1[1]) {
-      return false;
-    } else {
-      dispatch(setPrice([+value, value1[1]]));
-    }
+
+  const updatePriceValue = React.useCallback(
+    debounce((value) => {
+      dispatch(setPrice(value));
+      console.log(value);
+    }, 500),
+    []
+  );
+  const changeValueOne = () => {
+    return false;
+    // if (+value >= value1[1]) {
+    //   return false;
+    // } else {
+    //   dispatch(setPrice([+value, value1[1]]));
+    // }
   };
-  const changeValueTwo = (value) => {
-    if (+value <= value1[1]) {
-      return false;
-    } else {
-      dispatch(setPrice([value1[1], +value]));
-    }
+  const changeValueTwo = () => {
+    return false;
+    // if (+value <= value1[1]) {
+    //   return false;
+    // } else {
+    //   dispatch(setPrice([value1[1], +value]));
+    // }
   };
   return (
     <div className="cars__price">
@@ -33,9 +44,9 @@ const FilterPrice = () => {
           className="cars__price-input"
           type="number"
           value={value1[0]}
-          onChange={({ target }) => {
+          onChange={() => {
             // setValue1([+e.target.value, value1[1]]);
-            changeValueOne(target.value);
+            changeValueOne();
           }}
           placeholder="10 ₽"
         />
@@ -44,9 +55,9 @@ const FilterPrice = () => {
           className="cars__price-input"
           type="number"
           value={value1[1]}
-          onChange={({ target }) => {
+          onChange={() => {
             // setValue1([+e.target.value, value1[1]]);
-            changeValueTwo(target.value);
+            changeValueTwo();
           }}
           placeholder="1000 ₽"
         />
