@@ -10,6 +10,7 @@ const initialState = {
     { gearbox: "diesel", title: "Дизель", checked: false },
     { gearbox: "electro", title: "Электо/Гибрид", checked: false },
   ],
+  box: 1,
   sort: {
     name: "От дешевых к дорогим",
     sortProperty: "-price",
@@ -38,6 +39,9 @@ const filterSlice = createSlice({
     setEngine(state, action) {
       state.engine = action.payload;
     },
+    setBox(state, action) {
+        state.box = action.payload;
+      },
     // setCurrentPage(state, action) {
     //   state.currentPage = action.payload;
     // },
@@ -56,6 +60,7 @@ export const {
   setPrice,
   setYearCar,
   setEngine,
+  setBox
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
