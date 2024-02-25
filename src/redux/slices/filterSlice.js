@@ -4,10 +4,11 @@ const initialState = {
   searchValue: "",
   categoryId: 0,
   price: [350, 650],
+  yearCar: 1970,
   sort: {
     name: "От дешевых к дорогим",
     sortProperty: "-price",
-},
+  },
 };
 
 const filterSlice = createSlice({
@@ -24,8 +25,10 @@ const filterSlice = createSlice({
       state.sort = action.payload;
     },
     setPrice(state, action) {
-        state.price = action.payload;
-
+      state.price = action.payload;
+    },
+    setYearCar(state, action) {
+      state.yearCar = action.payload;
     },
     // setCurrentPage(state, action) {
     //   state.currentPage = action.payload;
@@ -42,7 +45,8 @@ export const {
   setSort,
   setFilters,
   setSearchValue,
-  setPrice
+  setPrice,
+  setYearCar,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
