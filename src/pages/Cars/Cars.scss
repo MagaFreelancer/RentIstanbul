@@ -2,11 +2,47 @@
     &__container {
         display: flex;
     }
-    &__inner {
+    &__heading {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        margin-bottom: 30px;
+        margin-bottom: 20px;
+    }
+    &__top-search {
+        margin-bottom: 20px;
+        input {
+            padding: 10px 10px 7px;
+            width: 100%;
+            &::placeholder {
+                font-size: 18px;
+                font-weight: 300;
+            }
+        }
+    }
+    &__tabs {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 50px;
+    }
+    &__tabs-item {
+        color: var(--blackColor);
+        background-color: var(-whiteColor);
+        border: 1px solid var(--blackColor);
+        padding: 5px 10px;
+        font-size: 16px;
+        font-weight: 500;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: background-color .2s ease-in-out, color .2s ease-in-out;
+        &:hover {
+            background-color: var(--blackColor);
+            color: var(--whiteColor);
+        }
+        &--active {
+            background-color: var(--blackColor);
+            color: var(--whiteColor);
+        }
     }
     &__name {
         font-weight: 900;
@@ -17,7 +53,7 @@
         position: relative;
     }
 
-    &__list {
+    &__content {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: repeat(7, 1fr);
@@ -60,8 +96,11 @@
             /* multiple soft shadows 👇 */ 0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
             0 0.9px 1.5px hsla(0, 0%, 0%, 0.045),
             0 3.5px 6px hsla(0, 0%, 0%, 0.09);
+            pointer-events: none;
         &--active {
             opacity: 1;
+            pointer-events: all;
+
         }
         &-item {
             padding: 10px 29px 10px 12px;
@@ -97,6 +136,9 @@
         font-weight: 600;
         display: flex;
         margin-bottom: 10px;
+        label {
+            cursor: pointer;
+        }
     }
 
     &__gearbox-checkbox {
@@ -133,7 +175,7 @@
             transition: 0.2s ease-in;
         }
     }
-   
+
     &__gearbox-checkbox:checked + &__gearbox-custom::before {
         transform: translate(-50%, -50%) scale(1);
     }
