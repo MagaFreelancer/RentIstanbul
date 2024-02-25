@@ -1,7 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import searchSvg from "../../assets/icons/search.svg";
 import FavouriteSvg from "../FavouriteSvg";
+import Languages from "../Languages";
 import "./Header.scss";
+
 function Header() {
   return (
     <header className="header">
@@ -42,6 +44,9 @@ function Header() {
               <NavLink className="header__link" to="favourite">
                 <FavouriteSvg />
               </NavLink>
+            </li>
+            <li className="header__item">
+              <Languages/>
             </li>
           </ul>
         </nav>
