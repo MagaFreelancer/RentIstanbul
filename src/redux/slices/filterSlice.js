@@ -5,6 +5,11 @@ const initialState = {
   categoryId: 0,
   price: [350, 650],
   yearCar: 1970,
+  engine: [
+    { gearbox: "petrol", title: "Бензин", checked: false },
+    { gearbox: "diesel", title: "Дизель", checked: false },
+    { gearbox: "electro", title: "Электо/Гибрид", checked: false },
+  ],
   sort: {
     name: "От дешевых к дорогим",
     sortProperty: "-price",
@@ -30,6 +35,9 @@ const filterSlice = createSlice({
     setYearCar(state, action) {
       state.yearCar = action.payload;
     },
+    setEngine(state, action) {
+      state.engine = action.payload;
+    },
     // setCurrentPage(state, action) {
     //   state.currentPage = action.payload;
     // },
@@ -47,6 +55,7 @@ export const {
   setSearchValue,
   setPrice,
   setYearCar,
+  setEngine,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

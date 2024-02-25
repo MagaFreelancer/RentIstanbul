@@ -1,20 +1,23 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setEngine } from "../../redux/slices/filterSlice";
 
 const FilterEngine = () => {
-  const [checkBox, setCheckBox] = React.useState([
-    { gearbox: "petrol", title: "Бензин", checked: false },
-    { gearbox: "diesel", title: "Дизель", checked: false },
-    { gearbox: "electro", title: "Электо/Гибрид", checked: false },
-  ]);
+  const engine = useSelector((e) => e.filter.engine);
+  console.log(engine);
+  const dispatch = useDispatch();
 
   const onChangeCheckbox = (obj) => {
-    setCheckBox(
-      checkBox.map((item) => {
-        if (item.gearbox === obj.gearbox) {
-          item.checked = !obj.checked;
-        }
-        return item;
-      })
+    dispatch(
+      setEngine(
+        engine.map((item) => {
+          if (item.gearbox === obj.gearbox) {
+            return { ...item, checked: !item.checked };
+          } else {
+            return item;
+          }
+        })
+      )
     );
   };
 
@@ -22,14 +25,14 @@ const FilterEngine = () => {
     <div className="cars__engine">
       <h2 className="cars__box">Двигатель</h2>
       <ul>
-        {checkBox.map((obj, index) => {
+        {engine.map((obj, index) => {
           return (
             <li key={index} className="cars__gearbox">
               <label className="cars__gearbox-label" htmlFor={obj.gearbox}>
                 <input
                   onChange={() => onChangeCheckbox(obj)}
                   className={`cars__gearbox-checkbox ${
-                    obj.gearbox === checkBox[0].gearbox
+                    obj.gearbox === engine[0].gearbox
                       ? "cars__gearbox-checkbox--active"
                       : ""
                   }`}
