@@ -1,24 +1,27 @@
 import React from "react";
 import Slider from "@mui/material/Slider";
+import { useDispatch, useSelector } from "react-redux";
+import { setPrice } from "../../redux/slices/filterSlice";
 
 const FilterPrice = () => {
-  const [value1, setValue1] = React.useState([350, 650]);
+  const dispatch = useDispatch();
+  const prices = useSelector((e) => e.filter.price);
 
   const handleChange = (event, newValue) => {
-    setValue1([...newValue]);
+    dispatch(setPrice([...newValue]));
   };
   const changeValueOne = (value) => {
-    if (+value >= value1[1]) {
+    if (+value >= prices[1]) {
       return false;
     } else {
-      setValue1([+value, value1[1]]);
+      dispatch(setPrice(+value, prices[1]));
     }
   };
   const changeValueTwo = (value) => {
-    if (+value <= value1[1]) {
+    if (+value <= prices[1]) {
       return false;
     } else {
-      setValue1([value1[1], +value]);
+      dispatch(setPrice(prices[1], +value));
     }
   };
   return (
@@ -28,7 +31,7 @@ const FilterPrice = () => {
         <input
           className="cars__price-input"
           type="number"
-          value={value1[0]}
+          value={prices[0]}
           onChange={({ target }) => {
             // setValue1([+e.target.value, value1[1]]);
             changeValueOne(target.value);
@@ -39,7 +42,7 @@ const FilterPrice = () => {
         <input
           className="cars__price-input"
           type="number"
-          value={value1[1]}
+          value={prices[1]}
           onChange={({ target }) => {
             // setValue1([+e.target.value, value1[1]]);
             changeValueTwo(target.value);
@@ -50,7 +53,7 @@ const FilterPrice = () => {
       <Slider
         getAriaLabel={() => "Minimum distance"}
         onChange={handleChange}
-        value={value1}
+        value={prices}
         min={10}
         max={1000}
         disableSwap

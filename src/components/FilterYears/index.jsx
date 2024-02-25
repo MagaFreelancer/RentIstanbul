@@ -1,6 +1,13 @@
 import React from "react";
 import closeSvg from "../../assets/icons/sm-close.svg";
+import { useDispatch, useSelector } from "react-redux";
+import { setYear } from "../../redux/slices/filterSlice"
+
 const FilterYears = () => {
+  const dispatch = useDispatch();
+  const yearIssue = useSelector((e) => e.filter.year);
+  
+
   const [searchValue, setSearchValue] = React.useState("");
   const [yearCar, setYearCar] = React.useState({
     type: 1970,
@@ -76,12 +83,9 @@ const FilterYears = () => {
         {listYears.filter(year => year.title.toLowerCase().includes(searchValue.toLowerCase())).map((year) => {
           return (
             <li
-              onClick={() => setYearCar(year)}
-              key={year.type}
-              className={`cars__years-item ${
-                year.type === yearCar.type ? "cars__years-item--active" : ""
-              }`}
-            >
+              onClick={() => dispatch(setYear(year.type))}
+              key={year.type} 
+              className={`cars__years-item ${year.type === yearIssue ? "cars__years-item--active" : ""}`}>
               {year.title}
             </li>
           );

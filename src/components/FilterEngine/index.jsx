@@ -4,6 +4,7 @@ import { setEngine } from "../../redux/slices/filterSlice";
 
 const FilterEngine = () => {
   const engine = useSelector((e) => e.filter.engine);
+  const dispatch = useDispatch();
 
   const list = [
     { gearbox: "petrol", title: "Бензин" },
@@ -11,8 +12,8 @@ const FilterEngine = () => {
     { gearbox: "electro", title: "Электо/Гибрид" },
   ];
 
-  const onChangeCheckbox = (index) => {
-    console.log(list[engine]);
+  const onChangeCheckbox = (title) => {   
+    dispatch(setEngine(title));
   };
 
   return (
@@ -24,8 +25,8 @@ const FilterEngine = () => {
             <li key={index} className="cars__gearbox">
               <label className="cars__gearbox-label" htmlFor={obj.gearbox}>
                 <input
-                  onChange={() => onChangeCheckbox(index)}
-                  // className={`cars__gearbox-checkbox ${ list[index] ===  ? "cars__gearbox-checkbox--active" : ""}`}
+                  onChange={() => onChangeCheckbox(obj.gearbox)}
+                  className={`cars__gearbox-checkbox ${ obj.gearbox === engine.find(el => el) ? "cars__gearbox-checkbox--active" : ""}`}
                   checked={obj.checked}
                   id={obj.gearbox}
                   type="checkbox"

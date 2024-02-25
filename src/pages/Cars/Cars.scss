@@ -176,9 +176,7 @@
         }
     }
 
-    &__gearbox-checkbox:checked + &__gearbox-custom::before {
-        transform: translate(-50%, -50%) scale(1);
-    }
+   
 
     &__gearbox-checkbox--active + &__gearbox-custom::before {
         transform: translate(-50%, -50%) scale(1);
@@ -188,9 +186,7 @@
         background-color: #1fc7ff;
     }
 
-    &__gearbox-checkbox:checked + &__gearbox-custom {
-        background-color: #1fc7ff;
-    }
+   
 
     &__gearbox-radio {
         width: 0;

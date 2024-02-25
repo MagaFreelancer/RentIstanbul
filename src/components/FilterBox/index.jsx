@@ -1,10 +1,10 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setGearbox } from "../../redux/slices/filterSlice";
 
 const FilterBox = () => {
-  const [gearadios, setGeaRadios] = React.useState({
-    gearbox: "any",
-    title: "Любая",
-  });
+  const dispatch = useDispatch();
+  const gearbox = useSelector((e) => e.filter.gearboxs);
 
   const gearboxs = [
     { gearbox: "any", title: "Любая" },
@@ -19,13 +19,13 @@ const FilterBox = () => {
         {gearboxs.map((obj, index) => {
           return (
             <li
-              onClick={() => setGeaRadios(obj)}
               className="cars__gearbox"
               key={index}
             >
               <label className="cars__radio-label" htmlFor={obj.gearbox}>
                 <input
-                  className={`cars__gearbox-radio ${gearadios.gearbox === obj.gearbox ? "cars__gearbox-radio--active" : ""}`}
+                  onClick={() => dispatch(setGearbox(obj.gearbox))}
+                  className={`cars__gearbox-radio ${ obj.gearbox === gearbox ? "cars__gearbox-radio--active" : ""}`}
                   id={obj.gearbox}
                   type="radio"
                   value={obj.gearbox}
