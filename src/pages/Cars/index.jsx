@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import "./Cars.scss";
 import { fetchCars } from "../../redux/slices/carSlice";
 import qs from "qs";
-import { setCategoryId, setFilters } from "../../redux/slices/filterSlice";
 import {
   CarSkeleton,
   CarBlock,

@@ -1,24 +1,28 @@
-import React from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setPrice } from "../../redux/slices/filterSlice";
+
 import Slider from "@mui/material/Slider";
 
 const FilterPrice = () => {
-  const [value1, setValue1] = React.useState([350, 650]);
-
+  const value1 = useSelector((e) => e.filter.price);
+  console.log(value1);
+  const dispatch = useDispatch();
   const handleChange = (event, newValue) => {
-    setValue1([...newValue]);
+    dispatch(setPrice([...newValue]));
   };
   const changeValueOne = (value) => {
     if (+value >= value1[1]) {
       return false;
     } else {
-      setValue1([+value, value1[1]]);
+      dispatch(setPrice([+value, value1[1]]));
     }
   };
   const changeValueTwo = (value) => {
     if (+value <= value1[1]) {
       return false;
     } else {
-      setValue1([value1[1], +value]);
+      dispatch(setPrice([value1[1], +value]));
     }
   };
   return (
