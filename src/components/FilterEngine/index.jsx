@@ -2,7 +2,7 @@ import React from "react";
 
 const FilterEngine = () => {
   const [checkBox, setCheckBox] = React.useState([
-    { gearbox: "petrol", title: "Бензин", checked: false },
+    { gearbox: "petrol", title: "Бензин", checked: true },
     { gearbox: "diesel", title: "Дизель", checked: false },
     { gearbox: "electro", title: "Электо/Гибрид", checked: false },
   ]);
