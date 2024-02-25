@@ -25,7 +25,7 @@ const FilterEngine = () => {
               <label className="cars__gearbox-label" htmlFor={obj.gearbox}>
                 <input
                   onChange={() => onChangeCheckbox(index)}
-                  className={`cars__gearbox-checkbox ${ list.gearbox === list[engine] ? "cars__gearbox-checkbox--active" : ""}`}
+                  // className={`cars__gearbox-checkbox ${ list[index] ===  ? "cars__gearbox-checkbox--active" : ""}`}
                   checked={obj.checked}
                   id={obj.gearbox}
                   type="checkbox"
