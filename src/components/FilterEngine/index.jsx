@@ -4,7 +4,6 @@ import { setEngine } from "../../redux/slices/filterSlice";
 
 const FilterEngine = () => {
   const engine = useSelector((e) => e.filter.engine);
-  console.log(engine);
   const dispatch = useDispatch();
 
   const onChangeCheckbox = (obj) => {
