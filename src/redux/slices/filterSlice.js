@@ -4,6 +4,7 @@ const initialState = {
   searchValue: "",
   categoryId: 0,
   price: [350, 650],
+  engine: [0],
   sort: {
     name: "От дешевых к дорогим",
     sortProperty: "-price",
@@ -26,6 +27,9 @@ const filterSlice = createSlice({
     setPrice(state, action) {
         state.price = action;
     },
+    setEngine(state, action) {
+      state.engine = action;
+    },
     // setCurrentPage(state, action) {
     //   state.currentPage = action.payload;
     // },
@@ -39,6 +43,7 @@ const filterSlice = createSlice({
 export const {
   setCategoryId,
   setSort,
+  setEngine,
   setFilters,
   setSearchValue,
 } = filterSlice.actions;

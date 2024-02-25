@@ -25,11 +25,7 @@ const FilterBox = () => {
             >
               <label className="cars__radio-label" htmlFor={obj.gearbox}>
                 <input
-                  className={`cars__gearbox-radio ${
-                    gearadios.gearbox === obj.gearbox
-                      ? "cars__gearbox-radio--active"
-                      : ""
-                  }`}
+                  className={`cars__gearbox-radio ${gearadios.gearbox === obj.gearbox ? "cars__gearbox-radio--active" : ""}`}
                   id={obj.gearbox}
                   type="radio"
                   value={obj.gearbox}
