@@ -8,15 +8,16 @@ import Slider from "@mui/material/Slider";
 const FilterPrice = () => {
   const value1 = useSelector((e) => e.filter.price);
   const dispatch = useDispatch();
+  const [localPrice, setLocalPrice] = React.useState(value1);
+
   const handleChange = (event, newValue) => {
-    dispatch(setPrice(newValue));
+    setLocalPrice(newValue)
     updatePriceValue(newValue);
   };
 
   const updatePriceValue = React.useCallback(
     debounce((value) => {
       dispatch(setPrice(value));
-      console.log(value);
     }, 500),
     []
   );
@@ -43,7 +44,7 @@ const FilterPrice = () => {
         <input
           className="cars__price-input"
           type="number"
-          value={value1[0]}
+          value={localPrice[0]}
           onChange={() => {
             // setValue1([+e.target.value, value1[1]]);
             changeValueOne();
@@ -54,7 +55,7 @@ const FilterPrice = () => {
         <input
           className="cars__price-input"
           type="number"
-          value={value1[1]}
+          value={localPrice[1]}
           onChange={() => {
             // setValue1([+e.target.value, value1[1]]);
             changeValueTwo();
@@ -65,7 +66,7 @@ const FilterPrice = () => {
       <Slider
         getAriaLabel={() => "Minimum distance"}
         onChange={handleChange}
-        value={value1}
+        value={localPrice}
         min={10}
         max={1000}
         disableSwap

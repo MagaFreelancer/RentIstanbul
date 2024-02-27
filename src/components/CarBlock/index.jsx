@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./CarBlock.scss";
 export default function CarBlock({
   imageUrl,
-  name,
+  title,
   price,
   type,
 //   place,
@@ -17,7 +17,7 @@ export default function CarBlock({
         <img src={imageUrl} alt="car" />
       </div>
       <h3 className="car-block__title">
-        <Link to={`car/${id}`}>{name}</Link>
+        <Link to={`car/${id}`}>{title}</Link>
       </h3>
       <div className="car-block__type">{type}</div>
 

@@ -2,10 +2,12 @@ import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchCars = createAsyncThunk(
-  "pizza/fetchCarsStatus",
-  async () => {
+  "car/fetchCarsStatus",
+  async (params) => {
+    const { order,search, sortBy } = params;
+    console.log(params.sortBy);
     const { data } = await axios.get(
-      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items`
+      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items?sortBy=${sortBy}&order=${order}${search}`
     );
     return data;
   }
@@ -17,7 +19,7 @@ const initialState = {
 };
 
 const carSlice = createSlice({
-  name: "pizza",
+  name: "car",
   initialState,
   reducers: {
     setItems(state, action) {

@@ -2,13 +2,31 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   searchValue: "",
-  categoryId: 0,
+  categoryIds: [
+    { text: "Все", value: "all", active: true },
+    { text: "Компактные", value: "compact", active: false },
+    { text: "Средний класс", value: "middle", active: false },
+    { text: "Кроссоверы", value: "crossovers", active: false },
+    { text: "Люкс", value: "lux", active: false },
+  ],
   price: [350, 650],
   yearCar: 1970,
   engine: [
-    { gearbox: "petrol", title: "Бензин", checked: true },
-    { gearbox: "diesel", title: "Дизель", checked: true },
-    { gearbox: "electro", title: "Электо/Гибрид", checked: true },
+    {
+      sortProperty: "petrol",
+      title: "Бензин",
+      checked: true,
+    },
+    {
+      sortProperty: "diesel",
+      title: "Дизель",
+      checked: true,
+    },
+    {
+      sortProperty: "electro",
+      title: "Электо/Гибрид",
+      checked: true,
+    },
   ],
   box: 0,
   sort: {
@@ -21,8 +39,8 @@ const filterSlice = createSlice({
   name: "filters",
   initialState,
   reducers: {
-    setCategoryId(state, action) {
-      state.categoryId = action.payload;
+    setCategoryIds(state, action) {
+      state.categoryIds = action.payload;
     },
     setSearchValue(state, action) {
       state.searchValue = action.payload;
@@ -40,27 +58,31 @@ const filterSlice = createSlice({
       state.engine = action.payload;
     },
     setBox(state, action) {
-        state.box = action.payload;
-      },
+      state.box = action.payload;
+      console.log(action.payload);
+    },
+    setFilters(state, action) {
+      state.categoryId = action.payload.categoryId;
+      state.yearCar = Number(action.payload.yearCar);
+      state.engine = action.payload.engine;
+      state.box = action.payload.box;
+      state.price = action.payload.price;
+    },
     // setCurrentPage(state, action) {
     //   state.currentPage = action.payload;
     // },
-    setFilters(state, action) {
-      state.sort = action.payload.sort;
-      state.categoryId = Number(action.payload.categoryId);
-    },
   },
 });
 
 export const {
-  setCategoryId,
+  setCategoryIds,
   setSort,
   setFilters,
   setSearchValue,
   setPrice,
   setYearCar,
   setEngine,
-  setBox
+  setBox,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

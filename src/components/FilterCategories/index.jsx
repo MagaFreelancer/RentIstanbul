@@ -1,22 +1,19 @@
-import React from "react";
-
+import { setCategoryIds } from "../../redux/slices/filterSlice";
+import { useSelector, useDispatch } from "react-redux";
 const FilterCategories = () => {
-  const [list, setList] = React.useState([
-    { text: "Все", value: "all", active: false, category: 0 },
-    { text: "Компактные", value: "compact", active: false, category: 1 },
-    { text: "Средний класс", value: "middle", active: false, category: 2 },
-    { text: "Кроссоверы", value: "crossovers", active: false, category: 3 },
-    { text: "Люкс", value: "lux", active: false, category: 4 },
-  ]);
+  const list = useSelector((e) => e.filter.categoryIds);
+  const dispatch = useDispatch();
 
   const onClickList = (obj) => {
-    setList(
-      list.map((item) => {
-        if (item.text === obj.text) {
-          item.active = !item.active;
-        }
-        return item;
-      })
+    dispatch(
+      setCategoryIds(
+        list.map((item) => {
+          if (item.text === obj.text) {
+            return { ...item, active: !item.active };
+          }
+          return item;
+        })
+      )
     );
   };
   return (
