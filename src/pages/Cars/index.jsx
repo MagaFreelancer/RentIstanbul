@@ -1,9 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import "./Cars.scss";
 import { fetchCars } from "../../redux/slices/carSlice";
 import qs from "qs";
 import { setCategoryId, setFilters } from "../../redux/slices/filterSlice";
+import "./Cars.scss";
+
 import {
   CarSkeleton,
   CarBlock,
@@ -17,16 +18,17 @@ import {
 } from "../../components";
 const Cars = () => {
   const { items, status } = useSelector((state) => state.car);
+  const searchValue = useSelector((e) => e.filter.searchValue);
   const dispatch = useDispatch();
+
+  console.log(items);
 
   const getCars = async () => {
     dispatch(fetchCars());
   };
 
-  const cars = items.map((obj, index) => <CarBlock key={index} {...obj} />);
-  const skeletons = [...new Array(10)].map((_, index) => (
-    <CarSkeleton key={index} />
-  ));
+  const cars = items.filter((obj) => obj.name.toLowerCase().includes(searchValue.toLowerCase()) ? true : false).map((obj, index) => <CarBlock key={index} {...obj} />);
+  const skeletons = [...new Array(10)].map((_, index) => (<CarSkeleton key={index} />));
 
   React.useEffect(() => {
     getCars();
