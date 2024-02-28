@@ -6,7 +6,11 @@ const initialState = {
   categoryId: ['all', 'middle'],
   year: 1970,
   price: [350, 650],
-  engine: ['petrol'],
+  engine: [
+    { gearbox: "petrol", title: "Бензин", checked: true },
+    { gearbox: "diesel", title: "Дизель", checked: false },
+    { gearbox: "electro", title: "Электо/Гибрид", checked: false },
+  ],
   sort: {
     name: "От дешевых к дорогим",
     sortProperty: "-price",
@@ -30,13 +34,7 @@ const filterSlice = createSlice({
       state.price = action.payload;
     },
     setEngine(state, action) {
-      const findItem = state.engine.find((item) => item === action.payload);
-
-      if(findItem) {
-        state.engine.splice(findItem);
-      }else {
-        state.engine.push(action.payload);
-      }
+      state.engine = action.payload;
     },
     setYear(state, action) {
       state.year = action.payload

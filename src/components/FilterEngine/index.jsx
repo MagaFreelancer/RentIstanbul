@@ -6,27 +6,32 @@ const FilterEngine = () => {
   const engine = useSelector((e) => e.filter.engine);
   const dispatch = useDispatch();
 
-  const list = [
-    { gearbox: "petrol", title: "Бензин" },
-    { gearbox: "diesel", title: "Дизель" },
-    { gearbox: "electro", title: "Электо/Гибрид" },
-  ];
-
-  const onChangeCheckbox = (title) => {   
-    dispatch(setEngine(title));
+  const onChangeCheckbox = (obj) => {   
+    dispatch(
+      setEngine(
+        engine.map((item) => {
+          if (item.checked === obj.checked) {
+            return { ...item, checked: !item.checked };
+          } else {
+            return item;
+          }
+        })
+      )
+    );
+    console.log(engine);
   };
 
   return (
     <div className="cars__engine">
       <h2 className="cars__box">Двигатель</h2>
       <ul>
-        {list.map((obj, index) => {
+        {engine.map((obj, index) => {
           return (
             <li key={index} className="cars__gearbox">
               <label className="cars__gearbox-label" htmlFor={obj.gearbox}>
                 <input
-                  onChange={() => onChangeCheckbox(obj.gearbox)}
-                  className={`cars__gearbox-checkbox ${ obj.gearbox === engine.find(el => el) ? "cars__gearbox-checkbox--active" : ""}`}
+                  onChange={() => onChangeCheckbox(obj)}
+                  className={`cars__gearbox-checkbox ${ obj.checked ? "cars__gearbox-checkbox--active" : ""}`}
                   checked={obj.checked}
                   id={obj.gearbox}
                   type="checkbox"
