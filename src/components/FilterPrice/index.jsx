@@ -10,20 +10,7 @@ const FilterPrice = () => {
   const handleChange = (event, newValue) => {
     dispatch(setPrice([...newValue]));
   };
-  const changeValueOne = (value) => {
-    if (+value >= prices[1]) {
-      return false;
-    } else {
-      dispatch(setPrice(+value, prices[1]));
-    }
-  };
-  const changeValueTwo = (value) => {
-    if (+value <= prices[1]) {
-      return false;
-    } else {
-      dispatch(setPrice(prices[1], +value));
-    }
-  };
+  
   return (
     <div className="cars__price">
       <h2 className="cars__paragraph">Фильтр по цене</h2>
@@ -32,10 +19,7 @@ const FilterPrice = () => {
           className="cars__price-input"
           type="number"
           value={prices[0]}
-          onChange={({ target }) => {
-            // setValue1([+e.target.value, value1[1]]);
-            changeValueOne(target.value);
-          }}
+          disabled
           placeholder="10 ₽"
         />
         <span>-</span>
@@ -43,10 +27,7 @@ const FilterPrice = () => {
           className="cars__price-input"
           type="number"
           value={prices[1]}
-          onChange={({ target }) => {
-            // setValue1([+e.target.value, value1[1]]);
-            changeValueTwo(target.value);
-          }}
+          disabled
           placeholder="1000 ₽"
         />
       </div>
