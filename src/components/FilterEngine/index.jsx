@@ -7,7 +7,6 @@ const FilterEngine = () => {
   const dispatch = useDispatch();
 
   const onChangeCheckbox = (obj) => {   
-    console.log(engine);
     dispatch(
       setEngine(
         engine.map((item) => {
@@ -19,7 +18,6 @@ const FilterEngine = () => {
         })
       )
     );
-    console.log(engine);
   };
 
   return (
@@ -32,7 +30,7 @@ const FilterEngine = () => {
               <label className="cars__gearbox-label" htmlFor={obj.gearbox}>
                 <input
                   onChange={() => onChangeCheckbox(obj)}
-                  className={`cars__gearbox-checkbox ${ obj.gearbox === engine[0].gearbox ? "cars__gearbox-checkbox--active" : ""}`}
+                  className={`cars__gearbox-checkbox ${ obj.checked && "cars__gearbox-checkbox--active"}`}
                   checked={obj.checked}
                   id={obj.gearbox}
                   type="checkbox"

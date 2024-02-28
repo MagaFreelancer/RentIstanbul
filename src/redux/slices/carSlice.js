@@ -3,9 +3,13 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchCars = createAsyncThunk(
   "pizza/fetchCarsStatus",
-  async () => {
+  async ({searchValue, sortValue}) => {
+    const sortBy = sortValue.replace("-", "");
+    const order = sortValue.includes("-") ? "asc" : "desc";
+    const search = searchValue ? `&search=${searchValue}` : "";
+
     const { data } = await axios.get(
-      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items`
+      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items?sortBy=${sortBy}&order=${order}${search}`
     );
     return data;
   }

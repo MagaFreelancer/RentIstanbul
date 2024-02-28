@@ -9,10 +9,13 @@ import { CarSkeleton, CarBlock, FilterPrice, FilterYears, FilterBox, FilterEngin
 const Cars = () => {
   const { items, status } = useSelector((state) => state.car);
   const searchValue = useSelector((e) => e.filter.searchValue);
+  const sortValue = useSelector((e) => e.filter.sort.sortProperty);
   const dispatch = useDispatch();
 
+  const params = {searchValue, sortValue};
+
   const getCars = async () => {
-    dispatch(fetchCars());
+    dispatch(fetchCars(params));
   };
 
   const cars = items.map((obj, index) => <CarBlock key={index} {...obj} />);
@@ -20,7 +23,7 @@ const Cars = () => {
 
   React.useEffect(() => {
     getCars();
-  }, []);
+  }, [searchValue, sortValue]);
 
   return (
     <section className="cars">

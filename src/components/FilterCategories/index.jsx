@@ -1,28 +1,36 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux"; 
+import { setCategoryId } from "../../redux/slices/filterSlice";
 
 const FilterCategories = () => {
   const categoryId = useSelector((e) => e.filter.categoryId);
   const dispatch = useDispatch();
- 
-  const list = [
-    { text: "Все", value: "all", active: false, category: 0 },
-    { text: "Компактные", value: "compact", active: false, category: 1 },
-    { text: "Средний класс", value: "middle", active: false, category: 2 },
-    { text: "Кроссоверы", value: "crossovers", active: false, category: 3 },
-    { text: "Люкс", value: "lux", active: false, category: 4 },
-  ];
 
   const onClickList = (obj) => {
-    
+    dispatch(
+      setCategoryId(
+        categoryId.map((item) => {
+          if (item.value === obj.value) {
+            changeAllCategory(obj.value)
+            return { ...item, active: !item.active };
+          } else {
+            return item;
+          }
+        })
+      )
+    );
+  };
+
+  const changeAllCategory = (value) => {
+    console.log(value);
   };
 
   return (
     <ul className="cars__tabs">
-      {list.map((item, index) => (
+      {categoryId.map((item, index) => (
         <li
           key={index}
-          className={`cars__tabs-item ${ categoryId[index] === item.category ? "cars__tabs-item--active" : ''}`}
+          className={`cars__tabs-item ${ item.active && "cars__tabs-item--active"}`}
           onClick={() => onClickList(item)}
         >
           {item.text}

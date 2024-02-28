@@ -2,13 +2,32 @@ import React from "react";
 import Slider from "@mui/material/Slider";
 import { useDispatch, useSelector } from "react-redux";
 import { setPrice } from "../../redux/slices/filterSlice";
+import debounce from "lodash.debounce";
 
 const FilterPrice = () => {
   const dispatch = useDispatch();
   const prices = useSelector((e) => e.filter.price);
+  const [localPrice, setLocalPrice] = React.useState(prices);
 
   const handleChange = (event, newValue) => {
-    dispatch(setPrice([...newValue]));
+    setLocalPrice(newValue);
+    changePrice(newValue)
+  };
+
+  const changePrice = React.useCallback(
+    debounce((value) => {
+      dispatch(setPrice(value));
+    }, 500),
+    []
+  )
+ 
+  const changeValueOne = () => {
+    return false;
+   
+  };
+  const changeValueTwo = () => {
+    return false;
+    
   };
   
   return (
@@ -18,7 +37,8 @@ const FilterPrice = () => {
         <input
           className="cars__price-input"
           type="number"
-          value={prices[0]}
+          value={localPrice[0]}
+          onChange={() => changeValueOne()}
           disabled
           placeholder="10 ₽"
         />
@@ -26,7 +46,8 @@ const FilterPrice = () => {
         <input
           className="cars__price-input"
           type="number"
-          value={prices[1]}
+          value={localPrice[1]}
+          onChange={() => changeValueTwo()}
           disabled
           placeholder="1000 ₽"
         />
@@ -34,7 +55,7 @@ const FilterPrice = () => {
       <Slider
         getAriaLabel={() => "Minimum distance"}
         onChange={handleChange}
-        value={prices}
+        value={localPrice}
         min={10}
         max={1000}
         disableSwap

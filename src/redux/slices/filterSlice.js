@@ -3,7 +3,13 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   searchValue: "",
   gearboxs: 'any',
-  categoryId: ['all', 'middle'],
+  categoryId: [
+    { text: "Все", value: "all", active: true, category: 0 },
+    { text: "Компактные", value: "compact", active: false, category: 1 },
+    { text: "Средний класс", value: "middle", active: false, category: 2 },
+    { text: "Кроссоверы", value: "crossovers", active: false, category: 3 },
+    { text: "Люкс", value: "lux", active: false, category: 4 },
+  ],
   year: 1970,
   price: [350, 650],
   engine: [
