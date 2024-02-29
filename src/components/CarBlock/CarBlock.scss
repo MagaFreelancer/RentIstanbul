@@ -30,18 +30,5 @@
     &__type {
         font-size: 16px;
     }
-    &__favourite {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-        z-index: 999;
-    }
-    &__icon {
-        fill: #ffffff;
-
-        transition: all 0.2s ease-in-out;
-        &--active {
-            fill: var(--blackColor);
-        }
-    }
+  
 }

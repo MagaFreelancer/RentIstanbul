@@ -6,6 +6,7 @@ import SliderBlocks from "./SliderBlocks";
 import Heading from "./Heading";
 import Advantages from "./Advantages";
 import FAQ from "./FAQ";
+import SinglePageModal from "./SinglePageModal";
 
 export {
   Footer,
@@ -16,4 +17,5 @@ export {
   Heading,
   Advantages,
   FAQ,
+  SinglePageModal,
 };

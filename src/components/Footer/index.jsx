@@ -33,11 +33,6 @@ function Footer() {
               </NavLink>
             </li>
             <li className="footer__item menu__item">
-              <NavLink className="footer__link menu__link" to="news">
-                News
-              </NavLink>
-            </li>
-            <li className="footer__item menu__item">
               <NavLink className="footer__link menu__link" to="about">
                 About
               </NavLink>

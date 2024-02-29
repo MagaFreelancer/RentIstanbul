@@ -33,7 +33,7 @@ const Languages = () => {
     const countries = [
         {country: 'Россия', flag: russia, code: 'RU'},
         {country: 'English', flag: america, code: 'US'},
-        {country: 'turkey', flag: turkey, code: 'TU'}
+        {country: 'Turkey', flag: turkey, code: 'TUR'}
     ];
 
     return (
