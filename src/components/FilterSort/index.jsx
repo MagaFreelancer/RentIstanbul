@@ -2,18 +2,17 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSort } from "../../redux/slices/filterSlice";
 
+export const listSort = [
+  { name: "От дешевых к дорогим", sortProperty: "-price" },
+  { name: "От дорогих к дешевым", sortProperty: "price" },
+  { name: "По дате добавления", sortProperty: "-title" },
+];
+
 const FilterSort = () => {
   const sortRef = React.useRef();
   const sort = useSelector((e) => e.filter.sort);
-
-  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-
-  const list = [
-    { name: "От дешевых к дорогим", sortProperty: "-price" },
-    { name: "От дорогих к дешевым", sortProperty: "price" },
-    { name: "По дате добавления", sortProperty: "-title" },
-  ];
+  const dispatch = useDispatch();
 
   React.useEffect(() => {
     const handleClickOutside = (event) => {
@@ -39,7 +38,7 @@ const FilterSort = () => {
         Сортировать по: <span>{sort.name}</span>
       </div>
       <ul className={`cars__popup ${open ? "cars__popup--active" : ""}`}>
-        {list.map((obj, index) => (
+        {listSort.map((obj, index) => (
           <li
             onClick={() => onChangeSort(obj)}
             key={index}

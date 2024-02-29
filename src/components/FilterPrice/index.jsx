@@ -20,15 +20,6 @@ const FilterPrice = () => {
     }, 500),
     []
   )
- 
-  const changeValueOne = () => {
-    return false;
-   
-  };
-  const changeValueTwo = () => {
-    return false;
-    
-  };
   
   return (
     <div className="cars__price">
@@ -38,7 +29,6 @@ const FilterPrice = () => {
           className="cars__price-input"
           type="number"
           value={localPrice[0]}
-          onChange={() => changeValueOne()}
           disabled
           placeholder="10 ₽"
         />
@@ -47,7 +37,6 @@ const FilterPrice = () => {
           className="cars__price-input"
           type="number"
           value={localPrice[1]}
-          onChange={() => changeValueTwo()}
           disabled
           placeholder="1000 ₽"
         />

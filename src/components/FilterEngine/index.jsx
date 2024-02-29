@@ -20,11 +20,14 @@ const FilterEngine = () => {
     );
   };
 
+
+
   return (
     <div className="cars__engine">
       <h2 className="cars__box">Двигатель</h2>
       <ul>
         {engine.map((obj, index) => {
+          console.log(obj);
           return (
             <li key={index} className="cars__gearbox">
               <label className="cars__gearbox-label" htmlFor={obj.gearbox}>

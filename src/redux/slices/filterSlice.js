@@ -48,12 +48,10 @@ const filterSlice = createSlice({
     setGearbox(state, action) {
       state.gearboxs = action.payload
     },
-    // setCurrentPage(state, action) {
-    //   state.currentPage = action.payload;
-    // },
     setFilters(state, action) {
       state.sort = action.payload.sort;
-      state.categoryId = Number(action.payload.categoryId);
+      state.year = Number(action.payload.year);
+      state.engine = action.payload.engineArr;
     },
   },
 });

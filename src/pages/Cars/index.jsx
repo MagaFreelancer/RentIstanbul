@@ -1,21 +1,38 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../../redux/slices/carSlice";
+import { setFilters } from "../../redux/slices/filterSlice";
 import qs from "qs";
-import { setCategoryId, setFilters } from "../../redux/slices/filterSlice";
+import { CarSkeleton, CarBlock, FilterPrice, FilterYears, FilterBox, FilterEngine, FilterSort, FilterCategories, Search} from "../../components";
+import { listSort } from "../../components/FilterSort";
+import { useNavigate } from "react-router-dom";
 import "./Cars.scss";
 
-import { CarSkeleton, CarBlock, FilterPrice, FilterYears, FilterBox, FilterEngine, FilterSort, FilterCategories, Search} from "../../components";
 const Cars = () => {
   const { items, status } = useSelector((state) => state.car);
-  const searchValue = useSelector((e) => e.filter.searchValue);
-  const sortValue = useSelector((e) => e.filter.sort.sortProperty);
+  const { searchValue, gearboxs, categoryId, year, price, engine, sort } = useSelector((e) => e.filter);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const params = {searchValue, sortValue};
+  React.useEffect(() => {
+    if(window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+      
+      const sort = listSort.find((obj) => obj.sortProperty === params.sort);
+      const engineArr = params.engine.map((obj) => {
+        return {...obj, checked: JSON.parse(obj.checked)}
+      });
+  
+      dispatch(setFilters({...params, sort, engineArr}))
+    }
+  }, []);
 
   const getCars = async () => {
-    dispatch(fetchCars(params));
+    const sortBy = sort.sortProperty.replace("-", "");
+    const order = sort.sortProperty.includes("-") ? "asc" : "desc";
+    const search = searchValue ? `&search=${searchValue}` : "";
+
+    dispatch(fetchCars({sortBy, order, search}));
   };
 
   const cars = items.map((obj, index) => <CarBlock key={index} {...obj} />);
@@ -23,7 +40,20 @@ const Cars = () => {
 
   React.useEffect(() => {
     getCars();
-  }, [searchValue, sortValue]);
+  }, [searchValue, sort, price]);
+
+  React.useEffect(() => {
+    const queryString = qs.stringify({
+      sort: sort.sortProperty,
+      price,
+      categoryId,
+      year,
+      gearboxs,
+      engine
+    });
+
+    navigate(`?${queryString}`);
+  }, [price, categoryId, year, engine, gearboxs, sort]);
 
   return (
     <section className="cars">
