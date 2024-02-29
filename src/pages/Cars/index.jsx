@@ -7,6 +7,7 @@ import { CarSkeleton, CarBlock, FilterPrice, FilterYears, FilterBox, FilterEngin
 import { listSort } from "../../components/FilterSort";
 import { useNavigate } from "react-router-dom";
 import "./Cars.scss";
+import { gearboxsList } from "../../components/FilterBox";
 
 const Cars = () => {
   const { items, status } = useSelector((state) => state.car);
@@ -22,7 +23,7 @@ const Cars = () => {
       const engineArr = params.engine.map((obj) => {
         return {...obj, checked: JSON.parse(obj.checked)}
       });
-  
+
       dispatch(setFilters({...params, sort, engineArr}))
     }
   }, []);

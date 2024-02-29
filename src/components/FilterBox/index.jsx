@@ -2,21 +2,23 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setGearbox } from "../../redux/slices/filterSlice";
 
+export const gearboxsList = [
+  { gearbox: "any", title: "Любая" },
+  { gearbox: "mechanics", title: "Механика" },
+  { gearbox: "auto", title: "Автомат" },
+];
+
 const FilterBox = () => {
   const dispatch = useDispatch();
   const gearbox = useSelector((e) => e.filter.gearboxs);
 
-  const gearboxs = [
-    { gearbox: "any", title: "Любая" },
-    { gearbox: "mechanics", title: "Механика" },
-    { gearbox: "auto", title: "Автомат" },
-  ];
-
+  console.log(gearbox);
+  
   return (
     <div className="cars__radio">
       <h2 className="cars__box">Коробка передач</h2>
       <ul>
-        {gearboxs.map((obj, index) => {
+        {gearboxsList.map((obj, index) => {
           return (
             <li
               className="cars__gearbox"

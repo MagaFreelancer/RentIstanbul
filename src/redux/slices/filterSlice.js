@@ -52,6 +52,7 @@ const filterSlice = createSlice({
       state.sort = action.payload.sort;
       state.year = Number(action.payload.year);
       state.engine = action.payload.engineArr;
+      state.gearboxs = action.payload.gearboxs;
     },
   },
 });
