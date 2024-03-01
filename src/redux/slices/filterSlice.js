@@ -62,6 +62,7 @@ const filterSlice = createSlice({
       console.log(action.payload);
     },
     setFilters(state, action) {
+      state.sort = action.payload.sort;
       state.categoryId = action.payload.categoryId;
       state.yearCar = Number(action.payload.yearCar);
       state.engine = action.payload.engine;

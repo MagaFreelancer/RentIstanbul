@@ -54,6 +54,7 @@ const Cars = () => {
           checked: JSON.parse(item.checked),
         };
       });
+      
       const categoryIds = params.categoryIds.map((item) => {
         return {
           ...item,
