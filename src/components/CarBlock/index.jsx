@@ -1,12 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import "./CarBlock.scss";
+import { OpenContext } from "../../pages/Home";
 
 export default function CarBlock({imageUrl, title, price, type, id, currencies}) {
   const [favourite, setFavourite] = React.useState(false);
   const { curren } = useSelector((state) => state.currencies);
   const moneyArr = {RUB: "₽", USD: '$', TRY: "₺"};
-
+  const open = React.useContext(OpenContext);
 
   let money;
 
@@ -23,7 +24,7 @@ export default function CarBlock({imageUrl, title, price, type, id, currencies})
   }
  
   return (
-    <div  className="car-block">
+    <div onClick={open}  className="car-block">
       <div className="car-block__img">
         <img src={imageUrl} alt="car" />
       </div>

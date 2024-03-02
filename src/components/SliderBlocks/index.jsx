@@ -12,18 +12,20 @@ export default function SliderBlocks({ title }) {
     (state) => state.currencies
   );
   const dispatch = useDispatch();
-
+  
   const getCars = async () => {
-    dispatch(fetchCars('','',''));
+    dispatch(fetchCars("", "", ""));
     dispatch(fetchCurrencies());
   };
   React.useEffect(() => {
     getCars();
   }, [curren]);
-  const cars = items.map((obj, index) => (
-    <CarBlock key={index} {...obj} currencies={currencies} />
-  ));
-  const skeletons = [...new Array(5)].map((_, index) => (
+  const cars = items
+    .slice(0, 4)
+    .map((obj, index) => (
+      <CarBlock  key={index} {...obj} currencies={currencies} />
+    ));
+  const skeletons = [...new Array(4)].map((_, index) => (
     <CarSkeleton key={index} />
   ));
   return (

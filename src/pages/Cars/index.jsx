@@ -66,7 +66,7 @@ const Cars = () => {
   }, [categoryIds, price, yearCar, engine, box, sort.sortProperty]);
 
   const cars = items.map((obj, index) => <CarBlock key={index} {...obj} currencies={currencies} />);
-  const skeletons = [...new Array(10)].map((_, index) => (
+  const skeletons = [...new Array(5)].map((_, index) => (
     <CarSkeleton key={index} />
   ));
 
