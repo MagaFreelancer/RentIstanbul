@@ -18,7 +18,17 @@ const month = [
   "Ноябрь",
   "Декабрь",
 ];
+const funcNextDay = () => {
+  const currentDate = new Date();
 
+  const currentDay = currentDate.getDate();
+
+  const nextDay = currentDay + 1;
+
+  const tomorrowDate = new Date(currentDate);
+  tomorrowDate.setDate(nextDay);
+  return tomorrowDate;
+};
 const FilterDate = () => {
   const { days } = useSelector((e) => e.single);
   const dispatch = useDispatch();
@@ -26,10 +36,9 @@ const FilterDate = () => {
   const DateFilterRef = React.useRef();
   const [date, setDate] = React.useState({
     startDate: new Date(),
-    endDate: new Date(),
+    endDate: funcNextDay(),
     key: "selection",
   });
-
   const [dateText, setDateText] = React.useState({
     startDay: format(date.startDate, "d"),
     endDay: format(date.endDate, "d"),
@@ -40,6 +49,7 @@ const FilterDate = () => {
 
   const [openDate, setOpenDate] = React.useState(false);
   const hangleChange = (ranges) => {
+    console.log(ranges);
     setDate(ranges.selection);
   };
   function day(obj) {
@@ -51,7 +61,9 @@ const FilterDate = () => {
     const date1 = new Date(obj.year + "-" + innerStartMM + "-" + innerStartDD);
     const date2 = new Date(obj.year + "-" + innerEndMM + "-" + innerEndDD);
     const differenceInDays = Math.abs((date2 - date1) / (1000 * 60 * 60 * 24));
-    dispatch(setDay(differenceInDays));
+
+    let result = differenceInDays < 1 ? 1 : differenceInDays;
+    dispatch(setDay(result));
   }
   React.useEffect(() => {
     const handleClickOutside = (event) => {
@@ -84,7 +96,9 @@ const FilterDate = () => {
         <span onClick={() => setOpenDate(!openDate)}>
           {`${dateText.startDay} ${dateText.startMonth}
            - 
-           ${dateText.endDay} ${dateText.endMonth}  ${dateText.year} ${days} Дней`}
+           ${dateText.endDay} ${dateText.endMonth}  ${
+            dateText.year
+          } ${Math.round(days)} Дней`}
         </span>
         <div className="modal__filter-wrapper">
           <DateRangePicker
