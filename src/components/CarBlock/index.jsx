@@ -1,20 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-import "./CarBlock.scss";
-import { OpenContext } from "../../pages/Home";
-export default function CarBlock({
-  imageUrl,
-  title,
-  price,
-  type,
-  //   place,
-  //   date,
-  id,
-}) {
-  const setOpen = React.useContext(OpenContext);
-
-=======
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import "./CarBlock.scss";
 
@@ -23,7 +7,6 @@ export default function CarBlock({imageUrl, title, price, type, id, currencies})
   const { curren } = useSelector((state) => state.currencies);
   const moneyArr = {RUB: "₽", USD: '$', TRY: "₺"};
 
-  console.log(currencies);
 
   let money;
 
@@ -39,20 +22,14 @@ export default function CarBlock({imageUrl, title, price, type, id, currencies})
     break;
   }
  
->>>>>>> gadji_2-redux
   return (
-    <div onClick={setOpen} className="car-block">
+    <div  className="car-block">
       <div className="car-block__img">
         <img src={imageUrl} alt="car" />
       </div>
-<<<<<<< HEAD
-      <h3 className="car-block__title">{title}</h3>
-      <div className="car-block__type">{type}</div>
 
-      <div className="car-block__price">{price} ₽</div>
-=======
       <h3 className="car-block__title">
-        <Link to={`car/${id}`}>{title}</Link>
+        {title}
       </h3>
       <div className="car-block__type">{type}</div>
 
@@ -80,7 +57,6 @@ export default function CarBlock({imageUrl, title, price, type, id, currencies})
           />
         </svg>
       </button>
->>>>>>> gadji_2-redux
     </div>
   );
 }

@@ -18,8 +18,6 @@ export default function Home() {
       <OpenContext.Provider value={() => setOpen(!open)}>
         <Heading />
         <SliderBlocks title={"Люкс"} />
-        <SliderBlocks title={"Средний класс"} />
-        <SliderBlocks title={"Компактные"} />
 
         <Advantages />
         <Reviews />

@@ -1,11 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
-<<<<<<< HEAD
 import Languages from "../Languages";
-=======
-import searchSvg from "../../assets/icons/search.svg";
-import FavouriteSvg from "../FavouriteSvg";
 import Currencies from "../Currencies";
->>>>>>> gadji_2-redux
 import "./Header.scss";
 
 function Header() {
@@ -38,9 +33,7 @@ function Header() {
             <li className="header__item">
               <Languages />
             </li>
-            
               <Currencies/>
-            
           </ul>
         </nav>
       </div>

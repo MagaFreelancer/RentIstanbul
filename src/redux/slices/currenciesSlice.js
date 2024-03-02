@@ -4,7 +4,6 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchCurrencies = createAsyncThunk(
   "currencies/fetchCurrenciesStatus",
   async () => {
-
     const { data } = await axios.get(
       `https://www.cbr-xml-daily.ru/daily_json.js`
     );
@@ -19,7 +18,7 @@ const initialState = {
   statusCur: "loading",
 };
 
-const carSlice = createSlice({
+const currenciesSlice = createSlice({
   name: "car",
   initialState,
   reducers: {
@@ -47,6 +46,6 @@ const carSlice = createSlice({
   },
 });
 
-export const { setItems, setCurren } = carSlice.actions;
+export const { setItems, setCurren } = currenciesSlice.actions;
 
-export default carSlice.reducer;
+export default currenciesSlice.reducer;

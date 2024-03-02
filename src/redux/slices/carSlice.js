@@ -1,26 +1,18 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-<<<<<<< HEAD
-export const fetchCars = createAsyncThunk("car/fetchCarsStatus", async () => {
-  const { data } = await axios.get(
-    `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items`
-  );
-  return data;
-});
-=======
+
 export const fetchCars = createAsyncThunk(
   "car/fetchCarsStatus",
   async (params) => {
     const { order,search, sortBy } = params;
-
     const { data } = await axios.get(
       `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items?sortBy=${sortBy}&order=${order}${search}`
+      
     );
     return data;
   }
 );
->>>>>>> gadji_2-redux
 
 const initialState = {
   items: [],
@@ -33,9 +25,6 @@ const carSlice = createSlice({
   reducers: {
     setItems(state, action) {
       state.items = action.payload;
-    },
-    setDay(state, action) {
-      state.day = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -55,6 +44,6 @@ const carSlice = createSlice({
   },
 });
 
-export const { setItems, setDay } = carSlice.actions;
+export const { setItems} = carSlice.actions;
 
 export default carSlice.reducer;

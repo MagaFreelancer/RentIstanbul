@@ -4,15 +4,16 @@
 
     &__window {
         position: absolute;
-        transition: .2s ease-in;
+        transition: 0.2s ease-in;
         opacity: 0;
         z-index: 999;
         padding: 3px;
         background-color: var(--whiteColor);
         border-radius: 5px;
-
+        pointer-events: none;
         &--active {
             opacity: 1;
+            pointer-events: all;
         }
     }
 
@@ -40,8 +41,6 @@
         color: var(--whiteColor);
     }
 
-
-
     // position: relative;
 
     // &__button {
@@ -52,7 +51,7 @@
     //     position: absolute;
     //     z-index: 10;
     //     opacity: 0;
-    //     transition: 0.2s ease-in; 
+    //     transition: 0.2s ease-in;
     //     background-color: var(--whiteColor);
 
     //     &--active {
@@ -67,7 +66,7 @@
     //     font-weight: 500;
     //     display: flex;
     //     align-items: center;
-        
+
     //     &:hover {
     //         background-color: rgb(240, 240, 240);
     //     }
