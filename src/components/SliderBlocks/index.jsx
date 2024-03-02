@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCars } from "../../redux/slices/carSlice";
 import { CarSkeleton, CarBlock } from "../../components";
 import  { fetchCurrencies } from "../../redux/slices/currenciesSlice";
-
 import "./SliderBlocks.scss";
 
 export default function SliderBlocks() {
   const { items, status } = useSelector((state) => state.car);
+  const { currencies, statusCur } = useSelector((state) => state.currencies);
   
   const dispatch = useDispatch();
 
@@ -22,7 +22,7 @@ export default function SliderBlocks() {
     window.scrollTo(0, 0);
   }
 
-  const cars = items.map((obj, index) => <CarBlock key={index} {...obj}/>);
+  const cars = items.map((obj, index) => <CarBlock key={index} {...obj} currencies={currencies}/>);
   const skeletons = [...new Array(5)].map((_, index) => (
     <CarSkeleton key={index} />
   ));
@@ -31,7 +31,7 @@ export default function SliderBlocks() {
       <div className="container slider-block__container">
         <h2 className="slider-block__title">Аренд машин</h2>
         <div className="slider-block__content">
-          {status === "success" ? cars : skeletons}
+          {status === "success" && statusCur === 'success' ? cars : skeletons}
         </div>
       </div>
     </section>

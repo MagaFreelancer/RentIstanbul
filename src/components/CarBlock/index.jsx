@@ -8,6 +8,8 @@ export default function CarBlock({imageUrl, title, price, type, id, currencies})
   const { curren } = useSelector((state) => state.currencies);
   const moneyArr = {RUB: "₽", USD: '$', TRY: "₺"};
 
+  console.log(currencies);
+
   let money;
 
   switch(curren) {
