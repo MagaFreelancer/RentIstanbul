@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import Select from "react-select";
+import { FilterDate } from "../../components";
 import { OpenContext } from "../../pages/Home";
 import { useForm } from "react-hook-form";
+
 import "./SinglePageModal.scss";
 const SinglePageModal = ({ title, engine, year, imgs, price }) => {
   const [value, onChange] = React.useState(new Date());
@@ -116,6 +118,7 @@ const SinglePageModal = ({ title, engine, year, imgs, price }) => {
                   options={options}
                   onChange={(e) => handleChange(e)}
                 />
+                <FilterDate />
                 <input type="text" placeholder="Адрес доставки" />
                 <input type="text" placeholder="Сроки аренды" />
                 <textarea className="modal__field" placeholder="Комментарий" />

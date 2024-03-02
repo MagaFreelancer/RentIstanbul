@@ -7,6 +7,7 @@ import Heading from "./Heading";
 import Advantages from "./Advantages";
 import FAQ from "./FAQ";
 import SinglePageModal from "./SinglePageModal";
+import FilterDate from "./FilterDate";
 
 export {
   Footer,
@@ -18,4 +19,5 @@ export {
   Advantages,
   FAQ,
   SinglePageModal,
+  FilterDate,
 };
