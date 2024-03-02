@@ -1,16 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./CarBlock.scss";
-export default function CarBlock({
-  imageUrl,
-  title,
-  price,
-  type,
-//   place,
-//   date,
-  id,
-}) {
+export default function CarBlock({imageUrl, title, price, type, id, curren}) {
   const [favourite, setFavourite] = React.useState(false);
+
   return (
     <div className="car-block">
       <div className="car-block__img">
@@ -21,7 +14,7 @@ export default function CarBlock({
       </h3>
       <div className="car-block__type">{type}</div>
 
-      <div className="car-block__price">{price} ₽</div>
+      <div className="car-block__price">{curren.USD.Value * price} ₽</div>
       <button
         onClick={() => setFavourite(!favourite)}
         className="car-block__favourite"

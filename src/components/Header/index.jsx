@@ -1,7 +1,9 @@
 import { Link, NavLink } from "react-router-dom";
 import searchSvg from "../../assets/icons/search.svg";
 import FavouriteSvg from "../FavouriteSvg";
+import Currencies from "../Currencies";
 import "./Header.scss";
+
 function Header() {
   return (
     <header className="header">
@@ -43,6 +45,9 @@ function Header() {
                 <FavouriteSvg />
               </NavLink>
             </li>
+            
+              <Currencies/>
+            
           </ul>
         </nav>
       </div>

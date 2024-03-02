@@ -1,52 +1,34 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../../redux/slices/carSlice";
-import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
+import  { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
-
-import {
-  CarSkeleton,
-  CarBlock,
-  FilterPrice,
-  FilterYears,
-  FilterBox,
-  FilterEngine,
-  FilterSort,
-  FilterCategories,
-  Search,
-} from "../../components";
-import "./Cars.scss";
+import {CarSkeleton, CarBlock, FilterPrice, FilterYears, FilterBox, FilterEngine, FilterSort, FilterCategories, Search} from "../../components";
 import { setFilters } from "../../redux/slices/filterSlice";
 import { listSort } from "../../components/FilterSort";
+import "./Cars.scss";
+
 const Cars = () => {
   const navigate = useNavigate();
   const { categoryIds, price, yearCar, engine, box, sort, searchValue } = useSelector((e) => e.filter);
   const { items, status } = useSelector((state) => state.car);
+  const { currencies, statusCur } = useSelector((state) => state.currencies);
   const dispatch = useDispatch();
-  const { currencies } = useSelector((state) => state.currencies);
-
-  console.log(currencies);
   
-
   const getCars = async () => {
     const sortBy = sort.sortProperty.replace("-", "");
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const search = searchValue ? `&search=${searchValue}` : "";
 
-    console.log(sortBy, order, search);
     dispatch(fetchCars({sortBy, order, search}));
     dispatch(fetchCurrencies());
   };
 
-  const cars = items.map((obj, index) => <CarBlock key={index} {...obj} />);
-  const skeletons = [...new Array(10)].map((_, index) => (
-    <CarSkeleton key={index} />
-  ));
-
   React.useEffect(() => {
     getCars();
   }, [searchValue, sort]);
+  
   React.useEffect(() => {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
@@ -70,6 +52,7 @@ const Cars = () => {
       dispatch(setFilters({ ...params, sort, engine, price, categoryIds }));
     }
   }, []);
+
   React.useEffect(() => {
     const queryString = qs.stringify({
       sortProperty: sort.sortProperty,
@@ -81,6 +64,12 @@ const Cars = () => {
     });
     navigate(`?${queryString}`);
   }, [categoryIds, price, yearCar, engine, box, sort.sortProperty]);
+
+  const cars = items.map((obj, index) => <CarBlock key={index} {...obj} curren={currencies} />);
+  const skeletons = [...new Array(10)].map((_, index) => (
+    <CarSkeleton key={index} />
+  ));
+
   return (
     <section className="cars">
       <div className="container cars__container">
@@ -103,7 +92,7 @@ const Cars = () => {
           </div>
           <div>
             <ul className="cars__content">
-              {status === "success" ? cars : skeletons}
+              {status === "success" && statusCur === "success" ? cars : skeletons}
             </ul>
           </div>
         </main>

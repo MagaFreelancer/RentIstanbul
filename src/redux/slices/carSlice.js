@@ -5,7 +5,7 @@ export const fetchCars = createAsyncThunk(
   "car/fetchCarsStatus",
   async (params) => {
     const { order,search, sortBy } = params;
-    console.log(params.sortBy);
+
     const { data } = await axios.get(
       `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items?sortBy=${sortBy}&order=${order}${search}`
     );
