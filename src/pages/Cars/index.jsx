@@ -1,8 +1,10 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCars } from "../../redux/slices/carSlice";
+import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
+
 import {
   CarSkeleton,
   CarBlock,
@@ -19,10 +21,13 @@ import { setFilters } from "../../redux/slices/filterSlice";
 import { listSort } from "../../components/FilterSort";
 const Cars = () => {
   const navigate = useNavigate();
-  const { categoryIds, price, yearCar, engine, box, sort, searchValue } =
-    useSelector((e) => e.filter);
+  const { categoryIds, price, yearCar, engine, box, sort, searchValue } = useSelector((e) => e.filter);
   const { items, status } = useSelector((state) => state.car);
   const dispatch = useDispatch();
+  const { currencies } = useSelector((state) => state.currencies);
+
+  console.log(currencies);
+  
 
   const getCars = async () => {
     const sortBy = sort.sortProperty.replace("-", "");
@@ -31,6 +36,7 @@ const Cars = () => {
 
     console.log(sortBy, order, search);
     dispatch(fetchCars({sortBy, order, search}));
+    dispatch(fetchCurrencies());
   };
 
   const cars = items.map((obj, index) => <CarBlock key={index} {...obj} />);
