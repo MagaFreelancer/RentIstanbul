@@ -1,9 +1,27 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./CarBlock.scss";
-export default function CarBlock({imageUrl, title, price, type, id, curren}) {
-  const [favourite, setFavourite] = React.useState(false);
 
+export default function CarBlock({imageUrl, title, price, type, id, currencies}) {
+  const [favourite, setFavourite] = React.useState(false);
+  const { curren } = useSelector((state) => state.currencies);
+  const moneyArr = {RUB: "₽", USD: '$', TRY: "₺"};
+
+  let money;
+
+  switch(curren) {
+    case 'RUB':
+      money = Math.round(price * currencies.USD.Value);
+    break;
+    case 'USD':
+      money = price;
+    break;
+    case 'TRY':
+      money =  Math.round(currencies.USD.Value / (currencies.TRY.Value / 10) * price);
+    break;
+  }
+ 
   return (
     <div className="car-block">
       <div className="car-block__img">
@@ -14,7 +32,7 @@ export default function CarBlock({imageUrl, title, price, type, id, curren}) {
       </h3>
       <div className="car-block__type">{type}</div>
 
-      <div className="car-block__price">{curren.USD.Value * price} ₽</div>
+      <div className="car-block__price">{(new Intl.NumberFormat('de-DE', { style: 'currency', currency: 'EUR' }).format(money)).split(',')[0]} {moneyArr[curren]}</div>
       <button
         onClick={() => setFavourite(!favourite)}
         className="car-block__favourite"
