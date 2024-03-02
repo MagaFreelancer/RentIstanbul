@@ -2,6 +2,7 @@ import ContentLoader from "react-content-loader"
 
 const CarSkeleton = (props) => (
     <ContentLoader 
+    className="scroll"
     speed={2}
     width={220}
     height={258}

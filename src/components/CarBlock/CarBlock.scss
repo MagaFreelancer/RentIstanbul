@@ -30,5 +30,22 @@
     &__type {
         font-size: 16px;
     }
+<<<<<<< HEAD
   
+=======
+    &__favourite {
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 1;
+    }
+    &__icon {
+        fill: #ffffff;
+
+        transition: all 0.2s ease-in-out;
+        &--active {
+            fill: var(--blackColor);
+        }
+    }
+>>>>>>> gadji_2-redux
 }
