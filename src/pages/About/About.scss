@@ -1,0 +1,35 @@
+.about {
+    .title {
+        font-size: 35px;
+        margin-bottom: 40px;
+        font-weight: 900;
+    }
+    &__company {
+        &-title {
+            color: var(--blackColor);
+            margin-bottom: 25px;
+        }
+        &-subtitle {
+            max-width: 575px;
+            color: var(--blackColor);
+            font-size: 20px;
+            line-height: 25px;
+            font-weight: 700;
+        }
+    }
+
+    &__director {
+        padding-left: 80px;
+        padding-top: 60px;
+
+       
+
+        &-fullname {
+            font-size: 20px;
+        }
+        &-jobtitle {
+            font-size: 14px;
+            color: #333E50;
+        }
+    }
+}
