@@ -1,14 +1,11 @@
 .slider-block {
-    &__container {
-    }
     &__title {
-        font-size: 35px;
         margin-bottom: 40px;
-        font-weight: 900;
     }
     &__content {
         display: flex;
         justify-content: center;
         gap: 45px;
+        margin-bottom: 60px;
     }
 }

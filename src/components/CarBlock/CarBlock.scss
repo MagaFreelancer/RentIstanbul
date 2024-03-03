@@ -2,10 +2,11 @@
     position: relative;
     max-width: 280px;
     width: 100%;
+    color: var(--blackColor);
     &:hover {
         .car-block__img {
             img {
-                transform: scale(1.1);
+                transform: scale(1.05);
             }
         }
     }
@@ -19,9 +20,6 @@
     }
     &__title {
         margin-bottom: 5px;
-        a {
-            color: var(--blackColor);
-        }
     }
     &__price {
         margin-top: 30px;

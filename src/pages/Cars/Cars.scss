@@ -1,4 +1,5 @@
 .cars {
+    padding: 40px 0;
     &__container {
         display: flex;
     }
@@ -66,7 +67,6 @@
     &__content {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        grid-template-rows: repeat(7, 1fr);
         grid-column-gap: 10px;
         grid-row-gap: 10px;
     }
