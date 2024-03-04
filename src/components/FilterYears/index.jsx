@@ -5,7 +5,7 @@ import { setYearCar } from "../../redux/slices/filterSlice";
 
 import closeSvg from "../../assets/icons/sm-close.svg";
 const listYears = []
-for (let year = 1970; year < 2024; year++) {
+for (let year = 2012; year < 2024; year++) {
   listYears.push(year);
 }
 const FilterYears = () => {
