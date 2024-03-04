@@ -10,7 +10,7 @@ const initialState = {
     { text: "Люкс", value: "lux", active: false },
   ],
   price: [350, 650],
-  yearCar: 1970,
+  yearCar: 2012,
   engine: [
     {
       sortProperty: "petrol",
