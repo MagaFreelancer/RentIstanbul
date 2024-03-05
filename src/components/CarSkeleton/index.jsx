@@ -1,7 +1,9 @@
 import ContentLoader from "react-content-loader"
+import "./Skeleton.scss";
 
 const CarSkeleton = (props) => (
     <ContentLoader 
+    className="slider"
     speed={2}
     width={261.71}
     height={289.88}
