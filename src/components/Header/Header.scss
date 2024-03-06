@@ -1,11 +1,16 @@
 .header {
+    .inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 15px;
+    }
+
     background-color: var(--blackColor);
     &__nav {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-
-        padding: 20px 0;
+       &--active {
+        display: flex !important;
+       }
     }
     &__logo {
         font-size: 35px;
@@ -82,5 +87,93 @@
             }
         }
     }
+
+    &__burger {
+        display: none;
+        position: relative;
+        z-index: 50;
+        align-items: center;
+        justify-content: flex-end;
+        width: 30px;
+        height: 30px;
+
+        span {
+            height: 2px;
+            width: 80%;
+            transform: scale(1);
+            background-color: #fff;
+        }
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background-color: #fff;
+            transition: all 0.3s ease 0s;
+            top: 0;
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background-color: #fff;
+            transition: all 0.3s ease 0s;
+            bottom: 0;
+        }
+
+        &--active {
+            span {
+                transform: scale(0);
+            }   
+            &::before {
+                top: 50%;
+                transform: rotate(-45deg) translate(0, -50%);
+            }
+            &::after{
+                top: 50%;
+                transform: rotate(45deg) translate(0, 50%);
+            }
+        }
+    }
+
+
+    @media(max-width: 950px) {
+        &__burger {
+            display: flex;
+        }
+
+        &__nav {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            height: 100%;
+            width: 100%;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            overflow-y: auto;
+            padding: 50px 40px;
+            background-color: #000;
+            animation: burgerAnimation 0.4s;
+        }
+
+        &__menu {
+            flex-direction: column;
+            row-gap: 30px;
+        }
+    }
+}
+.body-scroll {
+    #root {
+        overflow-y: hidden;
+    }
 }
 
+@keyframes burgerAnimation {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
