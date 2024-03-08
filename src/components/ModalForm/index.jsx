@@ -7,9 +7,8 @@ const options = [
   { value: 0, showAdress: false, label: "Взять в из офиса" },
 ];
 
-const ModalForm = ({ setPlace }) => {
+const ModalForm = ({ setPlace, register, modalFormRef, handleSubmit }) => {
   const [showAdress, setShowAdress] = React.useState(false);
-
   const handleChange = (obj) => {
     //при изменении select получение
     setPlace(obj.value);
@@ -18,7 +17,12 @@ const ModalForm = ({ setPlace }) => {
   const [activeSocials, setActiveSocials] = React.useState(0);
 
   return (
-    <form className="modal__form">
+    <form
+      onSubmit={handleSubmit}
+      ref={modalFormRef}
+      id="modal-form"
+      className="modal__form"
+    >
       <h5 className="modal__form-title">Получение</h5>
       <Select
         className="react-select-container modal__form-select"
@@ -30,7 +34,7 @@ const ModalForm = ({ setPlace }) => {
             borderColor: state.isFocused ? "" : "#e7e8ea",
             fontSize: 16,
             fontWeight: 400,
-            padding:4
+            padding: 4,
           }),
         }}
         options={options}
@@ -46,28 +50,36 @@ const ModalForm = ({ setPlace }) => {
       <Calendar />
       <h5 className="modal__form-title">Данные основного водителя</h5>
       <label className="modal__form-label">
-        <span >Имя и фамилия</span>
+        <span>Имя и фамилия</span>
         <input
+          {...register("fullName")}
           className="modal__form-field"
           type="text"
           placeholder="Имя и фамилия"
         />
       </label>
       <label className="modal__form-label">
-        <span >Дата рождения</span>
+        <span>Дата рождения</span>
         <input
+          {...register("date")}
           className="modal__form-field"
           type="date"
           placeholder="Дата рождения"
         />
       </label>
       <label className="modal__form-label">
-        <span > Почта</span>
-        <input className="modal__form-field" type="email" placeholder="Почта" />
+        <span> Почта</span>
+        <input
+          {...register("email")}
+          className="modal__form-field"
+          type="email"
+          placeholder="Почта"
+        />
       </label>
       <label className="modal__form-label">
-        <span >Номер телефона</span>
+        <span>Номер телефона</span>
         <input
+          {...register("tel")}
           className="modal__form-field"
           type="tel"
           placeholder="Номер телефона"
@@ -78,15 +90,20 @@ const ModalForm = ({ setPlace }) => {
       <div className="modal__form-radios">
         {socials.map((item, index) => {
           return (
-            <label key={index} className="modal__radio-label">
+            <label key={index} htmlFor={item} className="modal__radio-label">
               <input
-                onChange={() => setActiveSocials(index)}
+                onChange={() => {
+                  console.log(index);
+                }}
                 className={`modal__gearbox-radio ${
                   activeSocials == index ? "modal__gearbox-radio--active" : ""
                 }`}
                 type="radio"
                 value={item}
                 name="gearbox"
+                id={item}
+                checked={activeSocials === index ? true : false}
+                {...register("social")}
               />
               <span className="modal__radio-custom"></span>
               {item}

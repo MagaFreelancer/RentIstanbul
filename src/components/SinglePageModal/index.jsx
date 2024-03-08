@@ -17,39 +17,45 @@ const SinglePageModal = () => {
   const dispatch = useDispatch();
   const [place, setPlace] = React.useState(null);
   const [activeIndex, setActiveIndex] = React.useState(1); //для индексации страниц
-  const { register, handleSubmit } = useForm(); //Для собрании данных фреймворк react-hook
+  const form = useForm({
+    mode: "onChange"
+  });
+  const { register, handleSubmit } = form; //Для собрании данных фреймворк react-hook
   const onSubmit = (data) => console.log(data); // при нажатии на отправить
-  const iconLoad = "load...";
   const { currencies, statusCur, curren } = useSelector(
     (state) => state.currencies
   );
+  const modalFormRef = React.useRef();
   const moneyArr = { RUB: "₽", USD: "$", TRY: "₺" };
   let money;
   let depo;
   let placePrice;
-  switch (curren) {
-    case "RUB":
-      money = Math.round(item.price * currencies.USD.Value);
-      depo = Math.round(item.depo * currencies.USD.Value);
-      placePrice = Math.round(place * currencies.USD.Value);
-      break;
-    case "USD":
-      money = item.price;
-      depo = item.depo;
-      placePrice = item.depo;
+  const iconLoad = "load...";
+  if (statusCur === "success") {
+    switch (curren) {
+      case "RUB":
+        money = Math.round(item.price * currencies.USD.Value);
+        depo = Math.round(item.depo * currencies.USD.Value);
+        placePrice = Math.round(place * currencies.USD.Value);
+        break;
+      case "USD":
+        money = item.price;
+        depo = item.depo;
+        placePrice = item.depo;
 
-      break;
-    case "TRY":
-      money = Math.round(
-        (currencies.USD.Value / (currencies.TRY.Value / 10)) * item.price
-      );
-      depo = Math.round(
-        (currencies.USD.Value / (currencies.TRY.Value / 10)) * item.depo
-      );
-      placePrice = Math.round(
-        (currencies.USD.Value / (currencies.TRY.Value / 10)) * place
-      );
-      break;
+        break;
+      case "TRY":
+        money = Math.round(
+          (currencies.USD.Value / (currencies.TRY.Value / 10)) * item.price
+        );
+        depo = Math.round(
+          (currencies.USD.Value / (currencies.TRY.Value / 10)) * item.depo
+        );
+        placePrice = Math.round(
+          (currencies.USD.Value / (currencies.TRY.Value / 10)) * place
+        );
+        break;
+    }
   }
   let priceDays = money * days;
   let allPrice = money * days + placePrice;
@@ -73,7 +79,7 @@ const SinglePageModal = () => {
     if (activeIndex === 0) {
       setActiveIndex(1);
     } else {
-      handleSubmit(onSubmit);
+      handleSubmit(onSubmit)();
     }
   };
   React.useEffect(() => {
@@ -140,8 +146,9 @@ const SinglePageModal = () => {
               }`}
             >
               <ModalForm
+                handleSubmit={handleSubmit}
                 register={register}
-                place={place}
+                modalFormRef={modalFormRef}
                 setPlace={(value) => setPlace(value)}
               />
             </div>
@@ -185,7 +192,7 @@ const SinglePageModal = () => {
                 </div>
               </div>
             </div>
-            <button onClick={setForm} className="modal__submit">
+            <button onClick={setForm} type="submit" className="modal__submit">
               {activeIndex === 0 ? "Продолжить" : "Отправить"}
             </button>
           </div>
