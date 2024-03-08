@@ -8,22 +8,19 @@ import {
 } from "../../components";
 import Reviews from "../../components/Reviews";
 import "./Home.scss";
-
-export const OpenContext = React.createContext();
+import { useSelector } from "react-redux";
 
 export default function Home() {
-  const [open, setOpen] = React.useState(false);
+  const { showModal } = useSelector((e) => e.singleInfo);
   return (
     <>
-      <OpenContext.Provider value={() => setOpen(!open)}>
-        <Heading />
-        <SliderBlocks title={"Люкс"} />
+      <Heading />
+      <SliderBlocks title={"Люкс"} />
 
-        <Advantages />
-        <Reviews />
-        <FAQ />
-        {open && <SinglePageModal />}
-      </OpenContext.Provider>
+      <Advantages />
+      <Reviews />
+      <FAQ />
+      {showModal && <SinglePageModal />}
     </>
   );
 }

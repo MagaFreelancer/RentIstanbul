@@ -29,8 +29,8 @@ const funcNextDay = () => {
   tomorrowDate.setDate(nextDay);
   return tomorrowDate;
 };
-const FilterDate = () => {
-  const { days } = useSelector((e) => e.single);
+const Calendar = () => {
+  const { days } = useSelector((e) => e.singleInfo);
   const dispatch = useDispatch();
 
   const DateFilterRef = React.useRef();
@@ -49,7 +49,6 @@ const FilterDate = () => {
 
   const [openDate, setOpenDate] = React.useState(false);
   const hangleChange = (ranges) => {
-    console.log(ranges);
     setDate(ranges.selection);
   };
   function day(obj) {
@@ -62,7 +61,7 @@ const FilterDate = () => {
     const date2 = new Date(obj.year + "-" + innerEndMM + "-" + innerEndDD);
     const differenceInDays = Math.abs((date2 - date1) / (1000 * 60 * 60 * 24));
 
-    let result = differenceInDays < 1 ? 1 : differenceInDays;
+    let result = differenceInDays < 1 ? 1 : Math.round(differenceInDays);
     dispatch(setDay(result));
   }
   React.useEffect(() => {
@@ -92,18 +91,21 @@ const FilterDate = () => {
   return (
     <div className="modal__date modal__col">
       <h4 className="modal__form-title">Дата аренды</h4>
-      <div className="modal__date-info" ref={DateFilterRef}>
-        <span onClick={() => setOpenDate(!openDate)}>
+      <div
+        onClick={() => setOpenDate(true)}
+        ref={DateFilterRef}
+        className="modal__date-info"
+      >
+        <span className="modal__date-date">
           {`${dateText.startDay} ${dateText.startMonth}
            - 
-           ${dateText.endDay} ${dateText.endMonth}  ${
-            dateText.year
-          } ${Math.round(days)} Дней`}
+           ${dateText.endDay} ${dateText.endMonth}  ${dateText.year} `}
         </span>
+        <span className="modal__date-days">{`${days} Дней`}</span>
         <div className="modal__filter-wrapper">
           <DateRangePicker
-            className={`modal__date-filter ${
-              openDate ? "modal__date-filter--active" : ""
+            className={`modal__calendar ${
+              openDate ? "modal__calendar--active" : ""
             }`}
             ranges={[date]}
             onChange={hangleChange}
@@ -115,4 +117,4 @@ const FilterDate = () => {
   );
 };
 
-export default FilterDate;
+export default Calendar;

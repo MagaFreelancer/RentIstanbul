@@ -7,8 +7,9 @@ import currenciesSlice from "./slices/currenciesSlice";
 export const store = configureStore({
   reducer: {
     car: carSlice,
-    single: singleInfoSlice,
+    singleInfo: singleInfoSlice,
     filter: filterSlice,
-    currencies: currenciesSlice
+    currencies: currenciesSlice,
+
   },
 });

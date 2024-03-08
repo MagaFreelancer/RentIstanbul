@@ -7,7 +7,7 @@ import Heading from "./Heading";
 import Advantages from "./Advantages";
 import FAQ from "./FAQ";
 import SinglePageModal from "./SinglePageModal";
-import FilterDate from "./FilterDate";
+import Calendar from "./Calendar";
 import FilterPrice from "./FilterPrice";
 import FilterYears from "./FilterYears";
 import FilterBox from "./FilterBox";
@@ -15,7 +15,7 @@ import FilterEngine from "./FilterEngine";
 import FilterSort from "./FilterSort";
 import FilterCategories from "./FilterCategories";
 import Search from "./Search";
-
+import ModalForm from "./ModalForm";
 export {
   Footer,
   Header,
@@ -24,7 +24,7 @@ export {
   Advantages,
   FAQ,
   SinglePageModal,
-  FilterDate,
+  Calendar,
   CarSkeleton,
   CarBlock,
   FilterPrice,
@@ -34,4 +34,5 @@ export {
   FilterSort,
   FilterCategories,
   Search,
+  ModalForm,
 };

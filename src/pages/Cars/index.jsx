@@ -4,12 +4,13 @@ import { fetchCars } from "../../redux/slices/carSlice";
 import  { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
-import {CarSkeleton, CarBlock, FilterPrice, FilterYears, FilterBox, FilterEngine, FilterSort, FilterCategories, Search} from "../../components";
+import {SinglePageModal,CarSkeleton, CarBlock, FilterPrice, FilterYears, FilterBox, FilterEngine, FilterSort, FilterCategories, Search} from "../../components";
 import { setFilters } from "../../redux/slices/filterSlice";
 import { listSort } from "../../components/FilterSort";
 import "./Cars.scss";
 
 const Cars = () => {
+  const { showModal } = useSelector((e) => e.singleInfo);
   const navigate = useNavigate();
   const { categoryIds, price, yearCar, engine, box, sort, searchValue } = useSelector((e) => e.filter);
   const { items, status } = useSelector((state) => state.car);
@@ -71,7 +72,7 @@ const Cars = () => {
   ));
 
   return (
-    <section className="cars">
+    <><section className="cars">
       <div className="container cars__container">
         <aside className="cars__filter">
           <FilterPrice />
@@ -102,6 +103,8 @@ const Cars = () => {
         </main>
       </div>
     </section>
+    {showModal && <SinglePageModal />}
+    </>
   );
 };
 

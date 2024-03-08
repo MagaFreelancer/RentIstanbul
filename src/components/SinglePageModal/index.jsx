@@ -1,41 +1,95 @@
-import React, { useEffect } from "react";
-import Select from "react-select";
-import { FilterDate } from "../../components";
-import { OpenContext } from "../../pages/Home";
+import React from "react";
+
+import { useDispatch, useSelector } from "react-redux";
+import {
+  fetchSingleCar,
+  toggleShowModal,
+} from "../../redux/slices/singleInfoSlice";
+
 import { useForm } from "react-hook-form";
+import { ModalForm } from "../../components";
 
 import "./SinglePageModal.scss";
-const SinglePageModal = ({ title, engine, year, imgs, price }) => {
-  const [value, onChange] = React.useState(new Date());
-  const closeModal = React.useContext(OpenContext); // Положение true/false модального окна
-  const options = [
-    { value: 100, label: "Доставка по городу + 25€" },
-    { value: 0, label: "Взять в из офиса" },
-  ];
+const list = ["Автомобиль", "Бронирование"];
+
+const SinglePageModal = () => {
+  const { days, item, id, status } = useSelector((e) => e.singleInfo);
+  const dispatch = useDispatch();
   const [place, setPlace] = React.useState(null);
-
-  const { register, handleSubmit } = useForm(); //Для собрании данных фреймворк react-hook
-
-  const onSubmit = (data) => console.log(data); // при нажатии на отправить
-
   const [activeIndex, setActiveIndex] = React.useState(1); //для индексации страниц
-  const list = ["Автомобиль", "Бронирование"];
+  const { register, handleSubmit } = useForm(); //Для собрании данных фреймворк react-hook
+  const onSubmit = (data) => console.log(data); // при нажатии на отправить
+  const iconLoad = "load...";
+  const { currencies, statusCur, curren } = useSelector(
+    (state) => state.currencies
+  );
+  const moneyArr = { RUB: "₽", USD: "$", TRY: "₺" };
+  let money;
+  let depo;
+  let placePrice;
+  switch (curren) {
+    case "RUB":
+      money = Math.round(item.price * currencies.USD.Value);
+      depo = Math.round(item.depo * currencies.USD.Value);
+      placePrice = Math.round(place * currencies.USD.Value);
+      break;
+    case "USD":
+      money = item.price;
+      depo = item.depo;
+      placePrice = item.depo;
 
-  const handleChange = (obj) => {
-    //при изменении select получение
-    setPlace(obj.value);
+      break;
+    case "TRY":
+      money = Math.round(
+        (currencies.USD.Value / (currencies.TRY.Value / 10)) * item.price
+      );
+      depo = Math.round(
+        (currencies.USD.Value / (currencies.TRY.Value / 10)) * item.depo
+      );
+      placePrice = Math.round(
+        (currencies.USD.Value / (currencies.TRY.Value / 10)) * place
+      );
+      break;
+  }
+  let priceDays = money * days;
+  let allPrice = money * days + placePrice;
+  const priceDaysFormatted = new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "EUR",
+  })
+    .format(priceDays)
+    .split(",")[0];
+  const allPriceFormatted = new Intl.NumberFormat("de-DE", {
+    style: "currency",
+    currency: "EUR",
+  })
+    .format(allPrice)
+    .split(",")[0];
+
+  const getSingleCar = async () => {
+    dispatch(fetchSingleCar(id));
   };
-
   const setForm = () => {
     if (activeIndex === 0) {
       setActiveIndex(1);
-    }
-    {
+    } else {
       handleSubmit(onSubmit);
     }
   };
+  React.useEffect(() => {
+    getSingleCar();
+  }, []);
+  const toggleModal = (e) => {
+    if (e.target.classList.contains("modal-wrapper")) {
+      dispatch(toggleShowModal(false));
+    }
+  };
+  if (status !== "success" && statusCur !== "success") {
+    return <div className="modal-wrapper">{iconLoad}</div>;
+  }
+
   return (
-    <div className="modal-wrapper">
+    <div onClick={(e) => toggleModal(e)} className="modal-wrapper">
       <div className="modal">
         <div className="modal__container">
           <div className="modal__col">
@@ -57,12 +111,12 @@ const SinglePageModal = ({ title, engine, year, imgs, price }) => {
                 activeIndex === 0 && "modal__content--active"
               }`}
             >
-              <h3 className="modal__title">Fiat Doblo</h3>
+              <h3 className="modal__title">{item.title}</h3>
               <h4 className="modal__heading">Характеристики</h4>
               <ul className="modal__info">
                 <li className="modal__info-item">
                   <div className="modal__info-heading">Коробка передач</div>
-                  <div className="modal__info-text">Механическая</div>
+                  <div className="modal__info-text">{item.type}</div>
                 </li>
                 <li className="modal__info-item">
                   <div className="modal__info-heading">Двигатель</div>
@@ -70,23 +124,7 @@ const SinglePageModal = ({ title, engine, year, imgs, price }) => {
                 </li>
                 <li className="modal__info-item">
                   <div className="modal__info-heading">Год выпуска</div>
-                  <div className="modal__info-text">2017 — 2019 г.</div>
-                </li>
-                <li className="modal__info-item">
-                  <div className="modal__info-heading">Коробка передач</div>
-                  <div className="modal__info-text">Механическая</div>
-                </li>
-                <li className="modal__info-item">
-                  <div className="modal__info-heading">Двигатель</div>
-                  <div className="modal__info-text">1.3 л</div>
-                </li>
-                <li className="modal__info-item">
-                  <div className="modal__info-heading">Год выпуска</div>
-                  <div className="modal__info-text">2017 — 2019 г.</div>
-                </li>
-                <li className="modal__info-item">
-                  <div className="modal__info-heading">Коробка передач</div>
-                  <div className="modal__info-text">Механическая</div>
+                  <div className="modal__info-text">2018.</div>
                 </li>
               </ul>
               <div className="modal__slider">
@@ -101,70 +139,49 @@ const SinglePageModal = ({ title, engine, year, imgs, price }) => {
                 activeIndex === 1 && "modal__content--active"
               }`}
             >
-              <form className="modal__form">
-                <h5 className="modal__form-title">Получение</h5>
-                <Select
-                  className="react-select-container"
-                  classNamePrefix="react-select"
-                  placeholder="Доставка"
-                  styles={{
-                    control: (baseStyles, state) => ({
-                      ...baseStyles,
-                      borderColor: state.isFocused ? "" : "#e7e8ea",
-                      fontSize: 18,
-                      fontWeight: 400,
-                    }),
-                  }}
-                  options={options}
-                  onChange={(e) => handleChange(e)}
-                />
-                <FilterDate />
-                <input type="text" placeholder="Адрес доставки" />
-                <input type="text" placeholder="Сроки аренды" />
-                <textarea className="modal__field" placeholder="Комментарий" />
-                <h5 className="modal__form-title">Отправить в</h5>
-                <div className="modal__form-col">
-                  <label>
-                    Whatsapp
-                    <input name="socials" type="radio" />
-                  </label>
-                  <label>
-                    Telegramm
-                    <input name="socials" type="radio" />
-                  </label>
-                  <label>
-                    Vk
-                    <input name="socials" type="radio" />
-                  </label>
-                </div>
-              </form>
+              <ModalForm
+                register={register}
+                place={place}
+                setPlace={(value) => setPlace(value)}
+              />
             </div>
           </div>
           <div className="modal__col">
             <div className="modal__img">
-              <img
-                src="https://s3-eu-west-1.amazonaws.com/localrent.images/cars/image_titles/000/039/561/original/Fiat-Doblo-2018-gray.jpg?1700543366"
-                alt="car"
-              />
+              <img src={item.imageUrl} alt="car" />
             </div>
             <div className="modal__last-info">
               <h4 className="modal__last-heading">Стоимость</h4>
               <div className="modal__block">
-                <div className="modal__descr">Аренда на 32 дня</div>
-                <span className="modal__price"> 470,40€</span>
+                <div className="modal__descr">Аренда на {days} дня</div>
+                <span className="modal__price">
+                  {priceDaysFormatted + moneyArr[curren]}
+                </span>
               </div>
               <div className="modal__block modal__block--not-border">
                 <div className="modal__descr">Доставка</div>
-                <span className="modal__price"> 100€</span>
+                <span className="modal__price">
+                  {money ? placePrice : "0"}
+                  {moneyArr[curren]}
+                </span>
               </div>
               <div className="modal__last">
                 <div className="modal__block">
                   <div className="modal__descr"> Итого</div>
-                  <span className="modal__price"> 570,40€</span>
+                  <span className="modal__price">
+                    {allPriceFormatted}
+                    {moneyArr[curren]}
+                  </span>
                 </div>
                 <div className="modal__block">
-                  <div className="modal__descr">+ депозит</div>
-                  <span className="modal__price"> 750€</span>
+                  {item.depo && (
+                    <>
+                      <div className="modal__descr">+ депозит</div>
+                      <span className="modal__price">
+                        {depo + moneyArr[curren]}
+                      </span>
+                    </>
+                  )}
                 </div>
               </div>
             </div>

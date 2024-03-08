@@ -1,5 +1,4 @@
 .car-block {
-    position: relative;
     max-width: 280px;
     width: 100%;
     color: var(--blackColor);
@@ -29,19 +28,5 @@
     }
     &__type {
         font-size: 16px;
-    }
-    &__favourite {
-        position: absolute;
-        right: 0;
-        top: 0;
-        z-index: 1;
-    }
-    &__icon {
-        fill: #ffffff;
-
-        transition: all 0.2s ease-in-out;
-        &--active {
-            fill: var(--blackColor);
-        }
     }
 }
