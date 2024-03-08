@@ -446,14 +446,17 @@
     }
 
     &__button-filter {
-        position: absolute;
+        position: fixed;
         color: #fff;
         display: none;
-        background-color: var(--blackColor);
+        background-color: var(--blueColor);
         align-items: center;
         padding: 8px 20px;
         border-radius: 5px;
         justify-content: space-between;
+        bottom: 0;
+        z-index: 10;
+        margin-bottom: 10px;
         width: 115px;
     }
 
