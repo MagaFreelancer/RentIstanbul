@@ -47,6 +47,11 @@
         color: white;
         font-size: 14px;
 
+        &-icon {
+            width: 20px;
+            height: 20px;
+        }
+
         &-button {
             color: #fff;
             width: 33px;
@@ -68,6 +73,10 @@
         }
 
         &-item {
+            align-items: center;
+            justify-content: space-between;
+            width: 63px;
+            display: flex;
             font-size: 13px;
             color: black;
             background-color: white;
