@@ -39,11 +39,11 @@ function Header() {
             </li>
           </ul>
         </nav>
-        <ul className="header__funcs">
+        <ul className={`header__funcs ${open ? `header__funcs--active` : ''}`}>
           <li className="header__item">
             <Languages />
           </li>
-            <Currencies/>
+            <Currencies setOpen={setOpen} />
         </ul>
         <div onClick={() => setOpen(!open)} className={`header__burger ${open ? 'header__burger--active' : ''}`}>
           <span></span>

@@ -41,6 +41,10 @@
     &__funcs {
         display: flex;
         gap: 20px;
+        
+        &--active {
+            display: flex !important;
+        }
     }
     &__currencies {
         position: relative;
@@ -62,6 +66,7 @@
             border-radius: 5px;
             opacity: 0;
             pointer-events: none;
+            overflow: hidden;
             
             transition: 0.2s ease-in;
             z-index: 99;
@@ -82,7 +87,6 @@
             background-color: white;
             padding: 5px;
             cursor: pointer;
-            border-radius: 5px;
 
             &:hover {
                 background-color: rgb(238, 238, 238);
@@ -151,6 +155,15 @@
     @media(max-width: 950px) {
         &__burger {
             display: flex;
+        }
+
+        &__funcs {
+            position: absolute;
+            display: none;
+            z-index: 50;
+            bottom: 13%;
+            left: 5%;
+            animation: burgerAnimation 0.4s;
         }
 
         &__nav {

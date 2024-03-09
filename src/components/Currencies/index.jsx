@@ -5,7 +5,7 @@ import rublIcon from "../../assets/icons/currencies/rubl-icon.png";
 import dollorIcon from "../../assets/icons/currencies/dollor-icon.png";
 import lirIcon from "../../assets/icons/currencies/lir-icon.png";
 
-const Currencies = () => {
+const Currencies = (props) => {
     const [open, setOpen] = React.useState(false);
     const { curren } = useSelector((state) => state.currencies);
     const dispatch = useDispatch();
@@ -33,6 +33,7 @@ const Currencies = () => {
 
     const onClickCurren = (title) => {
         setOpen(false);
+        props.setOpen(false);
         dispatch(setCurren(title))
     }
 
