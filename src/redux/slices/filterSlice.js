@@ -20,12 +20,12 @@ const initialState = {
     {
       sortProperty: "diesel",
       title: "Дизель",
-      checked: true,
+      checked: false,
     },
     {
       sortProperty: "electro",
       title: "Электо/Гибрид",
-      checked: true,
+      checked: false,
     },
   ],
   box: 0,
