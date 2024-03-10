@@ -83,4 +83,24 @@
             right: 0;
         }
     }
+
+    @media(max-width: 880px) {
+        .about_innder {
+            display: flex;
+            flex-direction: column;
+        }
+
+        &__director {
+            &-photo {
+                margin: 0;
+                margin-bottom: 40px;
+            }
+        }
+
+        &__attributes {
+            &-list {
+                justify-content: center;
+            }
+        }
+    }
 }
