@@ -16,6 +16,13 @@ import FilterSort from "./FilterSort";
 import FilterCategories from "./FilterCategories";
 import Search from "./Search";
 import ModalForm from "./ModalForm";
+import SelectForm from "./SelectForm";
+import FullNameForm from "./FullNameForm";
+import DateForm from "./DateForm";
+import EmailForm from "./EmailForm";
+import TelForm from "./TelForm";
+import SocialsForm from "./SocialsForm";
+
 export {
   Footer,
   Header,
@@ -35,4 +42,10 @@ export {
   FilterCategories,
   Search,
   ModalForm,
+  SelectForm,
+  FullNameForm,
+  DateForm,
+  EmailForm,
+  TelForm,
+  SocialsForm,
 };

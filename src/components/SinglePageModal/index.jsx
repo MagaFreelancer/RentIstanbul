@@ -8,7 +8,7 @@ import {
 
 import { useForm } from "react-hook-form";
 import { ModalForm } from "../../components";
-
+import load from "../../assets/icons/load.webp";
 import "./SinglePageModal.scss";
 const list = ["Автомобиль", "Бронирование"];
 
@@ -17,21 +17,30 @@ const SinglePageModal = () => {
   const dispatch = useDispatch();
   const [place, setPlace] = React.useState(null);
   const [activeIndex, setActiveIndex] = React.useState(1); //для индексации страниц
-  const form = useForm({
-    mode: "onChange"
-  });
-  const { register, handleSubmit } = form; //Для собрании данных фреймворк react-hook
-  const onSubmit = (data) => console.log(data); // при нажатии на отправить
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors ,isValid},
+  } = useForm(
+    {
+      mode:"onBlur"
+    }
+  ); //Для собрании данных фреймворк react-hook
+  const onSubmit = (data) => {
+    console.log(data)
+    reset()
+  }; // при нажатии на отправить
+  const iconLoad = "load...";
   const { currencies, statusCur, curren } = useSelector(
     (state) => state.currencies
   );
-  const modalFormRef = React.useRef();
   const moneyArr = { RUB: "₽", USD: "$", TRY: "₺" };
   let money;
   let depo;
   let placePrice;
-  const iconLoad = "load...";
-  if (statusCur === "success") {
+  if (currencies.length != 0) {
     switch (curren) {
       case "RUB":
         money = Math.round(item.price * currencies.USD.Value);
@@ -79,6 +88,8 @@ const SinglePageModal = () => {
     if (activeIndex === 0) {
       setActiveIndex(1);
     } else {
+      setValue('price', allPriceFormatted + moneyArr[curren])
+      setValue("days", days);
       handleSubmit(onSubmit)();
     }
   };
@@ -90,8 +101,13 @@ const SinglePageModal = () => {
       dispatch(toggleShowModal(false));
     }
   };
-  if (status !== "success" && statusCur !== "success") {
-    return <div className="modal-wrapper">{iconLoad}</div>;
+
+  if (status === "loading") {
+    return (
+      <div className="modal-wrapper">
+        <img className="modal-wrapper__load" src={load} alt="" />
+      </div>
+    );
   }
 
   return (
@@ -146,9 +162,10 @@ const SinglePageModal = () => {
               }`}
             >
               <ModalForm
-                handleSubmit={handleSubmit}
+                errors={errors}
+                setValue={setValue}
                 register={register}
-                modalFormRef={modalFormRef}
+                place={place}
                 setPlace={(value) => setPlace(value)}
               />
             </div>
@@ -192,7 +209,7 @@ const SinglePageModal = () => {
                 </div>
               </div>
             </div>
-            <button onClick={setForm} type="submit" className="modal__submit">
+            <button disabled={activeIndex === 1 ? !isValid : false} onClick={setForm} className="modal__submit">
               {activeIndex === 0 ? "Продолжить" : "Отправить"}
             </button>
           </div>

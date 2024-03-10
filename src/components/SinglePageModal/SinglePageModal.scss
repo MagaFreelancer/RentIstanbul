@@ -10,6 +10,10 @@
     justify-content: center;
     align-items: center;
     padding: 40px;
+    &__load {
+        width: 100px;
+        height: 100px;
+    }
 }
 .modal {
     background-color: var(--whiteColor);
@@ -55,7 +59,8 @@
     }
     &__title {
         font-size: 50px;
-        margin-bottom: 70px;
+        line-height: 50px;
+        margin-bottom: 50px;
         color: var(--darkColor);
     }
     &__heading {
@@ -133,6 +138,10 @@
         width: 100%;
         padding: 15px 10px !important;
         background-color: var(--blackColor) !important;
+        &:disabled {
+            opacity: .6;
+            cursor: default;
+        }
     }
     .react-select__option {
         font-size: 15px;
@@ -159,20 +168,37 @@
             z-index: 900;
         }
     }
+    &__form-col {
+        margin-bottom: 15px;
+    }
     &__form-label {
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        margin-bottom: 15px;
         color: var(--lightColor);
-        span {
-            font-size: 16px;
+
+        &--error {
+            input {
+                border: 1px solid #ff7b7b;
+                background-color: #fff7f7;
+                &:hover {
+                    border: 1px solid #ff7b7b;
+                }
+                &:focus {
+                    border: 1px solid #ff7b7b;
+                }
+            }
         }
+    }
+    &__form-place {
+        display: inline-block;
+        margin-bottom: 8px;
+        font-size: 16px;
     }
     &__form-field {
         border: 1px solid #cdcfdb;
         padding: 13px 15px 13px 7px;
         border-radius: 5px;
-        margin-bottom: 15px;
         font-size: 18px;
         outline: none;
         width: 100%;
@@ -188,6 +214,10 @@
         &[type="date"]::-webkit-calendar-picker-indicator {
             display: none;
         }
+    }
+    &__form-error {
+        font-size: 13px !important;
+        color: #ff7b7b;
     }
     &__date-info {
         display: flex;
