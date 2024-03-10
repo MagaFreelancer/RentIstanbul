@@ -30,6 +30,7 @@
     }
     &__tabs {
         display: flex;
+        flex-wrap: wrap;
         justify-content: center;
         gap: 20px;
         margin-bottom: 50px;
@@ -405,7 +406,8 @@
     }
     &__inpnumber {
         display: flex;
-
+        justify-content: center;
+        
         span {
             padding: 6px 8px;
         }
@@ -463,6 +465,30 @@
     @media(max-width: 950px) {
         &__filter {
             display: none;
+            
+            &--active {
+                display: block;
+                position: absolute;
+                background-color: #fff;
+                max-width: 100%;
+                flex-direction: column;
+                position: fixed;
+                height: 100%;
+                width: 100%;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                z-index: 10;
+                overflow-y: auto;
+                padding: 50px 40px;
+                background-color: #ffffff;
+                animation: burgerAnimation 0.4s;
+            }
+        }
+
+        &__inpnumber {
+            
         }
 
         &__button-filter {
@@ -475,12 +501,10 @@
             grid-column-gap: 10px;
             grid-row-gap: 10px;
         }
-        &__container {
-            display: block;
-        }
+       
     }
 
-    @media(max-width: 760px) {
+    @media(max-width: 655px) {
         &__content {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(3, 1fr);

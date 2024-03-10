@@ -157,11 +157,17 @@
             display: flex;
         }
 
+        &__currencies {
+            &-list {
+                top: -100px;
+            }
+        }
+
         &__funcs {
             position: absolute;
             display: none;
             z-index: 50;
-            bottom: 13%;
+            bottom: 3%;
             left: 5%;
             animation: burgerAnimation 0.4s;
         }
