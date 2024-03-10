@@ -14,7 +14,7 @@ const FullNameForm = ({ register,errors }) => {
           required: "Пожалуйста, заполните поля",
           minLength: {
             value: 8,
-            message: "Минимум 5 символов.",
+            message: "Минимум 8 символов.",
           },
         })}
         className="modal__form-field"

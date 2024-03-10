@@ -22,15 +22,16 @@ const SinglePageModal = () => {
     handleSubmit,
     setValue,
     reset,
-    formState: { errors ,isValid},
-  } = useForm(
-    {
-      mode:"onBlur"
-    }
-  ); //Для собрании данных фреймворк react-hook
+    formState: { errors, isValid },
+  } = useForm({
+    defaultValues: {
+      place: "Из офиса забрать",
+    },
+    mode: "onBlur",
+  }); //Для собрании данных фреймворк react-hook
   const onSubmit = (data) => {
-    console.log(data)
-    reset()
+    console.log(data);
+    reset();
   }; // при нажатии на отправить
   const iconLoad = "load...";
   const { currencies, statusCur, curren } = useSelector(
@@ -88,7 +89,7 @@ const SinglePageModal = () => {
     if (activeIndex === 0) {
       setActiveIndex(1);
     } else {
-      setValue('price', allPriceFormatted + moneyArr[curren])
+      setValue("price", allPriceFormatted + moneyArr[curren]);
       setValue("days", days);
       handleSubmit(onSubmit)();
     }
@@ -209,7 +210,11 @@ const SinglePageModal = () => {
                 </div>
               </div>
             </div>
-            <button disabled={activeIndex === 1 ? !isValid : false} onClick={setForm} className="modal__submit">
+            <button
+              disabled={activeIndex === 1 ? !isValid : false}
+              onClick={setForm}
+              className="modal__submit"
+            >
               {activeIndex === 0 ? "Продолжить" : "Отправить"}
             </button>
           </div>

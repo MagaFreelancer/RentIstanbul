@@ -30,6 +30,7 @@ const ModalForm = ({
           register={register}
           setValue={setValue}
           setPlace={setPlace}
+          errors={errors}
         />
       </div>
       <Calendar />
