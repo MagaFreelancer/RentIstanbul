@@ -462,6 +462,40 @@
         width: 115px;
     }
 
+    &__burger {
+        display: block;
+        position: absolute;
+        z-index: 50;
+        align-items: center;
+        justify-content: flex-end;
+        width: 50px;
+        height: 50px;
+        top: 0;
+        right: 15px;
+        cursor: pointer;
+
+        &::before {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 50px;
+            right: -1px;
+            background-color: #000000;
+            top: 50%;
+            transform: rotate(45deg) translate(0, 50%);
+            
+        }
+        &::after {
+            content: "";
+            position: absolute;
+            height: 2px;
+            width: 50px;
+            background-color: #000000;
+            top: 50%;
+            transform: rotate(-45deg) translate(0, -50%);
+        }
+    }
+
     @media(max-width: 950px) {
         &__filter {
             display: none;
