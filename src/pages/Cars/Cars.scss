@@ -463,7 +463,7 @@
     }
 
     &__burger {
-        display: block;
+        display: none;
         position: absolute;
         z-index: 50;
         align-items: center;
@@ -473,6 +473,10 @@
         top: 0;
         right: 15px;
         cursor: pointer;
+
+        &--active {
+            display: block;
+        }
 
         &::before {
             content: "";
@@ -519,10 +523,6 @@
                 background-color: #ffffff;
                 animation: burgerAnimation 0.4s;
             }
-        }
-
-        &__inpnumber {
-            
         }
 
         &__button-filter {
