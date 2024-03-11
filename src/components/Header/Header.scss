@@ -104,7 +104,7 @@
     &__burger {
         display: none;
         position: relative;
-        z-index: 20;
+        z-index: 10;
         align-items: center;
         justify-content: flex-end;
         width: 30px;
@@ -166,7 +166,7 @@
         &__funcs {
             position: absolute;
             display: none;
-            z-index: 50;
+            z-index: 10;
             bottom: 3%;
             left: 5%;
             animation: burgerAnimation 0.4s;
@@ -182,7 +182,7 @@
             bottom: 0;
             left: 0;
             right: 0;
-            z-index: 20;
+            z-index: 10;
             overflow-y: auto;
             padding: 50px 40px;
             background-color: #000;

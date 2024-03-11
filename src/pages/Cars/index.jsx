@@ -74,6 +74,7 @@ const Cars = () => {
 
   return (
     <><section className="cars">
+      
       <div className="container cars__container">
         <aside className={`cars__filter ${filterOpen ? 'cars__filter--active' : ''}`}>
           <FilterPrice />

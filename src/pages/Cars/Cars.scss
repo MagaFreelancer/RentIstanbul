@@ -457,7 +457,7 @@
         border-radius: 5px;
         justify-content: space-between;
         bottom: 0;
-        z-index: 10;
+        z-index: 5;
         margin-bottom: 10px;
         width: 115px;
     }
@@ -468,8 +468,8 @@
         z-index: 50;
         align-items: center;
         justify-content: flex-end;
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
         top: 0;
         right: 15px;
         cursor: pointer;
@@ -482,8 +482,8 @@
             content: "";
             position: absolute;
             height: 2px;
-            width: 50px;
-            right: -1px;
+            width: 40px;
+            right: 0px;
             background-color: #000000;
             top: 50%;
             transform: rotate(45deg) translate(0, 50%);
@@ -493,7 +493,7 @@
             content: "";
             position: absolute;
             height: 2px;
-            width: 50px;
+            width: 40px;
             background-color: #000000;
             top: 50%;
             transform: rotate(-45deg) translate(0, -50%);
@@ -517,9 +517,9 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                z-index: 10;
+                z-index: 50;
                 overflow-y: auto;
-                padding: 50px 40px;
+                padding: 50px 20px;
                 background-color: #ffffff;
                 animation: burgerAnimation 0.4s;
             }
