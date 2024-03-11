@@ -7,13 +7,14 @@ import {
 } from "../../redux/slices/singleInfoSlice";
 
 import { useForm } from "react-hook-form";
-import { ModalForm } from "../../components";
+import { ModalForm, SliderModal } from "../../components";
 import load from "../../assets/icons/load.webp";
 import "./SinglePageModal.scss";
 const list = ["Автомобиль", "Бронирование"];
 
 const SinglePageModal = () => {
   const { days, item, id, status } = useSelector((e) => e.singleInfo);
+  const { currencies, curren } = useSelector((state) => state.currencies);
   const dispatch = useDispatch();
   const [place, setPlace] = React.useState(null);
   const [activeIndex, setActiveIndex] = React.useState(1); //для индексации страниц
@@ -33,10 +34,7 @@ const SinglePageModal = () => {
     console.log(data);
     reset();
   }; // при нажатии на отправить
-  const iconLoad = "load...";
-  const { currencies, statusCur, curren } = useSelector(
-    (state) => state.currencies
-  );
+
   const moneyArr = { RUB: "₽", USD: "$", TRY: "₺" };
   let money;
   let depo;
@@ -94,15 +92,15 @@ const SinglePageModal = () => {
       handleSubmit(onSubmit)();
     }
   };
-  React.useEffect(() => {
-    getSingleCar();
-  }, []);
+
   const toggleModal = (e) => {
     if (e.target.classList.contains("modal-wrapper")) {
       dispatch(toggleShowModal(false));
     }
   };
-
+  React.useEffect(() => {
+    getSingleCar();
+  }, []);
   if (status === "loading") {
     return (
       <div className="modal-wrapper">
@@ -150,12 +148,7 @@ const SinglePageModal = () => {
                   <div className="modal__info-text">2018.</div>
                 </li>
               </ul>
-              <div className="modal__slider">
-                <img
-                  src="https://s3-eu-west-1.amazonaws.com/localrent.images/images/files/000/129/454/show/02.jpg?1700513387"
-                  alt=""
-                />
-              </div>
+              <SliderModal imgs={item.imgs}/>
             </div>
             <div
               className={`modal__content ${

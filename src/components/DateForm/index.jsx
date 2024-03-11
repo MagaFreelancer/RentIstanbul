@@ -1,5 +1,7 @@
 const DateForm = ({ register, errors }) => {
   const isFutureDate = (value) => {
+
+    console.log(value);
     const inputDate = new Date(value);
     const currentDate = new Date();
 
@@ -21,6 +23,7 @@ const DateForm = ({ register, errors }) => {
         className="modal__form-field"
         type="date"
       />
+
       {errors?.date && errors?.date?.type === "validate" && (
         <span className="modal__form-error">
           Введите дату правильно, пожалуйста

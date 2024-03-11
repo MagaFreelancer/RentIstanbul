@@ -22,6 +22,8 @@ import DateForm from "./DateForm";
 import EmailForm from "./EmailForm";
 import TelForm from "./TelForm";
 import SocialsForm from "./SocialsForm";
+import Reviews from "./Reviews";
+import SliderModal from "./SliderModal";
 
 export {
   Footer,
@@ -48,4 +50,6 @@ export {
   EmailForm,
   TelForm,
   SocialsForm,
+  Reviews,
+  SliderModal,
 };
