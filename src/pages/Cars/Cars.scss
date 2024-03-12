@@ -464,6 +464,7 @@
     }
 
     &__burger {
+        display: none;
         position: absolute;
         top: 9px;
         right: 9px;
@@ -498,6 +499,10 @@
                 background-color: #ffffff;
                 animation: burgerAnimation 0.4s;
             }
+        }
+
+        &__burger {
+            display: block;
         }
 
         &__button-filter {

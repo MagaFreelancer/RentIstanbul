@@ -18,6 +18,12 @@ const Cars = () => {
   const { currencies, statusCur } = useSelector((state) => state.currencies);
   const [filterOpen, setFilterOpen] = React.useState(false);
   const dispatch = useDispatch();
+
+  if(filterOpen) {
+    document.body.classList.add('body-scroll');
+  }else {
+    document.body.classList.remove('body-scroll');
+  }
   
   const getCars = async () => {
     const sortBy = sort.sortProperty.replace("-", "");

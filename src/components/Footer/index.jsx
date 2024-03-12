@@ -37,13 +37,15 @@ function Footer() {
                 About
               </NavLink>
             </li>
+            <li className="footer__logo menu__item">
+              <NavLink className="footer__link menu__link" to="/">
+              RI
+              </NavLink>
+            </li>
           </ul>
-          <Link to="/" className="footer__logo">
-            RI
-          </Link>
         </div>
         <div className="footer__col">
-          <h3 className="footer__heading">Контакты</h3>
+          <h3 className="footer__heading footer__contacts">Контакты</h3>
           <div className="footer__col-block">
             <a href="mailto: rendIstanbul@gmail.com" className="footer__email">
               rentIstanbul@gmail.com
@@ -71,10 +73,7 @@ function Footer() {
             <h4 className="footer__heading-sm">Наши соц.сети</h4>
             <ul className="footer__social socials ">
               <li className="footer__mess-item socials__item">
-                <a
-                  href="#"
-                  className="footer__mess-link footer__mess--instagram"
-                >
+                <a href="#" className="footer__mess-link footer__mess--instagram">
                   <img src={instagramSvg} alt="instagram" />
                 </a>
               </li>
