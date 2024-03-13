@@ -16,6 +16,9 @@ const initialState = {
   id: null,
   days: 1,
   showModal: false,
+  showSlider: false,
+  sliderImgs: [],
+  sliderIndex: [],
   status: "loading",
 };
 
@@ -31,6 +34,15 @@ const singleInfoSlice = createSlice({
     },
     toggleShowModal(state, action) {
       state.showModal = action.payload;
+    },
+    toggleShowSlider(state, action) {
+      state.showSlider = action.payload;
+    },
+    setImgs(state, action) {
+      state.sliderImgs = action.payload;
+    },
+    setSliderIndex(state, action) {
+      state.sliderIndex = action.payload;
     },
   },
   extraReducers: (builder) => {
@@ -50,6 +62,13 @@ const singleInfoSlice = createSlice({
   },
 });
 
-export const { setDay, setId, toggleShowModal } = singleInfoSlice.actions;
+export const {
+  setDay,
+  setId,
+  toggleShowModal,
+  toggleShowSlider,
+  setImgs,
+  setSliderIndex,
+} = singleInfoSlice.actions;
 
 export default singleInfoSlice.reducer;

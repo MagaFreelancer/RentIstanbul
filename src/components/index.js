@@ -24,6 +24,7 @@ import TelForm from "./TelForm";
 import SocialsForm from "./SocialsForm";
 import Reviews from "./Reviews";
 import SliderModal from "./SliderModal";
+import ImageModal from "./ImageModal";
 
 export {
   Footer,
@@ -52,4 +53,5 @@ export {
   SocialsForm,
   Reviews,
   SliderModal,
+  ImageModal,
 };

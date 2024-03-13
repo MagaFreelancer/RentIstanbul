@@ -8,11 +8,14 @@ import {
   FAQ,
   SinglePageModal,
   Reviews,
+  ImageModal,
 } from "../../components";
 import "./Home.scss";
 
 export default function Home() {
-  const { showModal } = useSelector((e) => e.singleInfo);
+  const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector(
+    (e) => e.singleInfo
+  );
   const { currencies, statusCur, curren } = useSelector(
     (state) => state.currencies
   );
@@ -31,6 +34,9 @@ export default function Home() {
       <Reviews />
       <FAQ />
       {showModal && <SinglePageModal />}
+      {showSlider && (
+        <ImageModal sliderIndex={sliderIndex} sliderImgs={sliderImgs} />
+      )}
     </>
   );
 }

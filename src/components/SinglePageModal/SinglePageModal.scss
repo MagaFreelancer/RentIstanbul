@@ -107,6 +107,13 @@
                 object-fit: cover;
             }
         }
+        .swiper-pagination {
+            width: 30px;
+            left: 5px;
+            color: var(--whiteColor);
+            font-size: 10px;
+            background-color: rgba(#333e50, 0.7);
+        }
     }
     &__last-heading {
         font-size: 25px;

@@ -17,7 +17,7 @@ const SinglePageModal = () => {
   const { currencies, curren } = useSelector((state) => state.currencies);
   const dispatch = useDispatch();
   const [place, setPlace] = React.useState(null);
-  const [activeIndex, setActiveIndex] = React.useState(1); //для индексации страниц
+  const [activeIndex, setActiveIndex] = React.useState(0); //для индексации страниц
   const {
     register,
     handleSubmit,
