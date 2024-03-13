@@ -527,12 +527,25 @@
         }
     }
 
-    @media(max-width: 500px) {
-       
+    @media(max-width: 500px) { 
         padding: 25px 0;
+        
+        &__name {
+            margin-bottom: 10px;
+        }
         
         &__heading {
             flex-direction: column;
         }
+
+        &__content {
+            grid-template-columns: repeat(1, 1fr);
+        }
+        
+        .car-block {
+            max-width: none;
+        }
     }
 }
+
+
