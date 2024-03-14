@@ -6,118 +6,58 @@ import telegramSvg from "../../assets/icons/telegram.svg";
 import instagramSvg from "../../assets/icons/instagram.svg";
 import rightArrowSvg from "../../assets/icons/arrow-right.svg";
 import "./Footer.scss";
+
 function Footer() {
-  const [emailValue, setEmailValue] = React.useState("");
+    const [emailValue, setEmailValue] = React.useState("");
 
-  // const instagramURL = "";
-  // const whatsappURL = "";
-  // const vkURL = "";
-  // const telegrammURL = "";
+    // const instagramURL = "";
+    // const whatsappURL = "";
+    // const vkURL = "";
+    // const telegrammURL = "";
 
-  return (
-    <footer className="footer">
-      <div className="container footer__container">
-        <div className="footer__col">
-          <ul className="footer__menu">
-            <li className="footer__item">
-              <h3 className="footer__heading">Информация</h3>
-            </li>
-            <li className="footer__item menu__item">
-              <NavLink className="footer__link menu__link" to="/">
-                Home
-              </NavLink>
-            </li>
-            <li className="footer__item menu__item">
-              <NavLink className="footer__link menu__link" to="cars">
-                Cars
-              </NavLink>
-            </li>
-            <li className="footer__item menu__item">
-              <NavLink className="footer__link menu__link" to="about">
-                About
-              </NavLink>
-            </li>
-            <li className="footer__logo menu__item">
-              <NavLink className="footer__link menu__link" to="/">
-              RI
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-        <div className="footer__col">
-          <h3 className="footer__heading footer__contacts">Контакты</h3>
-          <div className="footer__col-block">
-            <a href="mailto: rendIstanbul@gmail.com" className="footer__email">
-              rentIstanbul@gmail.com
-            </a>
-            <a className="footer__tel" href="tel:+4733378901">
-              +47 333 78 901
-            </a>
-          </div>
-          <div className="footer__col-block">
-            <h4 className="footer__heading-sm">Мессенджеры</h4>
-            <ul className="footer__mess socials">
-              <li className="footer__mess-item  socials__item">
-                <a href="#" className="footer__mess-link">
-                  <img src={telegramSvg} alt="telegram" />
-                </a>
-              </li>
-              <li className="footer__mess-item  socials__item">
-                <a href="#" className="footer__mess-link">
-                  <img src={whatsappSvg} alt="whatsapp" />
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="footer__col-block">
-            <h4 className="footer__heading-sm">Наши соц.сети</h4>
-            <ul className="footer__social socials ">
-              <li className="footer__mess-item socials__item">
-                <a href="#" className="footer__mess-link footer__mess--instagram">
-                  <img src={instagramSvg} alt="instagram" />
-                </a>
-              </li>
-              <li className="footer__mess-item socials__item">
-                <a href="#" className="footer__mess-link">
-                  <img src={vkSvg} alt="vk" />
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="footer__col">
-          <h3 className="footer__heading">Подписка на новости</h3>
-          <span className="footer__descr">
-            Будьте в курсе скидок и новостей
-          </span>
-          <form action="" className="footer__form">
-            <input
-              className="footer__field"
-              type="text"
-              placeholder="Ваш email"
-              value={emailValue}
-              onChange={(e) => setEmailValue(e.target.value)}
-            />
-            {emailValue && (
-              <button className="footer__btn">
-                <img src={rightArrowSvg} alt="" />
-              </button>
-            )}
-          </form>
-          <p className="footer__text">
-            Подписываясь на рассылку вы соглашатесь с обработкой персональных
-            данных
-          </p>
-          <Link className="footer__copyright" to="copyright">
-            Политика конфиденциальности
-          </Link>
-          <Link className="footer__copyright" to="copyright">
-            Пользовательское соглашение
-          </Link>
-        </div>
-      </div>
-    </footer>
-  );
+    return (
+        <footer className="footer">
+            <div className="container footer__innder">
+                <ul className="footer__catalog">
+                    <h5 className="footer__title">Информация</h5>
+                    <li className="footer__catalog-item">
+                        <NavLink className="footer__catalog-link" to="/">Home</NavLink>
+                    </li>  
+                    <li >
+                        <NavLink className="footer__catalog-link" to="/cars">Cars</NavLink>
+                    </li>
+                    <li className="footer__catalog-item">
+                        <NavLink className="footer__catalog-link" to="/about">About</NavLink>
+                    </li>
+                    <li className="footer__catalog-item">
+                        <NavLink className="footer__catalog-link footer__catalog-logo" to="/about">RL</NavLink>
+                    </li>
+                </ul>
+                <ul className="footer__contacts">
+                    <h5 className="footer__title">Контакты</h5>
+                    <li className="footer__contacts-item">
+                        <a className="footer__contacts-link" href="mailto: rendIstanbul@gmail.com">rentIstanbul@gmail.com</a>
+                    </li>
+                    <li className="footer__contacts-item">
+                        <a className="footer__contacts-tel" href="tel:+4733378901">+47 333 78 901</a>
+                    </li>
+                    <li className="footer__contacts-item footer__contacts-icons">
+                        <a className="footer__contacts-icon" href="#"><img src={telegramSvg} alt="" /></a>
+                        <a className="footer__contacts-icon" href="#"><img src={whatsappSvg} alt="" /></a>
+                        <a className="footer__contacts-icon" href="#"><img src={vkSvg} alt="" /></a>
+                        <a className="footer__contacts-icon" href="#"><img src={instagramSvg} alt="" /></a>
+                       
+                    </li>
+                </ul>
+                <form className="footer__form">
+                    <h5 className="footer__title">Контакты</h5>
+                    <p className="footer__subtitle">Будьте в курсе скидок и новостей</p>
+                    <input className="footer__form-input" placeholder="Ваш email" type="text" />
+                    <p className="footer__form-text">Подписываясь на рассылку вы соглашатесь с обработкой персональных данных</p>
+                </form>
+            </div>
+        </footer>
+    );
 }
 
 export default Footer;
