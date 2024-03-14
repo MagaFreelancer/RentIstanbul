@@ -49,7 +49,7 @@ const SinglePageModal = () => {
       case "USD":
         money = item.price;
         depo = item.depo;
-        placePrice = item.depo;
+        placePrice = place;
 
         break;
       case "TRY":
@@ -67,6 +67,7 @@ const SinglePageModal = () => {
   }
   let priceDays = money * days;
   let allPrice = money * days + placePrice;
+  console.log(allPrice, priceDays);
   const priceDaysFormatted = new Intl.NumberFormat("de-DE", {
     style: "currency",
     currency: "EUR",

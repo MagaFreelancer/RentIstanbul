@@ -5,6 +5,7 @@ import { format } from "date-fns";
 import { setDay } from "../../redux/slices/singleInfoSlice";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
+
 const month = [
   "Январь",
   "Февраль",
@@ -20,16 +21,35 @@ const month = [
 ];
 const funcNextDay = () => {
   const currentDate = new Date();
-
   const currentDay = currentDate.getDate();
-
   const nextDay = currentDay + 1;
-
   const tomorrowDate = new Date(currentDate);
   tomorrowDate.setDate(nextDay);
   return tomorrowDate;
 };
 const Calendar = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const datePickerRef = React.useRef(null);
+  const handleButtonClick = () => {
+    setIsOpen(!isOpen);
+  };
+  // Обработчик события клика вне области кнопки и окна
+  const handleClickOutside = (event) => {
+    if (
+      datePickerRef.current &&
+      !datePickerRef.current.contains(event.target)
+    ) {
+      setIsOpen(false);
+    }
+  };
+  React.useEffect(() => {
+    // Добавление слушателя события клика для скрытия окна при клике вне его
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      // Удаление слушателя события клика при размонтировании компонента
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
   const { days } = useSelector((e) => e.singleInfo);
   const dispatch = useDispatch();
 
@@ -64,19 +84,6 @@ const Calendar = () => {
     let result = differenceInDays < 1 ? 1 : Math.round(differenceInDays);
     dispatch(setDay(result));
   }
-  React.useEffect(() => {
-    const handleClickOutside = (event) => {
-      const path = event.composedPath ? event.composedPath() : event.path;
-      if (!path.includes(DateFilterRef.current)) {
-        setOpenDate(false);
-      }
-    };
-    document.body.addEventListener("click", handleClickOutside);
-
-    return () => {
-      document.body.removeEventListener("click", handleClickOutside);
-    };
-  }, [openDate]);
 
   React.useEffect(() => {
     setDateText({
@@ -89,29 +96,25 @@ const Calendar = () => {
     day(date);
   }, [date]);
   return (
-    <div className="modal__date modal__col">
+    <div className="modal__date modal__col" ref={datePickerRef}>
       <h4 className="modal__form-title">Дата аренды</h4>
-      <div
-        onClick={() => setOpenDate(true)}
-        ref={DateFilterRef}
-        className="modal__date-info"
-      >
+      <div onClick={handleButtonClick} className="modal__date-info">
         <span className="modal__date-date">
           {`${dateText.startDay} ${dateText.startMonth}
            - 
            ${dateText.endDay} ${dateText.endMonth}  ${dateText.year} `}
         </span>
         <span className="modal__date-days">{`${days} Дней`}</span>
-        <div className="modal__filter-wrapper">
-          <DateRangePicker
-            className={`modal__calendar ${
-              openDate ? "modal__calendar--active" : ""
-            }`}
-            ranges={[date]}
-            onChange={hangleChange}
-            minDate={new Date()}
-          />
-        </div>
+      </div>
+      <div className="modal__filter-wrapper" ref={DateFilterRef}>
+        <DateRangePicker
+          className={`modal__calendar ${
+            isOpen ? "modal__calendar--active" : ""
+          }`}
+          ranges={[date]}
+          onChange={hangleChange}
+          minDate={new Date()}
+        />
       </div>
     </div>
   );

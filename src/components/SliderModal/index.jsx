@@ -13,7 +13,8 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const SliderModal = ({ imgs }) => {
+const SliderModal = ({ imgs}) => {
+
   const dispatch = useDispatch();
   const onClickAddParams = (index) => {
     dispatch(setImgs(imgs));
@@ -23,19 +24,18 @@ const SliderModal = ({ imgs }) => {
   return (
     <div className="modal__slider">
       <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
+        slidesPerView={"auto"}
+        spaceBetween={20}
+        modules={[Pagination, Keyboard, Navigation]}
+        className="mySwiper"
         keyboard={{
           enabled: true,
         }}
         pagination={{
           clickable: true,
-          type: 'fraction' // Навигация с числовыми индикаторами
+          type: "fraction", // Навигация с числовыми индикаторами
         }}
         navigation={true}
-        modules={[Keyboard, Pagination, Navigation]}
-        className="mySwiper"
-       
       >
         {imgs.map((item, index) => {
           return (

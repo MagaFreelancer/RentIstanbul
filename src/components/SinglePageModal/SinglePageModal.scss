@@ -98,13 +98,23 @@
         margin-bottom: 20px;
     }
     &__slider {
-        height: 150px;
+        overflow: hidden;
+        border-radius: 4px;
         .swiper-slide {
+            box-sizing: content-box;
             width: 100%;
+            height: 250px;
             img {
-                width: 100%;
-                height: 250px;
                 object-fit: cover;
+                height: 255px;
+                display: block;
+                height: 255px;
+                width: auto;
+                transition: filter 0.1s ease-in-out;
+
+                &:hover {
+                    filter: brightness(80%);
+                }
             }
         }
         .swiper-pagination {
@@ -113,6 +123,54 @@
             color: var(--whiteColor);
             font-size: 10px;
             background-color: rgba(#333e50, 0.7);
+        }
+        .swiper-button-next {
+            background-color: #20282f;
+            border-radius: 100%;
+            height: 35px;
+            width: 35px;
+            color: var(--whiteColor);
+            &::after {
+                margin-right: -2px;
+                font-size: 16px;
+                left: -2px;
+            }
+        }
+        .swiper-button-prev {
+            background-color: #20282f;
+            border-radius: 100%;
+            height: 35px;
+            width: 35px;
+            color: var(--whiteColor);
+            &::after {
+                margin-left: -2px;
+                font-size: 16px;
+            }
+        }
+        .swiper {
+            width: 100%;
+            height: 100%;
+        }
+
+        .swiper-slide {
+            text-align: center;
+            font-size: 18px;
+            background: #fff;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .swiper-slide {
+            width: 80%;
         }
     }
     &__last-heading {
@@ -186,9 +244,7 @@
             z-index: 900;
         }
     }
-    &__form-col {
-        margin-bottom: 15px;
-    }
+
     &__form-label {
         display: flex;
         flex-direction: column;
@@ -215,7 +271,12 @@
     }
     &__field-wrapp {
         position: relative;
+        &--mod {
+        position: relative;
+
+        }
     }
+
     &__field-close {
         position: absolute;
         right: 10px;
