@@ -4,6 +4,7 @@
 
     &__innder {
         display: flex;
+        
         justify-content: space-between;
     }
 
@@ -94,7 +95,9 @@
 
     @media(max-width: 768px) {
         &__innder {
-            flex-direction: column;
+            flex-wrap:  wrap;
+            justify-content: flex-start;
+            gap: 50px 100px;
         }
     }
 }

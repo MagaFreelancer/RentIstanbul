@@ -11,6 +11,8 @@
         background-color: var(--whiteColor);
         border-radius: 5px;
         pointer-events: none;
+        left: -90px;
+
         &--active {
             opacity: 1;
             pointer-events: all;
