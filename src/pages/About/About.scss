@@ -1,106 +1,31 @@
 .about {
-    .title {
-        font-size: 35px;
-        margin-bottom: 40px;
-        font-weight: 900;
-    }
-    .about_innder {
-        display: flex;
-    }
-
-   
-
-    &__company {
-        &-title {
-            color: var(--blackColor);
-            margin-bottom: 25px;
-        }
-        &-subtitle {
-            max-width: 575px;
-            color: var(--blackColor);
-            font-size: 20px;
-            line-height: 25px;
-            font-weight: 700;
-        }
+    &__inner {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-column-gap: 0px;
+        grid-row-gap: 20px;
     }
 
-    &__director {
-        &-photo {
-            max-width: 300px;
-            max-height: 470px;
-            margin: auto 0;
-            margin-left: 50px;
+    &__story {
+        &-info {
+            max-width: 525px;
         }
-    }
-
-    &__prof {
-        padding-left: 80px;
-        padding-top: 60px;
-        margin-bottom: 25px;
-
-        &-fullname {
-            font-size: 20px;
-        }
-        &-jobtitle {
-            font-size: 14px;
-            color: #333E50;
-            margin-bottom: 10px;
-        }     
-        &-paragraph {
-            font-size: 18px;
-            font-weight: 500;
-            line-height: 25px;
-            max-width: 475px;
-        }
-    }
-
-    &__attributes {
-        &-list {
-            padding-left: 80px;
-            max-width: 700px;
-            display: flex;
-            flex-wrap: wrap;
-        }
-        &-item {
-            position: relative;
-            max-width: 300px;
+        &-img {
+            max-width: 525px;
             max-height: 350px;
-            padding: 25px;
-            padding-top: 110px;
-            background-color: #cecece;
-            margin: 0.5%;
         }
+        
         &-title {
+            line-height: 35px;
             margin-bottom: 20px;
         }
+       
         &-subtitle {
+            line-height: 25px;
             font-size: 14px;
-            line-height: 20px;
+            font-weight: 400;
         }
-        &-icon {
-            position: absolute;
-            top: 0;
-            right: 0;
-        }
-    }
-
-    @media(max-width: 880px) {
-        .about_innder {
-            display: flex;
-            flex-direction: column;
-        }
-
-        &__director {
-            &-photo {
-                margin: 0;
-                margin-bottom: 40px;
-            }
-        }
-
-        &__attributes {
-            &-list {
-                justify-content: center;
-            }
-        }
+        
     }
 }
