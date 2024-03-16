@@ -67,7 +67,6 @@ const Calendar = () => {
     year: format(date.endDate, "yyyy"),
   });
 
-  const [openDate, setOpenDate] = React.useState(false);
   const hangleChange = (ranges) => {
     setDate(ranges.selection);
   };

@@ -6,7 +6,7 @@ import {
   DateForm,
   EmailForm,
   TelForm,
-  SocialsForm
+  SocialsForm,
 } from "../../components";
 
 const ModalForm = ({
@@ -30,18 +30,18 @@ const ModalForm = ({
           register={register}
           setValue={setValue}
           setPlace={setPlace}
-          errors={errors}
+          errors={errors} 
         />
       </div>
       <Calendar />
       <h5 className="modal__form-title">Данные основного водителя</h5>
-      <FullNameForm errors={errors} register={register} />
-      <DateForm errors={errors} register={register} />
-      <EmailForm errors={errors} register={register} />
-      <TelForm errors={errors} register={register} />
+      <FullNameForm errors={errors} register={register}  />
+      <DateForm errors={errors} register={register}  />
+      <EmailForm errors={errors} register={register}  />
+      <TelForm errors={errors} register={register}  />
 
       <h5 className="modal__form-title">Куда вам написать?</h5>
-    <SocialsForm register={register}/>
+      <SocialsForm register={register} />
       <textarea
         {...register("comment")}
         className="modal__form-textarea"

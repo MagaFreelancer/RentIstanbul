@@ -19,6 +19,8 @@ export default function CarBlock({
   const onClickModal = () => {
     dispatch(toggleShowModal(true));
     dispatch(setId(id));
+    document.body.classList.add("modal-open");
+
   };
   switch (curren) {
     case "RUB":

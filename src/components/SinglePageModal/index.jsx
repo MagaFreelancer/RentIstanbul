@@ -22,13 +22,12 @@ const SinglePageModal = () => {
     register,
     handleSubmit,
     setValue,
+    formState: { errors },
     reset,
-    formState: { errors, isValid },
   } = useForm({
     defaultValues: {
       place: "Из офиса забрать",
     },
-    mode: "onBlur",
   }); //Для собрании данных фреймворк react-hook
   const onSubmit = (data) => {
     console.log(data);
@@ -67,13 +66,14 @@ const SinglePageModal = () => {
   }
   let priceDays = money * days;
   let allPrice = money * days + placePrice;
-  console.log(allPrice, priceDays);
+
   const priceDaysFormatted = new Intl.NumberFormat("de-DE", {
     style: "currency",
     currency: "EUR",
   })
     .format(priceDays)
     .split(",")[0];
+
   const allPriceFormatted = new Intl.NumberFormat("de-DE", {
     style: "currency",
     currency: "EUR",
@@ -97,11 +97,17 @@ const SinglePageModal = () => {
   const toggleModal = (e) => {
     if (e.target.classList.contains("modal-wrapper")) {
       dispatch(toggleShowModal(false));
+      document.body.classList.remove("modal-open");
+    } else if (e.target.closest(".modal__close")) {
+      dispatch(toggleShowModal(false));
+      document.body.classList.remove("modal-open");
     }
   };
+
   React.useEffect(() => {
     getSingleCar();
   }, []);
+
   if (status === "loading") {
     return (
       <div className="modal-wrapper">
@@ -113,6 +119,19 @@ const SinglePageModal = () => {
   return (
     <div onClick={(e) => toggleModal(e)} className="modal-wrapper">
       <div className="modal">
+        <div onClick={(e) => toggleModal(e)} className="modal__close">
+          <svg
+            viewBox="0 0 256 256"
+            xmlSpace="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m137.051 128 75.475-75.475c2.5-2.5 2.5-6.551 0-9.051s-6.551-2.5-9.051 0L128 118.949 52.525 43.475c-2.5-2.5-6.551-2.5-9.051 0s-2.5 6.551 0 9.051L118.949 128l-75.475 75.475a6.399 6.399 0 0 0 4.525 10.926 6.38 6.38 0 0 0 4.525-1.875L128 137.051l75.475 75.475c1.25 1.25 2.888 1.875 4.525 1.875s3.275-.625 4.525-1.875c2.5-2.5 2.5-6.551 0-9.051L137.051 128z"
+              fill="#ffffff"
+              className="fill-000000"
+            ></path>
+          </svg>
+        </div>
         <div className="modal__container">
           <div className="modal__col">
             <ul className="modal__menu">
@@ -149,7 +168,7 @@ const SinglePageModal = () => {
                   <div className="modal__info-text">2018.</div>
                 </li>
               </ul>
-              <SliderModal imgs={item.imgs}/>
+              <SliderModal imgs={item.imgs} />
             </div>
             <div
               className={`modal__content ${
@@ -205,7 +224,7 @@ const SinglePageModal = () => {
               </div>
             </div>
             <button
-              disabled={activeIndex === 1 ? !isValid : false}
+              // disabled={activeIndex === 1 ? !isValid : false}
               onClick={setForm}
               className="modal__submit"
             >

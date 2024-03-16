@@ -1,7 +1,5 @@
 const DateForm = ({ register, errors }) => {
   const isFutureDate = (value) => {
-
-    console.log(value);
     const inputDate = new Date(value);
     const currentDate = new Date();
 

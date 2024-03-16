@@ -1,6 +1,7 @@
 import React from "react";
 import clearSvg from "../../assets/icons/sm-close.svg";
 import Select from "react-select";
+import { Controller } from "react-hook-form";
 const options = [
   { value: 100, showAdress: true, label: "Доставка по городу + 100€" },
   { value: 0, showAdress: false, label: "Взять в из офиса" },
@@ -60,7 +61,6 @@ const SelectForm = ({ setValue, setPlace, register, errors }) => {
                 <img
                   onClick={() => {
                     setValueAddress("");
-                    setValue("address", "");
                   }}
                   className="modal__field-close"
                   src={clearSvg}
