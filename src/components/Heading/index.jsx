@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import "./Heading.scss";
 const Heading = () => {
   return (
@@ -9,11 +8,6 @@ const Heading = () => {
           <h4 className="heading__subtitle">
             Найти машину по душе для следующего путешествия
           </h4>
-        </div>
-        <div className="heading__col">
-          <Link to="./reviews" className="heading__review">
-            Отзывы
-          </Link>
         </div>
       </div>
     </section>
