@@ -7,31 +7,38 @@ import {
 } from "../../redux/slices/singleInfoSlice";
 
 import { useForm } from "react-hook-form";
-import { ModalForm } from "../../components";
-
+import { ModalForm, SliderModal } from "../../components";
+import load from "../../assets/icons/load.webp";
 import "./SinglePageModal.scss";
 const list = ["Автомобиль", "Бронирование"];
 
 const SinglePageModal = () => {
   const { days, item, id, status } = useSelector((e) => e.singleInfo);
+  const { currencies, curren } = useSelector((state) => state.currencies);
   const dispatch = useDispatch();
   const [place, setPlace] = React.useState(null);
-  const [activeIndex, setActiveIndex] = React.useState(1); //для индексации страниц
-  const form = useForm({
-    mode: "onChange"
-  });
-  const { register, handleSubmit } = form; //Для собрании данных фреймворк react-hook
-  const onSubmit = (data) => console.log(data); // при нажатии на отправить
-  const { currencies, statusCur, curren } = useSelector(
-    (state) => state.currencies
-  );
-  const modalFormRef = React.useRef();
+  const [activeIndex, setActiveIndex] = React.useState(0); //для индексации страниц
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors },
+    reset,
+  } = useForm({
+    defaultValues: {
+      place: "Из офиса забрать",
+    },
+  }); //Для собрании данных фреймворк react-hook
+  const onSubmit = (data) => {
+    console.log(data);
+    reset();
+  }; // при нажатии на отправить
+
   const moneyArr = { RUB: "₽", USD: "$", TRY: "₺" };
   let money;
   let depo;
   let placePrice;
-  const iconLoad = "load...";
-  if (statusCur === "success") {
+  if (currencies.length != 0) {
     switch (curren) {
       case "RUB":
         money = Math.round(item.price * currencies.USD.Value);
@@ -41,7 +48,7 @@ const SinglePageModal = () => {
       case "USD":
         money = item.price;
         depo = item.depo;
-        placePrice = item.depo;
+        placePrice = place;
 
         break;
       case "TRY":
@@ -59,12 +66,14 @@ const SinglePageModal = () => {
   }
   let priceDays = money * days;
   let allPrice = money * days + placePrice;
+
   const priceDaysFormatted = new Intl.NumberFormat("de-DE", {
     style: "currency",
     currency: "EUR",
   })
     .format(priceDays)
     .split(",")[0];
+
   const allPriceFormatted = new Intl.NumberFormat("de-DE", {
     style: "currency",
     currency: "EUR",
@@ -79,24 +88,50 @@ const SinglePageModal = () => {
     if (activeIndex === 0) {
       setActiveIndex(1);
     } else {
+      setValue("price", allPriceFormatted + moneyArr[curren]);
+      setValue("days", days);
       handleSubmit(onSubmit)();
     }
   };
-  React.useEffect(() => {
-    getSingleCar();
-  }, []);
+
   const toggleModal = (e) => {
     if (e.target.classList.contains("modal-wrapper")) {
       dispatch(toggleShowModal(false));
+      document.body.classList.remove("modal-open");
+    } else if (e.target.closest(".modal__close")) {
+      dispatch(toggleShowModal(false));
+      document.body.classList.remove("modal-open");
     }
   };
-  if (status !== "success" && statusCur !== "success") {
-    return <div className="modal-wrapper">{iconLoad}</div>;
+
+  React.useEffect(() => {
+    getSingleCar();
+  }, []);
+
+  if (status === "loading") {
+    return (
+      <div className="modal-wrapper">
+        <img className="modal-wrapper__load" src={load} alt="" />
+      </div>
+    );
   }
 
   return (
     <div onClick={(e) => toggleModal(e)} className="modal-wrapper">
       <div className="modal">
+        <div onClick={(e) => toggleModal(e)} className="modal__close">
+          <svg
+            viewBox="0 0 256 256"
+            xmlSpace="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m137.051 128 75.475-75.475c2.5-2.5 2.5-6.551 0-9.051s-6.551-2.5-9.051 0L128 118.949 52.525 43.475c-2.5-2.5-6.551-2.5-9.051 0s-2.5 6.551 0 9.051L118.949 128l-75.475 75.475a6.399 6.399 0 0 0 4.525 10.926 6.38 6.38 0 0 0 4.525-1.875L128 137.051l75.475 75.475c1.25 1.25 2.888 1.875 4.525 1.875s3.275-.625 4.525-1.875c2.5-2.5 2.5-6.551 0-9.051L137.051 128z"
+              fill="#ffffff"
+              className="fill-000000"
+            ></path>
+          </svg>
+        </div>
         <div className="modal__container">
           <div className="modal__col">
             <ul className="modal__menu">
@@ -133,12 +168,7 @@ const SinglePageModal = () => {
                   <div className="modal__info-text">2018.</div>
                 </li>
               </ul>
-              <div className="modal__slider">
-                <img
-                  src="https://s3-eu-west-1.amazonaws.com/localrent.images/images/files/000/129/454/show/02.jpg?1700513387"
-                  alt=""
-                />
-              </div>
+              <SliderModal imgs={item.imgs} />
             </div>
             <div
               className={`modal__content ${
@@ -146,9 +176,10 @@ const SinglePageModal = () => {
               }`}
             >
               <ModalForm
-                handleSubmit={handleSubmit}
+                errors={errors}
+                setValue={setValue}
                 register={register}
-                modalFormRef={modalFormRef}
+                place={place}
                 setPlace={(value) => setPlace(value)}
               />
             </div>
@@ -192,7 +223,11 @@ const SinglePageModal = () => {
                 </div>
               </div>
             </div>
-            <button onClick={setForm} type="submit" className="modal__submit">
+            <button
+              // disabled={activeIndex === 1 ? !isValid : false}
+              onClick={setForm}
+              className="modal__submit"
+            >
               {activeIndex === 0 ? "Продолжить" : "Отправить"}
             </button>
           </div>
