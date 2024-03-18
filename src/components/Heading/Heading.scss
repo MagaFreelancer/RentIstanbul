@@ -43,4 +43,20 @@
         text-decoration: underline;
         color: var(--whiteColor);
     }
+
+    @media(max-width: 730px) {
+        &__title {
+           font-size: 40px;
+           line-height: 60px;
+           padding-top: 125px;
+        }
+    }
+
+    @media(max-width: 610px) {
+        &__title {
+           font-size: 35px;
+           line-height: 45px;
+           padding-top: 120px;
+        }
+    }
 }

@@ -1,6 +1,7 @@
 .advantages {
     background-color: #fafafa;
     padding: 50px 0;
+
     &__title {
         margin-bottom: 40px;
     }
@@ -14,7 +15,7 @@
     &__col {
         display: grid;
         grid-template-columns: 1fr 75%;
-        gap: 40px;
+        gap: 20px;
         &:not(:last-child) {
             margin-bottom: 50px;
             padding-bottom: 50px;
@@ -28,5 +29,14 @@
         font-size: 14px;
         font-weight: 500;
         line-height: 25px;
+    }
+
+    @media(max-width: 700px) {
+        &__heading {
+            margin-bottom: 15px;
+        }
+        &__col {
+            display: block;
+        }
     }
 }

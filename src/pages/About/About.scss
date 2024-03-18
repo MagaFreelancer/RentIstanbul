@@ -3,20 +3,25 @@
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         grid-template-rows: repeat(2, 1fr);
-        grid-column-gap: 0px;
-        grid-row-gap: 20px;
+        grid-column-gap: 30px;
+        grid-row-gap: 30px;
+        align-items: center;
     }
 
     &__story {
+        margin-bottom: 40px;
+        
         &-info {
             max-width: 525px;
+            
         }
         &-img {
-            max-width: 525px;
-            max-height: 350px;
+            width: 100%;
+          
         }
         
         &-title {
+            font-size: 1.5rem;
             line-height: 35px;
             margin-bottom: 20px;
         }
@@ -26,6 +31,23 @@
             font-size: 14px;
             font-weight: 400;
         }
-        
+    }
+
+    @media(max-width: 700px) {
+        &__inner {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        &__story {
+            &-info:last-child {
+                order: 1;
+            }
+            &-info:last-of-type {
+                order: 1;
+            }
+            
+        }
     }
 }
