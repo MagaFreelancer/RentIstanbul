@@ -9,22 +9,44 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 50px 40px;
+    padding: 50px 90px;
+}
+.image-modal {
+    &__close {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        top: 40px;
+        right: 20px;
+        z-index: 900;
+        cursor: pointer;
+        svg {
+            width: 40px;
+            height: 40px;
+        }
+        &:hover {
+            * {
+                fill: var(--blueColor);
+            }
+        }
+    }
 }
 .image-modal-slider {
+    display: flex;
+
     max-width: 1200px;
     width: 100%;
-    .swiper-zoom-container {
-        padding: 0 100px;
-    }
+    height: 100%;
+
     img {
         width: 100%;
     }
+
     .swiper-button-prev {
         background-color: #616871;
         height: 50px;
         width: 50px;
-        left: 0;
+        left: 10px;
         border-radius: 100%;
         transition: opacity 0.2s ease-in-out;
         &:hover {
@@ -39,7 +61,7 @@
         background-color: #616871;
         height: 50px;
         width: 50px;
-        right: 0;
+        right: 10px;
         border-radius: 100%;
         transition: opacity 0.2s ease-in-out;
         &:hover {
@@ -49,5 +71,23 @@
             margin-right: -2px;
             font-size: 18px;
         }
+    }
+    .swiper-pagination {
+        width: 30px;
+        height: 20px;
+        top: 0;
+        left: 5px;
+        color: var(--whiteColor);
+        font-size: 10px;
+        background-color: rgba(#333e50, 0.7);
+    }
+}
+@media (max-width: 700px) {
+    .image-modal-wrapper {
+        padding: 50px 30px;
+    }
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none;
     }
 }

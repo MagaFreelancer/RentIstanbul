@@ -39,6 +39,7 @@ const Calendar = () => {
       datePickerRef.current &&
       !datePickerRef.current.contains(event.target)
     ) {
+      console.log(datePickerRef.current);
       setIsOpen(false);
     }
   };

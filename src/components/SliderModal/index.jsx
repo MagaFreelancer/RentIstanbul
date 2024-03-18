@@ -13,8 +13,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-const SliderModal = ({ imgs}) => {
-
+const SliderModal = ({ imgs }) => {
   const dispatch = useDispatch();
   const onClickAddParams = (index) => {
     dispatch(setImgs(imgs));
@@ -25,7 +24,7 @@ const SliderModal = ({ imgs}) => {
     <div className="modal__slider">
       <Swiper
         slidesPerView={"auto"}
-        spaceBetween={20}
+        spaceBetween={10}
         modules={[Pagination, Keyboard, Navigation]}
         className="mySwiper"
         keyboard={{

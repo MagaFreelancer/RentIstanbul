@@ -95,10 +95,11 @@ const SinglePageModal = () => {
   };
 
   const toggleModal = (e) => {
-    if (e.target.classList.contains("modal-wrapper")) {
-      dispatch(toggleShowModal(false));
-      document.body.classList.remove("modal-open");
-    } else if (e.target.closest(".modal__close")) {
+    if (
+      e.target.classList.contains("modal-wrapper") ||
+      e.target.closest(".modal__close") ||
+      e.target.closest(".modal__inner-close")
+    ) {
       dispatch(toggleShowModal(false));
       document.body.classList.remove("modal-open");
     }
@@ -132,6 +133,16 @@ const SinglePageModal = () => {
             ></path>
           </svg>
         </div>
+        <div onClick={(e) => toggleModal(e)} className="modal__inner-close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 50 50"
+            width="50px"
+            height="50px"
+          >
+            <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" />
+          </svg>
+        </div>
         <div className="modal__container">
           <div className="modal__col">
             <ul className="modal__menu">
@@ -153,6 +164,9 @@ const SinglePageModal = () => {
               }`}
             >
               <h3 className="modal__title">{item.title}</h3>
+              <div className="modal__img-adap">
+                <img src={item.imageUrl} alt="car" />
+              </div>
               <h4 className="modal__heading">Характеристики</h4>
               <ul className="modal__info">
                 <li className="modal__info-item">
