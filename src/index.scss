@@ -29,11 +29,12 @@ body {
     font-size: 19px;
     line-height: 22px;
     height: 100%;
-    width: 100vw;
+    width: calc(100vw - 17px);
     &.modal-open {
         overflow-y: hidden;
     }
 }
+
 // font-family: "Work Sans", sans-serif;
 button {
     background: 0;
@@ -53,6 +54,9 @@ ul {
 .title {
     font-size: 35px;
     font-weight: 900;
+    @media (max-width: 950px) {
+        font-size: 32px;
+    }
 }
 .menu {
     &__link {
