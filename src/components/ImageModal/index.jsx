@@ -19,7 +19,9 @@ import "swiper/css/pagination";
 const ImageModal = ({ sliderIndex, sliderImgs }) => {
   const dispatch = useDispatch();
   const toggleModal = (e) => {
-    if (!e.target.classList.contains("slider__img")) {
+    if (
+      !e.target.classList.contains("slider__img") 
+    ) {
       dispatch(toggleShowSlider(false));
       dispatch(setImgs([]));
       dispatch(setSliderIndex(0));
