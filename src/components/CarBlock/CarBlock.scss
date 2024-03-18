@@ -2,6 +2,7 @@
     max-width: 280px;
     width: 100%;
     color: var(--blackColor);
+
     &:hover {
         .car-block__img {
             img {
@@ -28,5 +29,28 @@
     }
     &__type {
         font-size: 16px;
+    }
+}
+@media (max-width: 990px) {
+    // .car-block {
+    //     &__title {
+    //         font-size: 18px;
+    //     }
+    //     &__type {
+    //         font-size: 15px;
+    //     }
+    //     &__price {
+    //         font-size: 17px;
+    //         margin-top: 25px;
+    //     }
+    // }
+}
+@media (max-width: 850px) {
+    .car-block {
+        max-width: 100%;
+        &__img {
+            padding: 0 40px;
+            margin-bottom: 20px;
+        }
     }
 }
