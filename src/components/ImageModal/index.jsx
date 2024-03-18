@@ -20,8 +20,11 @@ const ImageModal = ({ sliderIndex, sliderImgs }) => {
   const dispatch = useDispatch();
   const toggleModal = (e) => {
     if (
-      !e.target.classList.contains("slider__img") 
+      !e.target.classList.contains("slider__img") &&
+      !e.target.closest(".swiper-button-next") &&
+      !e.target.closest(".swiper-button-prev")
     ) {
+      console.log(e.target);
       dispatch(toggleShowSlider(false));
       dispatch(setImgs([]));
       dispatch(setSliderIndex(0));
