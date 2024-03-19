@@ -5,9 +5,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 export const fetchCars = createAsyncThunk(
   "car/fetchCarsStatus",
   async (params) => {
-    const { order,search, sortBy } = params;
+    const { order,search, sortBy, currentPage } = params;
     const { data } = await axios.get(
-      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items?sortBy=${sortBy}&order=${order}${search}`
+      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items?page=${currentPage}&limit=9&sortBy=${sortBy}&order=${order}${search}`
       
     );
     return data;
@@ -17,6 +17,7 @@ export const fetchCars = createAsyncThunk(
 const initialState = {
   items: [],
   status: "loading",
+  currentPage: 1
 };
 
 const carSlice = createSlice({
@@ -26,6 +27,9 @@ const carSlice = createSlice({
     setItems(state, action) {
       state.items = action.payload;
     },
+    setCurrentPage(state, action) {
+      state.currentPage = action.payload
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -44,6 +48,6 @@ const carSlice = createSlice({
   },
 });
 
-export const { setItems} = carSlice.actions;
+export const { setItems, setCurrentPage } = carSlice.actions;
 
 export default carSlice.reducer;

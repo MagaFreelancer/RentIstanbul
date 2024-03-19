@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCars } from "../../redux/slices/carSlice";
+import { fetchCars, setCurrentPage } from "../../redux/slices/carSlice";
 import  { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
@@ -8,13 +8,15 @@ import {SinglePageModal,CarSkeleton, CarBlock, FilterPrice, FilterYears, FilterB
 import { setFilters } from "../../redux/slices/filterSlice";
 import { listSort } from "../../components/FilterSort";
 import closeIcon from "../../assets/icons/close.svg";
+import Pagination from "../../components/Pagintation";
 import "./Cars.scss";
+
 
 const Cars = () => {
   const { showModal } = useSelector((e) => e.singleInfo);
   const navigate = useNavigate();
   const { categoryIds, price, yearCar, engine, box, sort, searchValue } = useSelector((e) => e.filter);
-  const { items, status } = useSelector((state) => state.car);
+  const { items, status, currentPage } = useSelector((state) => state.car);
   const { currencies, statusCur } = useSelector((state) => state.currencies);
   const [filterOpen, setFilterOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -30,13 +32,21 @@ const Cars = () => {
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const search = searchValue ? `&search=${searchValue}` : "";
 
-    dispatch(fetchCars({sortBy, order, search}));
+    dispatch(fetchCars({sortBy, order, search, currentPage}));
     dispatch(fetchCurrencies());
+  };
+
+  const handlePageClick = (event) => {
+    const newOffset = (event.selected * itemsPerPage) % items.length;
+    console.log(
+      `User requested page number ${event.selected}, which is offset ${newOffset}`
+    );
+    setItemOffset(newOffset);
   };
 
   React.useEffect(() => {
     getCars();
-  }, [searchValue, sort]);
+  }, [searchValue, sort, currentPage]);
   
   React.useEffect(() => {
     if (window.location.search) {
@@ -75,7 +85,7 @@ const Cars = () => {
   }, [categoryIds, price, yearCar, engine, box, sort.sortProperty]);
 
   const cars = items.map((obj, index) => <CarBlock key={index} {...obj} currencies={currencies} />);
-  const skeletons = [...new Array(5)].map((_, index) => (
+  const skeletons = [...new Array(9)].map((_, index) => (
     <CarSkeleton key={index} />
   ));
 
@@ -112,6 +122,7 @@ const Cars = () => {
               {status === "success" && statusCur === "success" ? cars : skeletons}
             </ul>
           </div>
+          <Pagination onChangePage={number => dispatch(setCurrentPage(number))}/>
         </main>
       </div>
     </section>
