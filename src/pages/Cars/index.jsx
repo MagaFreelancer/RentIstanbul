@@ -223,6 +223,9 @@ const Cars = () => {
       </div>
     </section>
     {showModal && <SinglePageModal />}
+    {showSlider && (
+        <ImageModal sliderIndex={sliderIndex} sliderImgs={sliderImgs} />
+      )}
     </>
   );
 };
