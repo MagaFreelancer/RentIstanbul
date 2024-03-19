@@ -4,7 +4,19 @@ import { fetchCars, setCurrentPage } from "../../redux/slices/carSlice";
 import  { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
-import {SinglePageModal,CarSkeleton, CarBlock, FilterPrice, FilterYears, FilterBox, FilterEngine, FilterSort, FilterCategories, Search} from "../../components";
+import {
+  SinglePageModal,
+  CarSkeleton,
+  CarBlock,
+  FilterPrice,
+  FilterYears,
+  FilterBox,
+  FilterEngine,
+  FilterSort,
+  FilterCategories,
+  Search,
+  ImageModal
+} from "../../components";
 import { setFilters } from "../../redux/slices/filterSlice";
 import { listSort } from "../../components/FilterSort";
 import closeIcon from "../../assets/icons/close.svg";
@@ -13,7 +25,9 @@ import "./Cars.scss";
 
 
 const Cars = () => {
-  const { showModal } = useSelector((e) => e.singleInfo);
+  const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector(
+    (e) => e.singleInfo
+  );
   const navigate = useNavigate();
   const { categoryIds, price, yearCar, engine, box, sort, searchValue } = useSelector((e) => e.filter);
   const { items, status, currentPage } = useSelector((state) => state.car);
@@ -21,12 +35,12 @@ const Cars = () => {
   const [filterOpen, setFilterOpen] = React.useState(false);
   const dispatch = useDispatch();
 
-  if(filterOpen) {
-    document.body.classList.add('body-scroll');
-  }else {
-    document.body.classList.remove('body-scroll');
+  if (filterOpen) {
+    document.body.classList.add("body-scroll");
+  } else {
+    document.body.classList.remove("body-scroll");
   }
-  
+
   const getCars = async () => {
     const sortBy = sort.sortProperty.replace("-", "");
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
@@ -61,7 +75,7 @@ const Cars = () => {
           checked: JSON.parse(item.checked),
         };
       });
-      
+
       const categoryIds = params.categoryIds.map((item) => {
         return {
           ...item,
@@ -90,30 +104,112 @@ const Cars = () => {
   ));
 
   return (
-    <><section className="cars">
-      
-      <div className="container cars__container">
-        <aside className={`cars__filter ${filterOpen ? 'cars__filter--active' : ''}`}>
-          <FilterPrice />
-          <FilterYears />
-          <FilterBox />
-          <FilterEngine />
-          <button onClick={() => setFilterOpen(false)} className={`cars__burger ${filterOpen ? `cars__burger--active` : ''}`}>
-            <img className="cars__burger-icon" src={closeIcon} alt="" />
+    <>
+      <section className="cars">
+        <div className="container cars__container">
+          <aside
+            className={`cars__filter ${
+              filterOpen ? "cars__filter--active" : ""
+            }`}
+          >
+            <FilterPrice />
+            <FilterYears />
+            <FilterBox />
+            <FilterEngine />
+            <button
+              onClick={() => setFilterOpen(false)}
+              className={`cars__burger ${
+                filterOpen ? `cars__burger--active` : ""
+              }`}
+            >
+              <img className="cars__burger-icon" src={closeIcon} alt="" />
+            </button>
+          </aside>
+          <button
+            onClick={() => setFilterOpen(!filterOpen)}
+            className="cars__button-filter"
+          >
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M6.75 17.25V12.75"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M6.75 10.0625V5.25"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M12 18V12"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M12 9.25V5.8125"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M17.25 17.25V14.25"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M17.25 11.25V5.25"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M4.5 12.75H9"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M9.75 9.75H14.25"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+              <path
+                d="M15 14.25H19.5"
+                stroke="white"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              ></path>
+            </svg>
+            Filter
           </button>
-        </aside>
-        <button onClick={() => setFilterOpen(!filterOpen)} className="cars__button-filter">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.75 17.25V12.75" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M6.75 10.0625V5.25" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M12 18V12" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M12 9.25V5.8125" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M17.25 17.25V14.25" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M17.25 11.25V5.25" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M4.5 12.75H9" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M9.75 9.75H14.25" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path><path d="M15 14.25H19.5" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"></path></svg>
-          Filter
-        </button>
 
-        <main className="cars__main">
-          <div className="cars__top">
-            <div className="cars__heading">
-              <h1 className="cars__name">Машины</h1>
-              <FilterSort />
-            </div>
-            <Search />
+          <main className="cars__main">
+            <div className="cars__top">
+              <div className="cars__heading">
+                <h1 className="cars__name">Машины</h1>
+                <FilterSort />
+              </div>
+              <Search />
 
             <FilterCategories />
           </div>
