@@ -29,7 +29,10 @@ export default function Home() {
   return (
     <>
       <Heading />
-      <SliderBlocks title={"Люкс"} />
+      <SliderBlocks category={0} />
+      <SliderBlocks category={1} />
+      <SliderBlocks category={2} />
+
       <Advantages />
       <Reviews />
       <FAQ />

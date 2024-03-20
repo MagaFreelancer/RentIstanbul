@@ -7,7 +7,7 @@ export default function CarBlock({
   imageUrl,
   title,
   price,
-  type,
+  box,
   id,
   currencies,
 }) {
@@ -43,7 +43,7 @@ export default function CarBlock({
       </div>
 
       <h3 className="car-block__title">{title}</h3>
-      <div className="car-block__type">{type}</div>
+      <div className="car-block__type">{box}</div>
 
       <div className="car-block__price">
         {

@@ -7,7 +7,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-    
+
         margin-bottom: 20px;
     }
     &__top-search {
@@ -73,7 +73,7 @@
         grid-column-gap: 10px;
         grid-row-gap: 10px;
 
-        @media(max-width: 990px) {
+        @media (max-width: 990px) {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(3, 1fr);
             grid-column-gap: 10px;
@@ -409,7 +409,7 @@
     &__inpnumber {
         display: flex;
         justify-content: center;
-        
+
         span {
             padding: 6px 8px;
         }
@@ -470,7 +470,7 @@
         top: 9px;
         right: 9px;
         z-index: 10;
-       
+
         &-icon {
             width: 30px;
             height: 30px;
@@ -496,20 +496,19 @@
             }
         }
 
-       
-        .selected {
-            a {
-                background-color: #49D0FF;
+        :global {
+            .selected {
+                a {
+                    background-color: #49D0FF;
+                }
             }
         }
-       
     }
-    
 
-    @media(max-width: 950px) {
+    @media (max-width: 950px) {
         &__filter {
             display: none;
-            
+
             &--active {
                 display: block;
                 position: absolute;
@@ -538,17 +537,16 @@
         &__button-filter {
             display: flex;
         }
-        
+
         &__content {
             grid-template-columns: repeat(3, 1fr);
             grid-template-rows: repeat(3, 1fr);
             grid-column-gap: 10px;
             grid-row-gap: 10px;
         }
-       
     }
 
-    @media(max-width: 655px) {
+    @media (max-width: 655px) {
         &__content {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: repeat(3, 1fr);
@@ -557,13 +555,13 @@
         }
     }
 
-    @media(max-width: 500px) { 
+    @media (max-width: 500px) {
         padding: 25px 0;
-        
+
         &__name {
             margin-bottom: 10px;
         }
-        
+
         &__heading {
             flex-direction: column;
         }
@@ -571,11 +569,9 @@
         &__content {
             grid-template-columns: repeat(1, 1fr);
         }
-        
+
         .car-block {
             max-width: none;
         }
     }
 }
-
-

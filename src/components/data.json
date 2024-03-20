@@ -1,0 +1,13 @@
+{
+    "id": "0",
+    "title": "Renault clio",
+    "imageUrl": "https://s3-eu-west-1.amazonaws.com/localrent.images/cars/image_titles/000/039/924/original/Peugeot-301-2018-white-3.jpg",
+    "price": 400,
+    "type": "Automatic",
+    "place": 4,
+    "date": 2021,
+    "imgs": [
+      "https://s3-eu-west-1.amazonaws.com/localrent.images/images/files/000/080/150/show/AF62234B-93DA-4B1C-934F-E09C42B49ECA.jpeg?1672959576",
+      "https://s3-eu-west-1.amazonaws.com/localrent.images/images/files/000/080/195/show/vgdsf0?1672996013"
+    ]
+  }

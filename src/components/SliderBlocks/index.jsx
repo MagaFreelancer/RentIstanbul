@@ -5,8 +5,13 @@ import { CarSkeleton, CarBlock } from "../../components";
 import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 
 import "./SliderBlocks.scss";
-
-export default function SliderBlocks({ title }) {
+import { Link } from "react-router-dom";
+const params = {
+  0: ["lux", "Люкс"],
+  1: ["compact", "Компактные"],
+  2: ["middle", "Средний класс"],
+};
+export default function SliderBlocks({ category }) {
   const { items, status } = useSelector((state) => state.car);
   const { currencies, statusCur, curren } = useSelector(
     (state) => state.currencies
@@ -14,13 +19,14 @@ export default function SliderBlocks({ title }) {
   const dispatch = useDispatch();
 
   const getCars = async () => {
-    dispatch(fetchCars("", "", ""));
+    dispatch(fetchCars("", "", "", ""));
     dispatch(fetchCurrencies());
   };
   React.useEffect(() => {
     getCars();
   }, [curren]);
   const cars = items
+    .filter((item) => item.category === params[category][0])
     .slice(0, 4)
     .map((obj, index) => (
       <CarBlock key={index} {...obj} currencies={currencies} />
@@ -31,7 +37,12 @@ export default function SliderBlocks({ title }) {
   return (
     <section className="slider-block">
       <div className="container slider-block__container">
-        <h2 className="slider-block__title title">{title}</h2>
+        <div className="slider-block__heading">
+          <h2 className="slider-block__title title">{params[category][1]}</h2>
+          <Link to="/cars" className="slider-block__link">
+            Больше машин
+          </Link>
+        </div>
         <div className="slider-block__content">
           {status === "success" && statusCur === "success" ? cars : skeletons}
         </div>

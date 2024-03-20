@@ -171,15 +171,19 @@ const SinglePageModal = () => {
               <ul className="modal__info">
                 <li className="modal__info-item">
                   <div className="modal__info-heading">Коробка передач</div>
-                  <div className="modal__info-text">{item.type}</div>
+                  <div className="modal__info-text">{item.box}</div>
                 </li>
                 <li className="modal__info-item">
                   <div className="modal__info-heading">Двигатель</div>
-                  <div className="modal__info-text">1.3 л</div>
+                  <div className="modal__info-text">{item.volume} л</div>
                 </li>
                 <li className="modal__info-item">
                   <div className="modal__info-heading">Год выпуска</div>
-                  <div className="modal__info-text">2018.</div>
+                  <div className="modal__info-text">{item.date}.</div>
+                </li>
+                <li className="modal__info-item">
+                  <div className="modal__info-heading">Топливо</div>
+                  <div className="modal__info-text">{item.engine}</div>
                 </li>
               </ul>
               <SliderModal imgs={item.imgs} />
