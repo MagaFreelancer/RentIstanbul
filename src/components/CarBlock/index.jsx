@@ -1,7 +1,9 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { setId, toggleShowModal } from "../../redux/slices/singleInfoSlice";
+import { useTranslation } from "react-i18next";
 import "./CarBlock.scss";
+
 
 export default function CarBlock({
   imageUrl,
@@ -12,7 +14,7 @@ export default function CarBlock({
   currencies,
 }) {
   const dispatch = useDispatch();
-
+  const { t } = useTranslation();
   const { curren } = useSelector((state) => state.currencies);
   const moneyArr = { RUB: "₽", USD: "$", TRY: "₺" };
   let money;
@@ -43,7 +45,7 @@ export default function CarBlock({
       </div>
 
       <h3 className="car-block__title">{title}</h3>
-      <div className="car-block__type">{box}</div>
+      <div className="car-block__type">{t(box)}</div>
 
       <div className="car-block__price">
         {

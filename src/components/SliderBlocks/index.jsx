@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchCars } from "../../redux/slices/carSlice";
 import { CarSkeleton, CarBlock } from "../../components";
 import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
-
+import { useTranslation } from "react-i18next";
 import "./SliderBlocks.scss";
 import { Link } from "react-router-dom";
 const params = {
@@ -12,6 +12,7 @@ const params = {
   2: ["middle", "Средний класс"],
 };
 export default function SliderBlocks({ category }) {
+  const { t } = useTranslation();
   const { items, status } = useSelector((state) => state.car);
   const { currencies, statusCur, curren } = useSelector(
     (state) => state.currencies
@@ -38,9 +39,9 @@ export default function SliderBlocks({ category }) {
     <section className="slider-block">
       <div className="container slider-block__container">
         <div className="slider-block__heading">
-          <h2 className="slider-block__title title">{params[category][1]}</h2>
+          <h2 className="slider-block__title title">{t(params[category][0])}</h2>
           <Link to="/cars" className="slider-block__link">
-            Больше машин
+            {t("more_cars")}
           </Link>
         </div>
         <div className="slider-block__content">
