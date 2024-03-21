@@ -13,5 +13,7 @@
     "advantage_damage": "Dürüst hasar değerlendirmesi",
     "advantage_conditions": "Tüm koşulları ve tüm fiyatları dikkate alıyoruz. Hiçbir gizli ücret, masraf veya vergi yoktur. Sipariş verdiğinizde anında değişmeyecek olan son fiyatı göreceksiniz.",
     "advantage_deposit": "Uluslararası kiralamalarda müşterinin kartında bloke edilen depozitolar birkaç bin Euro'ya ulaşıyor. Ortalama 300 euro depozitomuz var, depozitosuz arabalarımız da var.",
-    "advantage_damage_cheaper": "Hasarı müşterinin huzurunda değerlendiriyoruz. Fiyatlarımız yurtdışı kiralamalara göre 2-3 kat daha uygundur. Ve aracı iade ettikten sonra asla müşterinin kartından para çekmeyiz."
+    "advantage_damage_cheaper": "Hasarı müşterinin huzurunda değerlendiriyoruz. Fiyatlarımız yurtdışı kiralamalara göre 2-3 kat daha uygundur. Ve aracı iade ettikten sonra asla müşterinin kartından para çekmeyiz.",
+    "international_law": "Uluslararası lisans almak gerekli mi?",
+    "prepayment": "Sitenizden araç kiralamak için %100 peşinat ödemeniz gerekiyor mu?"
 }
