@@ -7,6 +7,8 @@ import dollorIcon from "../../assets/icons/currencies/dollor-icon.png";
 import dollorWhiteIcom from "../../assets/icons/currencies/dollor-white.png";
 import lirIcon from "../../assets/icons/currencies/lir-icon.png";
 import lirWhiteIcon from "../../assets/icons/currencies/lir-white.png";
+import euroIcon from "../../assets/icons/currencies/euro-icon.png";
+import euroWhiteIcon from "../../assets/icons/currencies/euro-white.png";
 
 const Currencies = (props) => {
     const [open, setOpen] = React.useState(false);
@@ -16,11 +18,13 @@ const Currencies = (props) => {
     const currencies = [
         {curr: 'RUB', img: rublIcon},
         {curr: 'USD', img: dollorIcon},
+        {curr: 'EUR', img: euroIcon},
         {curr: 'TRY', img: lirIcon}
     ];
     const currIcons = {
         RUB: rublWhiteIcon,
         USD: dollorWhiteIcom,
+        EUR: euroWhiteIcon,
         TRY: lirWhiteIcon
     }
    

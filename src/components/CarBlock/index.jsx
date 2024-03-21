@@ -16,7 +16,7 @@ export default function CarBlock({
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { curren } = useSelector((state) => state.currencies);
-  const moneyArr = { RUB: "₽", USD: "$", TRY: "₺" };
+  const moneyArr = { RUB: "₽", USD: "$", EUR: "€", TRY: "₺" };
   let money;
   const onClickModal = () => {
     dispatch(toggleShowModal(true));
@@ -35,7 +35,10 @@ export default function CarBlock({
       money = Math.round(
         (currencies.USD.Value / (currencies.TRY.Value / 10)) * price
       );
-      break;
+    break;
+    case "EUR":
+      money = Math.round((currencies.USD.Value / currencies.EUR.Value) * price);
+    break;
   }
 
   return (
