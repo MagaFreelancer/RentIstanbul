@@ -8,11 +8,13 @@ import {
 
 import { useForm } from "react-hook-form";
 import { ModalForm, SliderModal } from "../../components";
+import { useTranslation } from "react-i18next";
 import load from "../../assets/icons/load.webp";
 import "./SinglePageModal.scss";
 const list = ["Автомобиль", "Бронирование"];
 
 const SinglePageModal = () => {
+  const { t } = useTranslation();
   const { days, item, id, status } = useSelector((e) => e.singleInfo);
   const { currencies, curren } = useSelector((state) => state.currencies);
   const dispatch = useDispatch();
@@ -167,22 +169,22 @@ const SinglePageModal = () => {
               <div className="modal__img-adap">
                 <img src={item.imageUrl} alt="car" />
               </div>
-              <h4 className="modal__heading">Характеристики</h4>
+              <h4 className="modal__heading">{t("characteristics")}</h4>
               <ul className="modal__info">
                 <li className="modal__info-item">
-                  <div className="modal__info-heading">Коробка передач</div>
+                  <div className="modal__info-heading">{t("transmission")}</div>
                   <div className="modal__info-text">{item.box}</div>
                 </li>
                 <li className="modal__info-item">
-                  <div className="modal__info-heading">Двигатель</div>
+                  <div className="modal__info-heading">{t("engine")}</div>
                   <div className="modal__info-text">{item.volume} л</div>
                 </li>
                 <li className="modal__info-item">
-                  <div className="modal__info-heading">Год выпуска</div>
+                  <div className="modal__info-heading">{t("year_issue")}</div>
                   <div className="modal__info-text">{item.date}.</div>
                 </li>
                 <li className="modal__info-item">
-                  <div className="modal__info-heading">Топливо</div>
+                  <div className="modal__info-heading">{t("fuel")}</div>
                   <div className="modal__info-text">{item.engine}</div>
                 </li>
               </ul>
@@ -207,15 +209,15 @@ const SinglePageModal = () => {
               <img src={item.imageUrl} alt="car" />
             </div>
             <div className="modal__last-info">
-              <h4 className="modal__last-heading">Стоимость</h4>
+              <h4 className="modal__last-heading">{t("modal_price")}</h4>
               <div className="modal__block">
-                <div className="modal__descr">Аренда на {days} дня</div>
+                <div className="modal__descr">Аренда на {days > 1 ? `${days} дней` : `${days} день`}</div>
                 <span className="modal__price">
                   {priceDaysFormatted + moneyArr[curren]}
                 </span>
               </div>
               <div className="modal__block modal__block--not-border">
-                <div className="modal__descr">Доставка</div>
+                <div className="modal__descr">{t("modal_delivery")}</div>
                 <span className="modal__price">
                   {money ? placePrice : "0"}
                   {moneyArr[curren]}
@@ -223,7 +225,7 @@ const SinglePageModal = () => {
               </div>
               <div className="modal__last">
                 <div className="modal__block">
-                  <div className="modal__descr"> Итого</div>
+                  <div className="modal__descr">{t("modal_total")}</div>
                   <span className="modal__price">
                     {allPriceFormatted}
                     {moneyArr[curren]}
@@ -246,7 +248,7 @@ const SinglePageModal = () => {
               onClick={setForm}
               className="modal__submit"
             >
-              {activeIndex === 0 ? "Продолжить" : "Отправить"}
+              {activeIndex === 0 ? `${t("modal_continue")}` : `${t("modal_send")}`}
             </button>
           </div>
         </div>

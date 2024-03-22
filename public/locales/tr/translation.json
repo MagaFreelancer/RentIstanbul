@@ -15,5 +15,18 @@
     "advantage_deposit": "Uluslararası kiralamalarda müşterinin kartında bloke edilen depozitolar birkaç bin Euro'ya ulaşıyor. Ortalama 300 euro depozitomuz var, depozitosuz arabalarımız da var.",
     "advantage_damage_cheaper": "Hasarı müşterinin huzurunda değerlendiriyoruz. Fiyatlarımız yurtdışı kiralamalara göre 2-3 kat daha uygundur. Ve aracı iade ettikten sonra asla müşterinin kartından para çekmeyiz.",
     "international_law": "Uluslararası lisans almak gerekli mi?",
-    "prepayment": "Sitenizden araç kiralamak için %100 peşinat ödemeniz gerekiyor mu?"
+    "prepayment": "Sitenizden araç kiralamak için %100 peşinat ödemeniz gerekiyor mu?",
+    "header_home": "Ev",
+    "header_cars": "Arabalar",
+    "header__about": "Hakkımızda",
+    "characteristics": "Özellikler",
+    "transmission": "Bulaşma",
+    "engine": "Motor",
+    "year_issue": "Yayınlanma yılı",
+    "fuel": "Yakıt",
+    "modal_price": "Fiyat",
+    "modal_delivery": "Teslimat",
+    "modal_total": "Toplam",
+    "modal_continue": "Devam etmek",
+    "modal_send": "Göndermek"
 }

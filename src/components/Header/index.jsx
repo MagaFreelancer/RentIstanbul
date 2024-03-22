@@ -3,8 +3,10 @@ import Languages from "../Languages";
 import Currencies from "../Currencies";
 import "./Header.scss";
 import React from "react";
+import { useTranslation } from "react-i18next";
 
 function Header() {
+  const { t } = useTranslation();
   const [open, setOpen] = React.useState(false);
 
   if(open) {
@@ -23,18 +25,18 @@ function Header() {
           <ul className="header__menu menu">
             <li className="header__item menu__item">
               <NavLink onClick={() => setOpen(false)} className="header__link menu__link" to="/">
-                Home
+                {t("header_home")}
               </NavLink>
             </li>
             <li className="header__item menu__item">
               <NavLink onClick={() => setOpen(false)} className="header__link menu__link" to="cars">
-                Cars
+                {t("header_cars")}
               </NavLink>
             </li>
 
             <li className="header__item menu__item">
               <NavLink onClick={() => setOpen(false)} className="header__link menu__link" to="about">
-                About
+                {t("header__about")}
               </NavLink>
             </li>
           </ul>
