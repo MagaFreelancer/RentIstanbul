@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { DateRangePicker } from "react-date-range";
 import { format } from "date-fns";
 import { setDay } from "../../redux/slices/singleInfoSlice";
+import { useTranslation } from "react-i18next";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css"; // theme css file
 
@@ -28,6 +29,7 @@ const funcNextDay = () => {
   return tomorrowDate;
 };
 const Calendar = () => {
+  const { t } = useTranslation();
   const [isOpen, setIsOpen] = React.useState(false);
   const datePickerRef = React.useRef(null);
   const handleButtonClick = () => {
@@ -96,7 +98,7 @@ const Calendar = () => {
   }, [date]);
   return (
     <div className="modal__date modal__col" ref={datePickerRef}>
-      <h4 className="modal__form-title">Дата аренды</h4>
+      <h4 className="modal__form-title">{t("rental_date")}</h4>
       <div onClick={handleButtonClick} className="modal__date-info">
         <span className="modal__date-date">
           {`${dateText.startDay} ${dateText.startMonth}

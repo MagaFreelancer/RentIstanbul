@@ -1,4 +1,6 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
 import {
   Calendar,
   SelectForm,
@@ -17,6 +19,8 @@ const ModalForm = ({
   setValue,
   errors,
 }) => {
+  const { t } = useTranslation();
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -24,7 +28,7 @@ const ModalForm = ({
       id="modal-form"
       className="modal__form"
     >
-      <h5 className="modal__form-title">Получение</h5>
+      <h5 className="modal__form-title">{t("form_receiving")}</h5>
       <div className="modal__form-col">
         <SelectForm
           register={register}
@@ -34,13 +38,13 @@ const ModalForm = ({
         />
       </div>
       <Calendar />
-      <h5 className="modal__form-title">Данные основного водителя</h5>
+      <h5 className="modal__form-title">{t("main_driver")}</h5>
       <FullNameForm errors={errors} register={register}  />
       <DateForm errors={errors} register={register}  />
       <EmailForm errors={errors} register={register}  />
       <TelForm errors={errors} register={register}  />
 
-      <h5 className="modal__form-title">Куда вам написать?</h5>
+      <h5 className="modal__form-title">{t("where_write")}</h5>
       <SocialsForm register={register} />
       <textarea
         {...register("comment")}

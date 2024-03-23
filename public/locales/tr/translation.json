@@ -28,5 +28,14 @@
     "modal_delivery": "Teslimat",
     "modal_total": "Toplam",
     "modal_continue": "Devam etmek",
-    "modal_send": "Göndermek"
+    "modal_send": "Göndermek",
+    "form_receiving": "Fiş",
+    "rental_date": "Kiralama tarihi",
+    "main_driver": "Ana sürücü ayrıntıları",
+    "where_write": "Sana nereye yazmalıyım?",
+    "footer_information": "Bilgi",
+    "footer_contacts": "Kişiler",
+    "footer_subscription": "Abonelik",
+    "footer_person": "Bültene abone olarak kişisel verilerinizin işlenmesini kabul etmiş oluyorsunuz.",
+    "stay_discounts": "İndirimler ve haberlerle güncel kalın"
 }
