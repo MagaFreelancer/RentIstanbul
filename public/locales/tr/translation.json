@@ -5,8 +5,8 @@
     "compact": "Kompakt",
     "middle": "Orta sınıf",
     "more_cars": "Daha fazla araba",
-    "mechanical": "mekanik",
-    "automatic": "otomatik",
+    "mechanical": "Mekanik",
+    "automatic": "Otomatik",
     "advantage": "Avantaj",
     "advantage_fine_print": "İnce baskı yok",
     "advantage_deposits": "Düşük mevduat",
@@ -28,5 +28,13 @@
     "modal_delivery": "Teslimat",
     "modal_total": "Toplam",
     "modal_continue": "Devam etmek",
-    "modal_send": "Göndermek"
+    "modal_send": "Göndermek",
+    "filter_price": "Fiyata göre filtrele",
+    "any": "Herhangi",
+    "sort_by": "Göre sırala",
+    "from_expensive": "Ucuzdan pahalıya",
+    "from_cheap": "Pahalıdan ucuza",
+    "petrol": "Benzin",
+    "diesel": "Dizel",
+    "electro": "Elektrikli/Hibrit"
 }

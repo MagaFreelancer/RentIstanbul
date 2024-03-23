@@ -21,9 +21,11 @@ import { setFilters } from "../../redux/slices/filterSlice";
 import { listSort } from "../../components/FilterSort";
 import closeIcon from "../../assets/icons/close.svg";
 import Pagination from "../../components/Pagintation";
+import { useTranslation } from "react-i18next";
 import "./Cars.scss";
 
 const Cars = () => {
+  const { t } = useTranslation();
   const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector(
     (e) => e.singleInfo
   );
@@ -131,7 +133,7 @@ const Cars = () => {
             onClick={() => setFilterOpen(!filterOpen)}
             className="cars__button-filter"
           >
-            <svg
+            {/* <svg
               width="24"
               height="24"
               viewBox="0 0 24 24"
@@ -201,14 +203,14 @@ const Cars = () => {
                 strokeLinecap="round"
                 strokeLinejoin="round"
               ></path>
-            </svg>
+            </svg> */}
             Filter
           </button>
 
           <main className="cars__main">
             <div className="cars__top">
               <div className="cars__heading">
-                <h1 className="cars__name">Машины</h1>
+                <h1 className="cars__name">{t("header_cars")}</h1>
                 <FilterSort />
               </div>
               <Search />

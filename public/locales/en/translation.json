@@ -5,8 +5,8 @@
     "compact": "Compact",
     "middle": "Middle class",
     "more_cars": "More cars",
-    "mechanical": "mechanical",
-    "automatic": "automatic",
+    "mechanical": "Mechanical",
+    "automatic": "Automatic",
     "advantage": "Advantage",
     "advantage_fine_print": "No fine print",
     "advantage_deposits": "Low deposits",
@@ -28,5 +28,13 @@
     "modal_delivery": "Delivery",
     "modal_total": "Total",
     "modal_continue": "Continue",
-    "modal_send": "Send"
+    "modal_send": "Send",
+    "filter_price": "Filter by price",
+    "any": "Any",
+    "sort_by": "Sort by",
+    "from_expensive": "From cheap to expensive",
+    "from_cheap": "From expensive to cheap",
+    "petrol": "Petrol",
+    "diesel": "Diesel",
+    "electro": "Electric/Hybrid"
 }

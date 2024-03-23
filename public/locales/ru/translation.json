@@ -5,8 +5,8 @@
     "compact": "Компактные",
     "middle": "Средний класс",
     "more_cars": "Больше машин",
-    "mechanical": "механическая",
-    "automatic": "автоматическая",
+    "mechanical": "Механическая",
+    "automatic": "Автоматическая",
     "advantage": "Преимущество",
     "advantage_fine_print": "Без мелкого шрифта",
     "advantage_deposits": "Низкие депозиты",
@@ -28,5 +28,13 @@
     "modal_delivery": "Доставка",
     "modal_total": "Итого",
     "modal_continue": "Продолжить",
-    "modal_send": "Отправить"
+    "modal_send": "Отправить",
+    "filter_price": "Фильтр по цене",
+    "any": "Любая",
+    "sort_by": "Сортировать по",
+    "from_expensive": "От дешевых к дорогим",
+    "from_cheap": "От дорогих к дешевым",
+    "petrol": "Бензин",
+    "diesel": "Дизель",
+    "electro": "Электо/Гибрид"
 }
