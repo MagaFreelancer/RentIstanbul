@@ -1,19 +1,18 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setSort } from "../../redux/slices/filterSlice";
+import { useTranslation } from "react-i18next";
 
 export const listSort = [
-  { name: "От дешевых к дорогим", sortProperty: "-price" },
-  { name: "От дорогих к дешевым", sortProperty: "price" },
-  { name: "По дате добавления", sortProperty: "-title" },
+  { name: ["from_expensive", "От дешевых к дорогим"], sortProperty: "-price" },
+  { name: ["from_cheap", "От дорогих к дешевым"], sortProperty: "price" }
 ];
 const FilterSort = () => {
   const sortRef = React.useRef();
   const sort = useSelector((e) => e.filter.sort);
-
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
-
 
   React.useEffect(() => {
     const handleClickOutside = (event) => {
@@ -36,7 +35,7 @@ const FilterSort = () => {
   return (
     <div className="cars__sort" ref={sortRef}>
       <div className="cars__label" onClick={() => setOpen(!open)}>
-        Сортировать по: <span>{sort.name}</span>
+        {t("sort_by")}: <span>{t(sort.name[0])}</span>
       </div>
       <ul className={`cars__popup ${open ? "cars__popup--active" : ""}`}>
         {listSort.map((obj, index) => (
@@ -49,7 +48,7 @@ const FilterSort = () => {
                 : ""
             }`}
           >
-            {obj.name}
+            {t(obj.name[0])}
           </li>
         ))}
       </ul>

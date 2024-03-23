@@ -2,10 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPrice } from "../../redux/slices/filterSlice";
 import debounce from "lodash.debounce";
-
+import { useTranslation } from "react-i18next";
 import Slider from "@mui/material/Slider";
 
 const FilterPrice = () => {
+  const { t } = useTranslation();
   const value1 = useSelector((e) => e.filter.price);
   const dispatch = useDispatch();
   const [localPrice, setLocalPrice] = React.useState(value1);
@@ -39,7 +40,7 @@ const FilterPrice = () => {
   };
   return (
     <div className="cars__price">
-      <h2 className="cars__paragraph">Фильтр по цене</h2>
+      <h2 className="cars__paragraph">{t("filter_price")}</h2>
       <div className="cars__inpnumber">
         <input
           className="cars__price-input"

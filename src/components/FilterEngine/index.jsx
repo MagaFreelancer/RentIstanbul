@@ -1,9 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setEngine } from "../../redux/slices/filterSlice";
+import { useTranslation } from "react-i18next";
 
 const FilterEngine = () => {
+  const { t } = useTranslation();
   const engine = useSelector((e) => e.filter.engine);
   const dispatch = useDispatch();
+
+  console.log(engine);
 
   const onChangeCheckbox = (obj) => {
     dispatch(
@@ -21,7 +25,7 @@ const FilterEngine = () => {
 
   return (
     <div className="cars__engine">
-      <h2 className="cars__box">Двигатель</h2>
+      <h2 className="cars__box">{t("engine")}</h2>
       <ul>
         {engine.map((obj, index) => {
           return (
@@ -40,7 +44,7 @@ const FilterEngine = () => {
                   value={obj.sortProperty}
                 />
                 <span className="cars__gearbox-custom"></span>
-                {obj.title}
+                {t(obj.sortProperty)}
               </label>
             </li>
           );

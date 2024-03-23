@@ -2,7 +2,7 @@ import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
 import { setYearCar } from "../../redux/slices/filterSlice";
-
+import { useTranslation } from "react-i18next";
 import closeSvg from "../../assets/icons/sm-close.svg";
 const listYears = []
 for (let year = 2012; year < 2024; year++) {
@@ -10,7 +10,7 @@ for (let year = 2012; year < 2024; year++) {
 }
 const FilterYears = () => {
   const inputRef = React.useRef();
-
+  const { t } = useTranslation();
   const yearCar = useSelector((e) => e.filter.yearCar);
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = React.useState("");
@@ -22,7 +22,7 @@ const FilterYears = () => {
   };
   return (
     <div className="cars__years">
-      <h2 className="cars__years-title">Год выпуска</h2>
+      <h2 className="cars__years-title">{t("year_issue")}</h2>
       <div className="cars__search">
         <input
           ref={inputRef}

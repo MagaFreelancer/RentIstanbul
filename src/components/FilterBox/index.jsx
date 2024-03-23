@@ -1,18 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import { setBox } from "../../redux/slices/filterSlice";
+import { useTranslation } from "react-i18next";
 
 const FilterBox = () => {
+  const { t } = useTranslation();
   const gear = useSelector((e) => e.filter.box);
   const dispatch = useDispatch();
   const gearboxs = [
     { gearbox: "any", title: "Любая" },
-    { gearbox: "mechanics", title: "Механика" },
-    { gearbox: "auto", title: "Автомат" },
+    { gearbox: "mechanical", title: "Механика" },
+    { gearbox: "automatic", title: "Автомат" },
   ];
 
   return (
     <div className="cars__radio">
-      <h2 className="cars__box">Коробка передач</h2>
+      <h2 className="cars__box">{t("transmission")}</h2>
       <ul>
         {gearboxs.map((obj, index) => {
           return (
@@ -30,7 +32,7 @@ const FilterBox = () => {
                   checked={gear === index && true}
                 />
                 <span className="cars__radio-custom"></span>
-                {obj.title}
+                {t(obj.gearbox)}
               </label>
             </li>
           );
