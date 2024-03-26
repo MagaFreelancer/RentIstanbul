@@ -110,7 +110,7 @@ const SinglePageModal = () => {
   React.useEffect(() => {
     getSingleCar();
   }, []);
-
+  console.log(money, placePrice, item.price);
   if (status === "loading") {
     return (
       <div className="modal-wrapper">
@@ -219,7 +219,7 @@ const SinglePageModal = () => {
               <div className="modal__block modal__block--not-border">
                 <div className="modal__descr">{t("modal_delivery")}</div>
                 <span className="modal__price">
-                  {money ? placePrice : "0"}
+                  {placePrice ? placePrice : "0"}
                   {moneyArr[curren]}
                 </span>
               </div>
