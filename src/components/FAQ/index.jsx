@@ -66,7 +66,7 @@ const FAQ = () => {
                     <div className="faq__close">
                       <img src={closeSvg} alt="close" />
                     </div>
-                    <h5 className="faq__heading">{t(item.title)}</h5>
+                    <h5 className="faq__heading">{item.title}</h5>
                     <p className="faq__text">{item.text}</p>
                   </li>
                 ))
