@@ -8,6 +8,7 @@ export const fetchSingleCar = createAsyncThunk(
     const { data } = await axios.get(
       `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items/${id}`
     );
+   
     return data;
   }
 );
