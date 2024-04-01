@@ -1,12 +1,11 @@
 import React from "react";
 import clearSvg from "../../assets/icons/sm-close.svg";
 import Select from "react-select";
-import { Controller } from "react-hook-form";
 const options = [
   { value: 100, showAdress: true, label: "Доставка по городу + 100€" },
   { value: 0, showAdress: false, label: "Взять в из офиса" },
 ];
-const SelectForm = ({ setValue, setPlace, register, errors }) => {
+const SelectForm = ({  setPlace, register, errors }) => {
   const [value, setValueAddress] = React.useState("");
 
   const [showAdress, setShowAdress] = React.useState(false);
@@ -15,7 +14,6 @@ const SelectForm = ({ setValue, setPlace, register, errors }) => {
     //при изменении select получение
     setPlace(obj.value);
     setShowAdress(obj.showAdress);
-    setValue("place", obj.label);
   };
   return (
     <>

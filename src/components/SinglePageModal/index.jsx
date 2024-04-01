@@ -17,6 +17,7 @@ const SinglePageModal = () => {
   const { t } = useTranslation();
   const { days, item, id, status } = useSelector((e) => e.singleInfo);
   const { currencies, curren } = useSelector((state) => state.currencies);
+  console.log(curren);
   const dispatch = useDispatch();
   const [place, setPlace] = React.useState(null);
   const [activeIndex, setActiveIndex] = React.useState(0); //для индексации страниц
@@ -36,7 +37,7 @@ const SinglePageModal = () => {
     reset();
   }; // при нажатии на отправить
 
-  const moneyArr = { RUB: "₽", USD: "$", TRY: "₺" };
+  const moneyArr = { RUB: "₽", USD: "$", TRY: "₺",  EUR: "€"};
   let money;
   let depo;
   let placePrice;
@@ -63,6 +64,15 @@ const SinglePageModal = () => {
         placePrice = Math.round(
           (currencies.USD.Value / (currencies.TRY.Value / 10)) * place
         );
+        break;
+      case "EUR":
+        money = Math.round(
+          (currencies.USD.Value / currencies.EUR.Value) * item.price
+        );
+        depo = Math.round(
+          (currencies.USD.Value / currencies.EUR.Value) * item.depo
+        );
+        placePrice = place;
         break;
     }
   }
@@ -110,7 +120,6 @@ const SinglePageModal = () => {
   React.useEffect(() => {
     getSingleCar();
   }, []);
-  console.log(money, placePrice, item.price);
   if (status === "loading") {
     return (
       <div className="modal-wrapper">
@@ -211,7 +220,9 @@ const SinglePageModal = () => {
             <div className="modal__last-info">
               <h4 className="modal__last-heading">{t("modal_price")}</h4>
               <div className="modal__block">
-                <div className="modal__descr">Аренда на {days > 1 ? `${days} дней` : `${days} день`}</div>
+                <div className="modal__descr">
+                  Аренда на {days > 1 ? `${days} дней` : `${days} день`}
+                </div>
                 <span className="modal__price">
                   {priceDaysFormatted + moneyArr[curren]}
                 </span>
@@ -248,7 +259,9 @@ const SinglePageModal = () => {
               onClick={setForm}
               className="modal__submit"
             >
-              {activeIndex === 0 ? `${t("modal_continue")}` : `${t("modal_send")}`}
+              {activeIndex === 0
+                ? `${t("modal_continue")}`
+                : `${t("modal_send")}`}
             </button>
           </div>
         </div>
