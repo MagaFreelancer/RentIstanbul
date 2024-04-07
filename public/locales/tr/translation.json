@@ -29,7 +29,6 @@
     "modal_total": "Toplam",
     "modal_continue": "Devam etmek",
     "modal_send": "Göndermek",
-<<<<<<< HEAD
     "form_receiving": "Fiş",
     "rental_date": "Kiralama tarihi",
     "main_driver": "Ana sürücü ayrıntıları",
@@ -38,8 +37,7 @@
     "footer_contacts": "Kişiler",
     "footer_subscription": "Abonelik",
     "footer_person": "Bültene abone olarak kişisel verilerinizin işlenmesini kabul etmiş oluyorsunuz.",
-    "stay_discounts": "İndirimler ve haberlerle güncel kalın"
-=======
+    "stay_discounts": "İndirimler ve haberlerle güncel kalın",
     "filter_price": "Fiyata göre filtrele",
     "any": "Herhangi",
     "sort_by": "Göre sırala",
@@ -48,5 +46,4 @@
     "petrol": "Benzin",
     "diesel": "Dizel",
     "electro": "Elektrikli/Hibrit"
->>>>>>> 18dbaaaaf9235bdac06c8a11b6ca80818ccc0f39
 }
