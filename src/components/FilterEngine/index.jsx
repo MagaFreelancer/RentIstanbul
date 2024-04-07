@@ -7,8 +7,6 @@ const FilterEngine = () => {
   const engine = useSelector((e) => e.filter.engine);
   const dispatch = useDispatch();
 
-  console.log(engine);
-
   const onChangeCheckbox = (obj) => {
     dispatch(
       setEngine(
