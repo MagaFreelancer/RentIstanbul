@@ -4,6 +4,7 @@ import { Header, Footer } from "./components";
 import "./App.scss";
 import Cars from "./pages/Cars";
 import About from "./pages/About";
+import Auth from "./pages/Auth";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/about" element={<About/>} />
+          <Route path="/auth" element={<Auth/>} />
         </Routes>
       </main>
       <Footer />

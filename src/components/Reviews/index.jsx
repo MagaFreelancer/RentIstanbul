@@ -1,5 +1,6 @@
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
+import { Pagination } from "swiper/modules";
 
 // Import Swiper styles
 import "swiper/css";
@@ -8,7 +9,6 @@ import "swiper/css/pagination";
 import "./Reviews.scss";
 
 // import required modules
-import { Pagination } from "swiper/modules";
 
 const Reviews = () => {
   const reviews = [
