@@ -4,6 +4,7 @@ import { CarBlock, CarSkeleton, FilterBox, FilterCategories, FilterEngine, Filte
 import closeIcon from "../../assets/icons/close.svg";
 import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import { fetchCars } from "../../redux/slices/carSlice";
+import AdminModal from "./AdminModal";
 
 const Admin = () => {
     const dispatch = useDispatch();
@@ -93,7 +94,7 @@ const Admin = () => {
                     </main>
                 </div>
             </section>
-            {showModal && <SinglePageModal />}
+            {showModal && <AdminModal />}
             {showSlider && (
               <ImageModal sliderIndex={sliderIndex} sliderImgs={sliderImgs} />
             )}
