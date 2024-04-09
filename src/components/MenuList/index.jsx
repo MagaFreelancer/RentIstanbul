@@ -7,7 +7,7 @@ const MenuList = () => {
       <div className="container menu-list__container">
         <ul>
           <li className="menu-list__item">
-            <NavLink className="menu-list__link" to="/admin/">
+            <NavLink className="menu-list__link" to="/admin/cars">
               Машины
             </NavLink>
           </li>

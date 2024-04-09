@@ -2,11 +2,19 @@ import React from "react";
 import $ from "jquery";
 import "./Auth.scss";
 const Auth = () => {
+  const [email, setEmail] = React.useState("");
+  const [password, setPassword] = React.useState("");
+
   const emailAnnotationEl = document.getElementById("emailAnnotation");
   const passwordAnnotationEl = document.getElementById("passwordAnnotation");
   const host = "http://artemhome4.ddns.net:89/";
   const loginUrl = host + "api/auth/login";
-
+  function onChangeEmail(value) {
+    setEmail(value);
+  }
+  function onChangePassword(value) {
+    setPassword(value);
+  }
   React.useEffect(() => {
     //Отправка формы
     document.getElementById("submitBtn").addEventListener("click", (e) => {
@@ -91,12 +99,24 @@ const Auth = () => {
               Ваш Email:
             </label>
             <p id="emailAnnotation"></p>
-            <input type="email" id="loginEmail" placeholder=" " />
+            <input
+              value={email}
+              onChange={(e) => onChangeEmail(e.target.value)}
+              type="email"
+              id="loginEmail"
+              placeholder=" "
+            />
           </div>
           <div>
             <label htmlFor="loginPassword">Ваш пароль: </label>
             <p id="passwordAnnotation"></p>
-            <input type="password" id="loginPassword" placeholder=" " />
+            <input
+              value={password}
+              onChange={(e) => onChangePassword(e.target.value)}
+              type="password"
+              id="loginPassword"
+              placeholder=" "
+            />
           </div>
           <div>
             <button id="submitBtn">Войти</button>

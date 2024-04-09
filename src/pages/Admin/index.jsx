@@ -9,8 +9,9 @@ const Admin = () => {
     <>
       <MenuList />
       <Routes>
+        <Route path="/" element={<Auth />} />
         <Route path="/requests" element={<Requests />} />
-        <Route path="/auth" element={<Auth />} />
+        <Route path="/cars" element={<div></div>} />
       </Routes>
     </>
   );
