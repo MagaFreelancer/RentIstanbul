@@ -1,17 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { setSort } from "../../redux/slices/filterSlice";
-import { useTranslation } from "react-i18next";
 
-export const listSort = [
-  { name: ["from_expensive", "От дешевых к дорогим"], sortProperty: "-price" },
-  { name: ["from_cheap", "От дорогих к дешевым"], sortProperty: "price" }
-];
-const FilterSort = () => {
+const FilterSort = ({ sortActiveObj, listSort, onChangeSort }) => {
   const sortRef = React.useRef();
-  const sort = useSelector((e) => e.filter.sort);
-  const { t } = useTranslation();
-  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
   React.useEffect(() => {
@@ -28,27 +18,27 @@ const FilterSort = () => {
     };
   }, []);
 
-  const onChangeSort = (obj) => {
-    dispatch(setSort(obj));
-    setOpen(!open);
-  };
   return (
     <div className="cars__sort" ref={sortRef}>
       <div className="cars__label" onClick={() => setOpen(!open)}>
-        {t("sort_by")}: <span>{t(sort.name[0])}</span>
+        {/* {t("sort_by")}: <span>{t(sort.name[0])}</span> */}
+        Сортировать по: <span>{sortActiveObj.name}</span>
       </div>
       <ul className={`cars__popup ${open ? "cars__popup--active" : ""}`}>
         {listSort.map((obj, index) => (
           <li
-            onClick={() => onChangeSort(obj)}
+            onClick={() => {
+              onChangeSort(obj);
+              setOpen(!open);
+            }}
             key={index}
             className={`cars__popup-item ${
-              sort.sortProperty == obj.sortProperty
+              sortActiveObj.sortProperty == obj.sortProperty
                 ? "cars__popup-item--active"
                 : ""
             }`}
           >
-            {t(obj.name[0])}
+            {obj.name}
           </li>
         ))}
       </ul>

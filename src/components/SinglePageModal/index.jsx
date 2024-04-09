@@ -37,7 +37,7 @@ const SinglePageModal = () => {
     reset();
   }; // при нажатии на отправить
 
-  const moneyArr = { RUB: "₽", USD: "$", TRY: "₺",  EUR: "€"};
+  const moneyArr = { RUB: "₽", USD: "$", TRY: "₺", EUR: "€" };
   let money;
   let depo;
   let placePrice;
@@ -94,7 +94,7 @@ const SinglePageModal = () => {
     .split(",")[0];
 
   const getSingleCar = async () => {
-    dispatch(fetchSingleCar());
+    dispatch(fetchSingleCar(id));
   };
   const setForm = () => {
     if (activeIndex === 0) {
@@ -129,145 +129,144 @@ const SinglePageModal = () => {
   }
 
   return (
-    <></>
-    // <div onClick={(e) => toggleModal(e)} className="modal-wrapper">
-    //   <div className="modal">
-    //     <div onClick={(e) => toggleModal(e)} className="modal__close">
-    //       <svg
-    //         viewBox="0 0 256 256"
-    //         xmlSpace="preserve"
-    //         xmlns="http://www.w3.org/2000/svg"
-    //       >
-    //         <path
-    //           d="m137.051 128 75.475-75.475c2.5-2.5 2.5-6.551 0-9.051s-6.551-2.5-9.051 0L128 118.949 52.525 43.475c-2.5-2.5-6.551-2.5-9.051 0s-2.5 6.551 0 9.051L118.949 128l-75.475 75.475a6.399 6.399 0 0 0 4.525 10.926 6.38 6.38 0 0 0 4.525-1.875L128 137.051l75.475 75.475c1.25 1.25 2.888 1.875 4.525 1.875s3.275-.625 4.525-1.875c2.5-2.5 2.5-6.551 0-9.051L137.051 128z"
-    //           fill="#ffffff"
-    //           className="fill-000000"
-    //         ></path>
-    //       </svg>
-    //     </div>
-    //     <div onClick={(e) => toggleModal(e)} className="modal__inner-close">
-    //       <svg
-    //         xmlns="http://www.w3.org/2000/svg"
-    //         viewBox="0 0 50 50"
-    //         width="50px"
-    //         height="50px"
-    //       >
-    //         <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" />
-    //       </svg>
-    //     </div>
-    //     <div className="modal__container">
-    //       <div className="modal__col">
-    //         <ul className="modal__menu">
-    //           {list.map((item, index) => (
-    //             <li
-    //               key={index}
-    //               onClick={() => setActiveIndex(index)}
-    //               className={`modal__item ${
-    //                 activeIndex === index && "modal__item--active"
-    //               }`}
-    //             >
-    //               {item}
-    //             </li>
-    //           ))}
-    //         </ul>
-    //         <div
-    //           className={`modal__content ${
-    //             activeIndex === 0 && "modal__content--active"
-    //           }`}
-    //         >
-    //           <h3 className="modal__title">{item.title}</h3>
-    //           <div className="modal__img-adap">
-    //             <img src={item.imageUrl} alt="car" />
-    //           </div>
-    //           <h4 className="modal__heading">{t("characteristics")}</h4>
-    //           <ul className="modal__info">
-    //             <li className="modal__info-item">
-    //               <div className="modal__info-heading">{t("transmission")}</div>
-    //               <div className="modal__info-text">{item.box}</div>
-    //             </li>
-    //             <li className="modal__info-item">
-    //               <div className="modal__info-heading">{t("engine")}</div>
-    //               <div className="modal__info-text">{item.volume} л</div>
-    //             </li>
-    //             <li className="modal__info-item">
-    //               <div className="modal__info-heading">{t("year_issue")}</div>
-    //               <div className="modal__info-text">{item.date}.</div>
-    //             </li>
-    //             <li className="modal__info-item">
-    //               <div className="modal__info-heading">{t("fuel")}</div>
-    //               <div className="modal__info-text">{item.engine}</div>
-    //             </li>
-    //           </ul>
-    //           <SliderModal imgs={item.imgs} />
-    //         </div>
-    //         <div
-    //           className={`modal__content ${
-    //             activeIndex === 1 && "modal__content--active"
-    //           }`}
-    //         >
-    //           <ModalForm
-    //             errors={errors}
-    //             setValue={setValue}
-    //             register={register}
-    //             place={place}
-    //             setPlace={(value) => setPlace(value)}
-    //           />
-    //         </div>
-    //       </div>
-    //       <div className="modal__col">
-    //         <div className="modal__img">
-    //           <img src={item.imageUrl} alt="car" />
-    //         </div>
-    //         <div className="modal__last-info">
-    //           <h4 className="modal__last-heading">{t("modal_price")}</h4>
-    //           <div className="modal__block">
-    //             <div className="modal__descr">
-    //               Аренда на {days > 1 ? `${days} дней` : `${days} день`}
-    //             </div>
-    //             <span className="modal__price">
-    //               {priceDaysFormatted + moneyArr[curren]}
-    //             </span>
-    //           </div>
-    //           <div className="modal__block modal__block--not-border">
-    //             <div className="modal__descr">{t("modal_delivery")}</div>
-    //             <span className="modal__price">
-    //               {placePrice ? placePrice : "0"}
-    //               {moneyArr[curren]}
-    //             </span>
-    //           </div>
-    //           <div className="modal__last">
-    //             <div className="modal__block">
-    //               <div className="modal__descr">{t("modal_total")}</div>
-    //               <span className="modal__price">
-    //                 {allPriceFormatted}
-    //                 {moneyArr[curren]}
-    //               </span>
-    //             </div>
-    //             <div className="modal__block">
-    //               {item.depo && (
-    //                 <>
-    //                   <div className="modal__descr">+ депозит</div>
-    //                   <span className="modal__price">
-    //                     {depo + moneyArr[curren]}
-    //                   </span>
-    //                 </>
-    //               )}
-    //             </div>
-    //           </div>
-    //         </div>
-    //         <button
-    //           // disabled={activeIndex === 1 ? !isValid : false}
-    //           onClick={setForm}
-    //           className="modal__submit"
-    //         >
-    //           {activeIndex === 0
-    //             ? `${t("modal_continue")}`
-    //             : `${t("modal_send")}`}
-    //         </button>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
+    <div onClick={(e) => toggleModal(e)} className="modal-wrapper">
+      <div className="modal">
+        <div onClick={(e) => toggleModal(e)} className="modal__close">
+          <svg
+            viewBox="0 0 256 256"
+            xmlSpace="preserve"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="m137.051 128 75.475-75.475c2.5-2.5 2.5-6.551 0-9.051s-6.551-2.5-9.051 0L128 118.949 52.525 43.475c-2.5-2.5-6.551-2.5-9.051 0s-2.5 6.551 0 9.051L118.949 128l-75.475 75.475a6.399 6.399 0 0 0 4.525 10.926 6.38 6.38 0 0 0 4.525-1.875L128 137.051l75.475 75.475c1.25 1.25 2.888 1.875 4.525 1.875s3.275-.625 4.525-1.875c2.5-2.5 2.5-6.551 0-9.051L137.051 128z"
+              fill="#ffffff"
+              className="fill-000000"
+            ></path>
+          </svg>
+        </div>
+        <div onClick={(e) => toggleModal(e)} className="modal__inner-close">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 50 50"
+            width="50px"
+            height="50px"
+          >
+            <path d="M 7.71875 6.28125 L 6.28125 7.71875 L 23.5625 25 L 6.28125 42.28125 L 7.71875 43.71875 L 25 26.4375 L 42.28125 43.71875 L 43.71875 42.28125 L 26.4375 25 L 43.71875 7.71875 L 42.28125 6.28125 L 25 23.5625 Z" />
+          </svg>
+        </div>
+        <div className="modal__container">
+          <div className="modal__col">
+            <ul className="modal__menu">
+              {list.map((item, index) => (
+                <li
+                  key={index}
+                  onClick={() => setActiveIndex(index)}
+                  className={`modal__item ${
+                    activeIndex === index && "modal__item--active"
+                  }`}
+                >
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div
+              className={`modal__content ${
+                activeIndex === 0 && "modal__content--active"
+              }`}
+            >
+              <h3 className="modal__title">{item.title}</h3>
+              <div className="modal__img-adap">
+                <img src={item.imageUrl} alt="car" />
+              </div>
+              <h4 className="modal__heading">{t("characteristics")}</h4>
+              <ul className="modal__info">
+                <li className="modal__info-item">
+                  <div className="modal__info-heading">{t("transmission")}</div>
+                  <div className="modal__info-text">{item.box}</div>
+                </li>
+                <li className="modal__info-item">
+                  <div className="modal__info-heading">{t("engine")}</div>
+                  <div className="modal__info-text">{item.volume} л</div>
+                </li>
+                <li className="modal__info-item">
+                  <div className="modal__info-heading">{t("year_issue")}</div>
+                  <div className="modal__info-text">{item.date}.</div>
+                </li>
+                <li className="modal__info-item">
+                  <div className="modal__info-heading">{t("fuel")}</div>
+                  <div className="modal__info-text">{item.engine}</div>
+                </li>
+              </ul>
+              <SliderModal imgs={item.imgs} />
+            </div>
+            <div
+              className={`modal__content ${
+                activeIndex === 1 && "modal__content--active"
+              }`}
+            >
+              <ModalForm
+                errors={errors}
+                setValue={setValue}
+                register={register}
+                place={place}
+                setPlace={(value) => setPlace(value)}
+              />
+            </div>
+          </div>
+          <div className="modal__col">
+            <div className="modal__img">
+              <img src={item.imageUrl} alt="car" />
+            </div>
+            <div className="modal__last-info">
+              <h4 className="modal__last-heading">{t("modal_price")}</h4>
+              <div className="modal__block">
+                <div className="modal__descr">
+                  Аренда на {days > 1 ? `${days} дней` : `${days} день`}
+                </div>
+                <span className="modal__price">
+                  {priceDaysFormatted + moneyArr[curren]}
+                </span>
+              </div>
+              <div className="modal__block modal__block--not-border">
+                <div className="modal__descr">{t("modal_delivery")}</div>
+                <span className="modal__price">
+                  {placePrice ? placePrice : "0"}
+                  {moneyArr[curren]}
+                </span>
+              </div>
+              <div className="modal__last">
+                <div className="modal__block">
+                  <div className="modal__descr">{t("modal_total")}</div>
+                  <span className="modal__price">
+                    {allPriceFormatted}
+                    {moneyArr[curren]}
+                  </span>
+                </div>
+                <div className="modal__block">
+                  {item.depo && (
+                    <>
+                      <div className="modal__descr">+ депозит</div>
+                      <span className="modal__price">
+                        {depo + moneyArr[curren]}
+                      </span>
+                    </>
+                  )}
+                </div>
+              </div>
+            </div>
+            <button
+              // disabled={activeIndex === 1 ? !isValid : false}
+              onClick={setForm}
+              className="modal__submit"
+            >
+              {activeIndex === 0
+                ? `${t("modal_continue")}`
+                : `${t("modal_send")}`}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

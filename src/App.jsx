@@ -4,8 +4,7 @@ import { Header, Footer } from "./components";
 import "./App.scss";
 import Cars from "./pages/Cars";
 import About from "./pages/About";
-import Auth from "./pages/Auth";
-
+import Admin from "./pages/Admin";
 function App() {
   return (
     <div className="app">
@@ -14,8 +13,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/cars" element={<Cars />} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/auth" element={<Auth/>} />
+          <Route path="/about" element={<About />} />
+          <Route path="/admin/*" element={<Admin />} />
         </Routes>
       </main>
       <Footer />

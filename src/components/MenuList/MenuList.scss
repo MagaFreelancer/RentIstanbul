@@ -1,0 +1,16 @@
+.menu-list {
+    padding: 20px 0;
+    ul {
+        display: flex;
+        gap: 15px;
+    }
+    li {
+    }
+    &__link {
+        color: var(--lightColor);
+        font-weight: 600;
+        &.active {
+            color: var(--blackColor);
+        }
+    }
+}

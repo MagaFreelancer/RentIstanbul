@@ -25,7 +25,8 @@ import SocialsForm from "./SocialsForm";
 import Reviews from "./Reviews";
 import SliderModal from "./SliderModal";
 import ImageModal from "./ImageModal";
-
+import RequestCar from "./RequestCar";
+import MenuList from "./MenuList";
 export {
   Footer,
   Header,
@@ -54,4 +55,6 @@ export {
   Reviews,
   SliderModal,
   ImageModal,
+  RequestCar,
+  MenuList,
 };

@@ -1,5 +1,6 @@
 import React from "react";
 import $ from "jquery";
+import "./Auth.scss";
 const Auth = () => {
   const emailAnnotationEl = document.getElementById("emailAnnotation");
   const passwordAnnotationEl = document.getElementById("passwordAnnotation");
@@ -43,17 +44,15 @@ const Auth = () => {
       }
     });
     document.getElementById("logoutBtn").addEventListener("click", () => {
-        localStorage.removeItem("tokenInfo");
-        localStorage.removeItem("userName");
-        alert("Авторизационные данные удалены");
-      });
-        //Проверить
-  document.getElementById("checkBtn").addEventListener("click", (e) => {
-    getUsers(e);
-  });
+      localStorage.removeItem("tokenInfo");
+      localStorage.removeItem("userName");
+      alert("Авторизационные данные удалены");
+    });
+    //Проверить
+    document.getElementById("checkBtn").addEventListener("click", (e) => {
+      getUsers(e);
+    });
   }, []);
-
-
 
   function getUsers(/*evt*/) {
     // let url = host+'api/users/getusers';
@@ -84,27 +83,28 @@ const Auth = () => {
   }
 
   return (
-    <div>
-      <form>
-        <div>
-          <label htmlFor="loginEmail" className="form__label">
-            Ваш Email:{" "}
-          </label>
-          <p id="emailAnnotation"></p>
-          <input type="email" id="loginEmail" placeholder=" " />
-        </div>
-        <div>
-          <label htmlFor="loginPassword">Ваш пароль: </label>
-          <p id="passwordAnnotation"></p>
-          <input type="password" id="loginPassword" placeholder=" " />
-        </div>
-        <div>
-          <button id="submitBtn">Войти</button>
-        </div>
-      </form>
-
-      <button id="logoutBtn">Выйти</button>
-      <button id="checkBtn">Проверка</button>
+    <div className="auth">
+      <div className="container auth__container">
+        <form>
+          <div>
+            <label htmlFor="loginEmail" className="form__label">
+              Ваш Email:
+            </label>
+            <p id="emailAnnotation"></p>
+            <input type="email" id="loginEmail" placeholder=" " />
+          </div>
+          <div>
+            <label htmlFor="loginPassword">Ваш пароль: </label>
+            <p id="passwordAnnotation"></p>
+            <input type="password" id="loginPassword" placeholder=" " />
+          </div>
+          <div>
+            <button id="submitBtn">Войти</button>
+          </div>
+        </form>
+        <button id="logoutBtn">Выйти</button>
+        <button id="checkBtn">Проверка</button>
+      </div>
     </div>
   );
 };
