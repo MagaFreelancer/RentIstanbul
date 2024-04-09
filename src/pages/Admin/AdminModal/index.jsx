@@ -9,7 +9,6 @@ import { useForm } from "react-hook-form";
 const AdminModal = () => {
     const dispatch = useDispatch();
     const { days, item, id, status } = useSelector((e) => e.singleInfo);
-    const { currencies } = useSelector((state) => state.currencies);
     const onSubmit = (data) => {
         console.log(data);
     };
@@ -40,6 +39,10 @@ const AdminModal = () => {
         }
     };
 
+    if(status !== 'success') {
+        return '';
+    }
+
     return (
         <div onClick={(e) => toggleModal(e)} className="modal-wrapper">
             <div className="modal">
@@ -69,10 +72,10 @@ const AdminModal = () => {
                         <li className="modal__info-item">
                             <div className="modal__info-heading">Двигатель</div>
                             <input className="modal__info-input" type="input" defaultValue={item.volume} 
-                                {...register('box', {
+                                {...register('volume', {
                                     required: 'Пожалуйста, заполните поле',
                                     minLength: {
-                                        value: 3,
+                                        value: 2,
                                         message: 'миниму 4 символов'
                                     }
                                 })} 
