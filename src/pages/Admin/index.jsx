@@ -24,6 +24,10 @@ import closeIcon from "../../assets/icons/close.svg";
 import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import { fetchCars } from "../../redux/slices/carSlice";
 import AdminModal from "./AdminModal";
+const listSort = [
+  { name: "От дешевых к дорогим", sortProperty: "-price" },
+  { name: "От дорогих к дешевым", sortProperty: "price" },
+];
 
 const AdminCars = () => {
   const dispatch = useDispatch();
@@ -45,7 +49,13 @@ const AdminCars = () => {
     dispatch(fetchCars({ sortBy, order, search }));
     dispatch(fetchCurrencies());
   };
-
+  const [sortActiveObj, setSortActiveObj] = React.useState({
+    name: "От дешевых к дорогим",
+    sortProperty: "-price",
+  }); //для obj для sortFilter
+  const onChangeSort = (obj) => {
+    setSortActiveObj(obj);
+  };
   React.useEffect(() => {
     getCars();
   }, [searchValue, sort]);
@@ -91,7 +101,11 @@ const AdminCars = () => {
             <div className="cars__top">
               <div className="cars__heading">
                 <h1 className="cars__name">Машины</h1>
-                <FilterSort />
+                <FilterSort
+                  sortActiveObj={sortActiveObj}
+                  listSort={listSort}
+                  onChangeSort={(value) => onChangeSort(value)}
+                />
               </div>
               <Search />
 
@@ -122,7 +136,7 @@ const Admin = () => {
       <Routes>
         <Route path="/" element={<Auth />} />
         <Route path="/requests" element={<Requests />} />
-        <Route path="/cars" element={< AdminCars/>} />
+        <Route path="/cars" element={<AdminCars />} />
       </Routes>
     </>
   );

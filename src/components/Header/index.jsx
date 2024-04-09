@@ -40,7 +40,7 @@ function Header() {
               </NavLink>
             </li>
             <li className="header__item menu__item">
-              <NavLink onClick={() => setOpen(false)} className="header__link menu__link" to="admin/cars">
+              <NavLink onClick={() => setOpen(false)} className="header__link menu__link" to="admin">
                 admin
               </NavLink>
             </li>
