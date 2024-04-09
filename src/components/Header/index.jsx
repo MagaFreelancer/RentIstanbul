@@ -39,6 +39,11 @@ function Header() {
                 {t("header__about")}
               </NavLink>
             </li>
+            <li className="header__item menu__item">
+              <NavLink onClick={() => setOpen(false)} className="header__link menu__link" to="admin/cars">
+                admin
+              </NavLink>
+            </li>
           </ul>
         </nav>
         <ul className={`header__funcs ${open ? `header__funcs--active` : ''}`}>

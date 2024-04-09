@@ -5,6 +5,7 @@ import "./App.scss";
 import Cars from "./pages/Cars";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
+
 function App() {
   return (
     <div className="app">
