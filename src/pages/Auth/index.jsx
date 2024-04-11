@@ -1,13 +1,15 @@
 import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import $ from "jquery";
 import "./Auth.scss";
 const Auth = () => {
+  // const navigate = useNavigate();
+  // const location = useLocation()
+
+  // const fromPage = location.state?.from?.pathname || '/'
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
-
-  const emailAnnotationEl = document.getElementById("emailAnnotation");
-  const passwordAnnotationEl = document.getElementById("passwordAnnotation");
-  const host = "http://artemhome4.ddns.net:89/";
+  const host = "https://artemwebsites.ru/";
   const loginUrl = host + "api/auth/login";
   function onChangeEmail(value) {
     setEmail(value);
@@ -15,47 +17,42 @@ const Auth = () => {
   function onChangePassword(value) {
     setPassword(value);
   }
+  function onClickSubmit(e) {
+    e.preventDefault();
+    if (email == "" || password == "") {
+      return console.log("неправильные данные");
+    } else {
+      let loginData = {
+        email,
+        password,
+      };
+      $.ajax({
+        url: loginUrl,
+        type: "POST",
+        data: JSON.stringify(loginData),
+        contentType: "application/json;charset=utf-8",
+
+        success: function (data) {
+          localStorage.setItem("tokenInfo", data.message);
+          localStorage.setItem("userName", data.userName);
+          alert(
+            `Вы вошли, авторизационные данные установлены \n\n${data.message}`
+          );
+        },
+        error: function (data) {
+          alert(data.responseJSON.message);
+        },
+      });
+    }
+  }
+  function onClickLogout() {
+    localStorage.removeItem("tokenInfo");
+    localStorage.removeItem("userName");
+    alert("Авторизационные данные удалены");
+  }
   React.useEffect(() => {
     //Отправка формы
-    document.getElementById("submitBtn").addEventListener("click", (e) => {
-      e.preventDefault();
-      let loginEmail = document.getElementById("loginEmail").value;
-      let loginPassword = document.getElementById("loginPassword").value;
 
-      if (loginEmail == "" || loginPassword == "") {
-        emailAnnotationEl.innerText = "заполни поле";
-        emailAnnotationEl.style.display = "block";
-        passwordAnnotationEl.innerText = "заполни поле";
-        passwordAnnotationEl.style.display = "block";
-      } else {
-        let loginData = {
-          email: loginEmail,
-          password: loginPassword,
-        };
-        $.ajax({
-          url: loginUrl,
-          type: "POST",
-          data: JSON.stringify(loginData),
-          contentType: "application/json;charset=utf-8",
-
-          success: function (data) {
-            localStorage.setItem("tokenInfo", data.message);
-            localStorage.setItem("userName", data.userName);
-            alert(
-              `Вы вошли, авторизационные данные установлены \n\n${data.message}`
-            );
-          },
-          error: function (data) {
-            alert(data.responseJSON.message);
-          },
-        });
-      }
-    });
-    document.getElementById("logoutBtn").addEventListener("click", () => {
-      localStorage.removeItem("tokenInfo");
-      localStorage.removeItem("userName");
-      alert("Авторизационные данные удалены");
-    });
     //Проверить
     document.getElementById("checkBtn").addEventListener("click", (e) => {
       getUsers(e);
@@ -93,7 +90,7 @@ const Auth = () => {
   return (
     <div className="auth">
       <div className="container auth__container">
-        <form>
+        <form onSubmit={onClickSubmit}>
           <div>
             <label htmlFor="loginEmail" className="form__label">
               Ваш Email:
@@ -119,10 +116,14 @@ const Auth = () => {
             />
           </div>
           <div>
-            <button id="submitBtn">Войти</button>
+            <button type="submit" id="submitBtn">
+              Войти
+            </button>
           </div>
         </form>
-        <button id="logoutBtn">Выйти</button>
+        <button id="logoutBtn" onClick={onClickLogout}>
+          Выйти
+        </button>
         <button id="checkBtn">Проверка</button>
       </div>
     </div>

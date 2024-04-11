@@ -4,7 +4,7 @@ import { Route, Routes, NavLink } from "react-router-dom";
 import Auth from "../Auth";
 import Requests from "../Requests";
 import { MenuList } from "../../components";
-
+import RequireAuth from "../../hoc/RequireAuth";
 //===
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -135,8 +135,22 @@ const Admin = () => {
       <MenuList />
       <Routes>
         <Route path="/" element={<Auth />} />
-        <Route path="/requests" element={<Requests />} />
-        <Route path="/cars" element={<AdminCars />} />
+        <Route
+          path="/requests"
+          element={
+            <RequireAuth>
+              <Requests />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/cars"
+          element={
+            <RequireAuth>
+              <AdminCars />
+            </RequireAuth>
+          }
+        />
       </Routes>
     </>
   );
