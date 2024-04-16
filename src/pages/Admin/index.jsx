@@ -3,27 +3,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { CarBlock, CarSkeleton, FilterBox, FilterCategories, FilterEngine, FilterPrice, FilterSort, FilterYears, ImageModal, Search, SinglePageModal } from "../../components";
 import closeIcon from "../../assets/icons/close.svg";
 import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
-import { fetchCars } from "../../redux/slices/carSlice";
 import AdminModal from "./AdminModal";
+import { getCarsSlice } from "../../redux/requests/getCars";
 
 const Admin = () => {
     const dispatch = useDispatch();
     const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector(
         (e) => e.singleInfo
       );
-    const { items, status, currentPage } = useSelector((state) => state.car);
+    const { items, status } = useSelector((state) => state.getCars);
     const [filterOpen, setFilterOpen] = React.useState(false);
     const { currencies, statusCur } = useSelector((state) => state.currencies);
     const { categoryIds, price, yearCar, engine, box, sort, searchValue } =
     useSelector((e) => e.filter);
 
-    console.log(items);
-
     const getCars = async () => {
         const sortBy = sort.sortProperty.replace("-", "");
         const order = sort.sortProperty.includes("-") ? "asc" : "desc";
         const search = searchValue ? `&search=${searchValue}` : "";
-        dispatch(fetchCars({ sortBy, order, search}));
+        dispatch(getCarsSlice());
         dispatch(fetchCurrencies());
     };
 
@@ -31,8 +29,8 @@ const Admin = () => {
         getCars();
     }, [searchValue, sort]);
 
-    const cars = items.map((obj, index) => (
-        <CarBlock key={index} {...obj} currencies={currencies} />
+    const cars = items.map((obj) => (
+        <CarBlock key={obj.id} obj={obj} currencies={currencies} />
     ));
 
     const skeletons = [...new Array(9)].map((_, index) => (

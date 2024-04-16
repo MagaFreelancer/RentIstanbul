@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 const AdminModal = () => {
     const dispatch = useDispatch();
     const { days, item, id, status } = useSelector((e) => e.singleInfo);
+   
     const onSubmit = (data) => {
         console.log(data);
     };
@@ -72,7 +73,7 @@ const AdminModal = () => {
                         <li className="modal__info-item">
                             <div className="modal__info-heading">Двигатель</div>
                             <input className="modal__info-input" type="input" defaultValue={item.volume} 
-                                {...register('volume', {
+                                {...register('engine', {
                                     required: 'Пожалуйста, заполните поле',
                                     minLength: {
                                         value: 2,
@@ -99,7 +100,7 @@ const AdminModal = () => {
                                 {...register('engine', {
                                     required: 'Пожалуйста, заполните поле',
                                     minLength: {
-                                        value: 4,
+                                        value: 3,
                                         message: 'миниму 4 символов'
                                     }
                                 })} 

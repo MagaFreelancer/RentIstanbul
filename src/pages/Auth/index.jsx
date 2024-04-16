@@ -77,7 +77,6 @@ const Auth = () => {
         );
       },
       error: function (err) {
-        console.log(err);
         alert(`Вы не авторизованы(Доступ запрещён). Подробности в консоли`);
       },
     });

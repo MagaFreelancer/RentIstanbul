@@ -24,7 +24,6 @@ const ImageModal = ({ sliderIndex, sliderImgs }) => {
       !e.target.closest(".swiper-button-next") &&
       !e.target.closest(".swiper-button-prev")
     ) {
-      console.log(e.target);
       dispatch(toggleShowSlider(false));
       dispatch(setImgs([]));
       dispatch(setSliderIndex(0));

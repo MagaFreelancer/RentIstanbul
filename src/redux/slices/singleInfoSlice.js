@@ -6,7 +6,7 @@ export const fetchSingleCar = createAsyncThunk(
   async (params) => {
     const id = params;
     const { data } = await axios.get(
-      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items/${id}`
+      `https://artemwebsites.ru/api/Cars/${id}`
     );
    
     return data;

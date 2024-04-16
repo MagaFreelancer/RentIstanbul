@@ -59,11 +59,10 @@ const filterSlice = createSlice({
     },
     setBox(state, action) {
       state.box = action.payload;
-      console.log(action.payload);
     },
     setFilters(state, action) {
       state.sort = action.payload.sort;
-      state.categoryId = action.payload.categoryId;
+      state.categoryIds = action.payload.categoryIds;
       state.yearCar = Number(action.payload.yearCar);
       state.engine = action.payload.engine;
       state.box = action.payload.box;

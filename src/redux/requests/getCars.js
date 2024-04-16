@@ -1,15 +1,11 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-
-export const fetchCars = createAsyncThunk(
-  "car/fetchCarsStatus",
-  async (params) => {
-    const { order,search, sortBy, currentPage2 } = params;
+export const getCarsSlice = createAsyncThunk(
+  "cars/getCarsSliceStatus",
+  async () => {
     const { data } = await axios.get(
-      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items?${currentPage2}&limit=9&sortBy=${sortBy}&order=${order}${search}`
-      
-      
+      `https://artemwebsites.ru/api/Cars`
     );
     return data;
   }
@@ -22,33 +18,30 @@ const initialState = {
 };
 
 const carSlice = createSlice({
-  name: "car",
+  name: "cars",
   initialState,
   reducers: {
     setItems(state, action) {
       state.items = action.payload;
-    },
-    setCurrentPage(state, action) {
-      state.currentPage = action.payload
     }
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCars.pending, (state) => {
+      .addCase(getCarsSlice.pending, (state) => {
         state.status = "loading";
         state.items = [];
       })
-      .addCase(fetchCars.fulfilled, (state, action) => {
+      .addCase(getCarsSlice.fulfilled, (state, action) => {
         state.items = action.payload;
         state.status = "success";
       })
-      .addCase(fetchCars.rejected, (state) => {
+      .addCase(getCarsSlice.rejected, (state) => {
         state.status = "error";
         state.items = [];
       });
   },
 });
 
-export const { setItems, setCurrentPage } = carSlice.actions;
+export const { setItems } = carSlice.actions;
 
 export default carSlice.reducer;

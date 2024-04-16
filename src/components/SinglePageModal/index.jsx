@@ -17,7 +17,6 @@ const SinglePageModal = () => {
   const { t } = useTranslation();
   const { days, item, id, status } = useSelector((e) => e.singleInfo);
   const { currencies, curren } = useSelector((state) => state.currencies);
-  console.log(curren);
   const dispatch = useDispatch();
   const [place, setPlace] = React.useState(null);
   const [activeIndex, setActiveIndex] = React.useState(0); //для индексации страниц
@@ -33,7 +32,6 @@ const SinglePageModal = () => {
     },
   }); //Для собрании данных фреймворк react-hook
   const onSubmit = (data) => {
-    console.log(data);
     reset();
   }; // при нажатии на отправить
 
