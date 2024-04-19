@@ -3,9 +3,9 @@ import { useSelector, useDispatch } from "react-redux";
 import { setId, toggleShowModal } from "../../redux/slices/singleInfoSlice";
 import { useTranslation } from "react-i18next";
 import "./CarBlock.scss";
+// {obj, currencies}
 
-
-export default function CarBlock({obj, currencies}) {
+export default function CarBlock(props) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { curren } = useSelector((state) => state.currencies);
@@ -13,36 +13,36 @@ export default function CarBlock({obj, currencies}) {
   let money;
   const onClickModal = () => {
     dispatch(toggleShowModal(true));
-    dispatch(setId(obj.id));
+    dispatch(setId(props.obj.id));
     document.body.classList.add("modal-open");
 
   };
   
   switch (curren) {
     case "RUB":
-      money = Math.round(obj.price * currencies.USD.Value);
+      money = Math.round(props.obj.price * props.currencies.USD.Value);
       break;
     case "USD":
-      money = obj.price;
+      money = props.obj.price;
       break;
     case "TRY":
       money = Math.round(
-        (currencies.USD.Value / (currencies.TRY.Value / 10)) * obj.price
+        (currencies.USD.Value / (props.currencies.TRY.Value / 10)) * props.obj.price
       );
     break;
     case "EUR":
-      money = Math.round((currencies.USD.Value / currencies.EUR.Value) * obj.price);
+      money = Math.round((props.currencies.USD.Value / props.currencies.EUR.Value) * props.obj.price);
     break;
   }
 
   return (
     <div onClick={onClickModal} className="car-block">
       <div className="car-block__img">
-        <img src={obj.imageUrl} alt="car" />
+        <img src={props.obj.imageUrl} alt="car" />
       </div>
 
-      <h3 className="car-block__title">{obj.title} {obj.carModel}</h3>
-      <div className="car-block__type">{obj.category}</div>
+      <h3 className="car-block__title">{props.obj.title}</h3>
+      <div className="car-block__type">{props.obj.category}</div>
 
       <div className="car-block__price">
         {

@@ -4,12 +4,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchCars = createAsyncThunk(
   "car/fetchCarsStatus",
-  async (params) => {
-    const { order,search, sortBy, currentPage2 } = params;
+  async () => {
     const { data } = await axios.get(
-      `https://65b2d2a29bfb12f6eafe789c.mockapi.io/Items?${currentPage2}&limit=9&sortBy=${sortBy}&order=${order}${search}`
-      
-      
+      `https://artemwebsites.ru/api/Cars`
     );
     return data;
   }

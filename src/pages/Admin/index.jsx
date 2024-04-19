@@ -4,30 +4,25 @@ import { CarBlock, CarSkeleton, FilterBox, FilterCategories, FilterEngine, Filte
 import closeIcon from "../../assets/icons/close.svg";
 import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import AdminModal from "./AdminModal";
-import { getCarsSlice } from "../../redux/requests/getCars";
+import { getFilterCar } from "../../redux/requests/getFilterCar";
+
 
 const Admin = () => {
     const dispatch = useDispatch();
-    const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector(
-        (e) => e.singleInfo
-      );
-    const { items, status } = useSelector((state) => state.getCars);
+    const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector((e) => e.singleInfo);
     const [filterOpen, setFilterOpen] = React.useState(false);
     const { currencies, statusCur } = useSelector((state) => state.currencies);
-    const { categoryIds, price, yearCar, engine, box, sort, searchValue } =
-    useSelector((e) => e.filter);
+    const { sortProperty } = useSelector((e) => e.filter.sort);
+    const { items, status } = useSelector((state) => state.filterCars);
 
     const getCars = async () => {
-        const sortBy = sort.sortProperty.replace("-", "");
-        const order = sort.sortProperty.includes("-") ? "asc" : "desc";
-        const search = searchValue ? `&search=${searchValue}` : "";
-        dispatch(getCarsSlice());
+        dispatch(getFilterCar(sortProperty))
         dispatch(fetchCurrencies());
     };
 
     React.useEffect(() => {
         getCars();
-    }, [searchValue, sort]);
+    }, [sortProperty]);
 
     const cars = items.map((obj) => (
         <CarBlock key={obj.id} obj={obj} currencies={currencies} />

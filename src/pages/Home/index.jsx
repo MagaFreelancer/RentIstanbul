@@ -13,19 +13,18 @@ import {
 import "./Home.scss";
 
 export default function Home() {
-  const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector(
-    (e) => e.singleInfo
-  );
-  const { currencies, statusCur, curren } = useSelector(
-    (state) => state.currencies
-  );
+  const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector((e) => e.singleInfo);
+  const { currencies, statusCur, curren } = useSelector((state) => state.currencies);
   const dispatch = useDispatch();
+
   const getCurrencies = async () => {
     dispatch(fetchCurrencies());
   };
+
   React.useEffect(() => {
     getCurrencies();
   }, [curren]);
+  
   return (
     <>
       <Heading />

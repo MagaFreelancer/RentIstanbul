@@ -4,8 +4,8 @@ import { setSort } from "../../redux/slices/filterSlice";
 import { useTranslation } from "react-i18next";
 
 export const listSort = [
-  { name: ["from_expensive", "От дешевых к дорогим"], sortProperty: "-price" },
-  { name: ["from_cheap", "От дорогих к дешевым"], sortProperty: "price" }
+  { name: ["from_expensive", "От дешевых к дорогим"], sortProperty: "priceasc" },
+  { name: ["from_cheap", "От дорогих к дешевым"], sortProperty: "pricedesc" }
 ];
 const FilterSort = () => {
   const sortRef = React.useRef();

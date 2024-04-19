@@ -1,11 +1,11 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const getCarsNodFilter = createAsyncThunk(
+export const getFilterCar = createAsyncThunk(
   "cars/fetchCarsStatus",
-  async () => {
+  async (sortProperty) => {
     const { data } = await axios.get(
-      'https://artemwebsites.ru/api/Cars'
+      `https://artemwebsites.ru/api/Cars?sortorder=${sortProperty}`
     );
     return data;
   }
@@ -26,15 +26,15 @@ const carFilterSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getCarsNodFilter.pending, (state) => {
+      .addCase(getFilterCar.pending, (state) => {
         state.status = "loading";
         state.items = [];
       })
-      .addCase(getCarsNodFilter.fulfilled, (state, action) => {
+      .addCase(getFilterCar.fulfilled, (state, action) => {
         state.items = action.payload;
         state.status = "success";
       })
-      .addCase(getCarsNodFilter.rejected, (state) => {
+      .addCase(getFilterCar.rejected, (state) => {
         state.status = "error";
         state.items = [];
       });
