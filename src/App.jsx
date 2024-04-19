@@ -5,7 +5,6 @@ import "./App.scss";
 import Cars from "./pages/Cars";
 import About from "./pages/About";
 import Admin from "./pages/Admin";
-import RequireAuth from "./hoc/RequireAuth";
 
 function App() {
   return (
@@ -16,14 +15,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/cars" element={<Cars />} />
           <Route path="/about" element={<About />} />
-          <Route
-            path="/admin/*"
-            element={
-              <RequireAuth>
-                <Admin />
-              </RequireAuth>
-            }
-          />
+          <Route path="/admin/*" element={<Admin />} />
         </Routes>
       </main>
       <Footer />
