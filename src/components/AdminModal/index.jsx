@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import {
     fetchSingleCar,
     toggleShowModal,
-} from "../../../redux/slices/singleInfoSlice";
+} from "../../redux/slices/singleInfoSlice";
 import { useForm } from "react-hook-form";
 
 const AdminModal = () => {

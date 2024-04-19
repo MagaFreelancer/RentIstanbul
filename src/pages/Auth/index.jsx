@@ -1,12 +1,12 @@
 import React from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, Navigate } from "react-router-dom";
 import $ from "jquery";
 import "./Auth.scss";
 const Auth = () => {
   // const navigate = useNavigate();
-  // const location = useLocation()
+  const location = useLocation();
 
-  // const fromPage = location.state?.from?.pathname || '/'
+  const fromPage = location.state?.from?.pathname || "/";
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
   const host = "https://artemwebsites.ru/";

@@ -27,6 +27,7 @@ import SliderModal from "./SliderModal";
 import ImageModal from "./ImageModal";
 import RequestCar from "./RequestCar";
 import MenuList from "./MenuList";
+import AdminModal from "./AdminModal";
 export {
   Footer,
   Header,
@@ -57,4 +58,5 @@ export {
   ImageModal,
   RequestCar,
   MenuList,
+  AdminModal,
 };
