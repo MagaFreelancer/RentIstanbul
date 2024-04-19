@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 const AdminModal = () => {
     const dispatch = useDispatch();
     const { days, item, id, status } = useSelector((e) => e.singleInfo);
-   
+
     const onSubmit = (data) => {
         console.log(data);
     };
@@ -40,9 +40,13 @@ const AdminModal = () => {
         }
     };
 
-    if(status !== 'success') {
+    if(status !== 'success' && id !== null) {
         return '';
     }
+
+    console.log(id);
+
+    console.log(item);
 
     return (
         <div onClick={(e) => toggleModal(e)} className="modal-wrapper">

@@ -8,7 +8,7 @@ export const fetchSingleCar = createAsyncThunk(
     const { data } = await axios.get(
       `https://artemwebsites.ru/api/Cars/${id}`
     );
-   
+
     return data;
   }
 );

@@ -14,6 +14,7 @@ export const getFilterCar = createAsyncThunk(
 const initialState = {
   items: [],
   status: "loading",
+  currentPage: 1
 };
 
 const carFilterSlice = createSlice({

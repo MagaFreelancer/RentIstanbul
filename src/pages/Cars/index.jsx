@@ -1,6 +1,5 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCars, setCurrentPage } from "../../redux/slices/carSlice";
 import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import qs from "qs";
 import { useNavigate } from "react-router";
@@ -22,6 +21,7 @@ import { listSort } from "../../components/FilterSort";
 import closeIcon from "../../assets/icons/close.svg";
 import Pagination from "../../components/Pagintation";
 import { useTranslation } from "react-i18next";
+import {getFilterCar} from "../../redux/requests/getFilterCar"
 import "./Cars.scss";
 
 const Cars = () => {
@@ -32,7 +32,7 @@ const Cars = () => {
   const navigate = useNavigate();
   const { categoryIds, price, yearCar, engine, box, sort, searchValue } =
     useSelector((e) => e.filter);
-  const { items, status, currentPage } = useSelector((state) => state.car);
+  const { items, status, currentPage } = useSelector((state) => state.filterCars);
   const { currencies, statusCur } = useSelector((state) => state.currencies);
   const [filterOpen, setFilterOpen] = React.useState(false);
   const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const Cars = () => {
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const search = searchValue ? `&search=${searchValue}` : "";
     const currentPage2 = currentPage ? `page=${currentPage}` : "";
-    dispatch(fetchCars({ sortBy, order, search, currentPage2 }));
+    dispatch(getFilterCar(sort.sortProperty));
     dispatch(fetchCurrencies());
   };
 
@@ -92,8 +92,8 @@ const Cars = () => {
     navigate(`?${queryString}`);
   }, [categoryIds, price, yearCar, engine, box, sort.sortProperty]);
 
-  const cars = items.map((obj, index) => (
-    <CarBlock key={index} {...obj} currencies={currencies} />
+  const cars = items.map((obj) => (
+    <CarBlock key={obj.id} obj={obj} currencies={currencies} />
   ));
   const skeletons = [...new Array(9)].map((_, index) => (
     <CarSkeleton key={index} />

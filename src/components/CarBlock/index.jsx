@@ -12,10 +12,9 @@ export default function CarBlock(props) {
   const moneyArr = { RUB: "₽", USD: "$", EUR: "€", TRY: "₺" };
   let money;
   const onClickModal = () => {
-    dispatch(toggleShowModal(true));
     dispatch(setId(props.obj.id));
     document.body.classList.add("modal-open");
-
+    dispatch(toggleShowModal(true));
   };
   
   switch (curren) {
