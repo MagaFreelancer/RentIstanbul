@@ -48,9 +48,12 @@ const Cars = () => {
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const search = searchValue ? `&search=${searchValue}` : "";
     const currentPage2 = currentPage ? `page=${currentPage}` : "";
-    dispatch(getFilterCar(sort.sortProperty));
+    
     dispatch(fetchCurrencies());
+    dispatch(getFilterCar(sort.sortProperty));
   };
+
+  console.log(currencies);
 
   React.useEffect(() => {
     getCars();
@@ -93,7 +96,7 @@ const Cars = () => {
   }, [categoryIds, price, yearCar, engine, box, sort.sortProperty]);
 
   const cars = items.map((obj) => (
-    <CarBlock key={obj.id} obj={obj} currencies={currencies} />
+    <CarBlock key={obj.id} {...obj} currencies={currencies} />
   ));
   const skeletons = [...new Array(9)].map((_, index) => (
     <CarSkeleton key={index} />

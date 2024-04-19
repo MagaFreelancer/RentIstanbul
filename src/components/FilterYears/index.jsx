@@ -15,11 +15,11 @@ const FilterYears = () => {
   const dispatch = useDispatch();
   const [searchValue, setSearchValue] = React.useState("");
   
-  
   const onClickClear = () => {
     setSearchValue("");
     inputRef.current.focus();
   };
+  
   return (
     <div className="cars__years">
       <h2 className="cars__years-title">{t("year_issue")}</h2>

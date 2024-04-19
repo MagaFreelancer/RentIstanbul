@@ -25,7 +25,7 @@ const Admin = () => {
     }, [sortProperty]);
 
     const cars = items.map((obj) => (
-        <CarBlock key={obj.id} obj={obj} currencies={currencies} />
+        <CarBlock key={obj.id} {...obj} currencies={currencies} />
     ));
 
     const skeletons = [...new Array(9)].map((_, index) => (

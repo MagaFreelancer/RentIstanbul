@@ -43,11 +43,6 @@ const AdminModal = () => {
     if(status !== 'success' && id !== null) {
         return '';
     }
-
-    console.log(id);
-
-    console.log(item);
-
     return (
         <div onClick={(e) => toggleModal(e)} className="modal-wrapper">
             <div className="modal">

@@ -17,23 +17,22 @@ export default function SliderBlocks({ category }) {
   const { currencies, statusCur, curren } = useSelector((state) => state.currencies);
   const { items, status } = useSelector((state) => state.cars);
   const dispatch = useDispatch();
-
+ 
   const getCars = async () => {
-    dispatch(getCarsNodFilter());
     dispatch(fetchCurrencies());
+    dispatch(getCarsNodFilter());
   };
 
   React.useEffect(() => {
     getCars();
   }, [curren]);
-
-
+  
   const cars = items
     .filter((item) => item.category === params[category][0])
     .slice(0, 4)
     .map((obj) => (
-      <CarBlock key={obj.id} obj={obj} currencies={currencies} />
-    ));
+      <CarBlock key={obj.id} {...obj} />
+  ));
 
   const skeletons = [...new Array(4)].map((_, index) => (
     <CarSkeleton key={index} />
