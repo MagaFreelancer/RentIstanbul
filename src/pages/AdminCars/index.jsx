@@ -1,9 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { CarBlock, CarSkeleton, FilterBox, FilterCategories, FilterEngine, FilterPrice, FilterSort, FilterYears, ImageModal, Search, SinglePageModal } from "../../components";
+import {AdminModal, CarBlock, CarSkeleton, FilterBox, FilterCategories, FilterEngine, FilterPrice, FilterSort, FilterYears, ImageModal, Search, SinglePageModal } from "../../components";
 import closeIcon from "../../assets/icons/close.svg";
 import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
-import AdminModal from "./AdminModal";
 import { getFilterCar } from "../../redux/requests/getFilterCar";
 
 

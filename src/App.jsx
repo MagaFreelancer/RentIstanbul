@@ -4,7 +4,7 @@ import { Header, Footer } from "./components";
 import "./App.scss";
 import Cars from "./pages/Cars";
 import About from "./pages/About";
-import Admin from "./pages/Admin";
+import Admin from "./pages/AdminCars";
 
 function App() {
   return (
