@@ -3,11 +3,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchSingleCar = createAsyncThunk(
   "singleInfo/fetchSingleInfoStatus",
-  async (params) => {
-    const id = params;
-    const { data } = await axios.get(
-      `https://artemwebsites.ru/api/Cars/${id}`
-    );
+  async (id) => {
+    const { data } = await axios.get(`https://artemwebsites.ru/api/Cars/${id}`);
 
     return data;
   }

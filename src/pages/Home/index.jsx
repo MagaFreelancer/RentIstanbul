@@ -33,7 +33,7 @@ export default function Home() {
       <SliderBlocks category={2} />
 
       <Advantages />
-      <Reviews />
+      {/* <Reviews /> */}
       <FAQ />
       {showModal && <SinglePageModal />}
       {showSlider && (

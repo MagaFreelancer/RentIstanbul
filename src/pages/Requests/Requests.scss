@@ -1,0 +1,72 @@
+.requests {
+    padding: 20px 0 40px;
+    &__heading {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        margin-bottom: 40px;
+    }
+    &__list {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    &__item {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        max-width: 300px;
+        height: 350px;
+        position: relative;
+        &:hover {
+            .requests__col {
+                opacity: 1;
+                pointer-events: all;
+            }
+        }
+    }
+    &__img {
+        margin-bottom: 20px;
+        img {
+            width: 100%;
+            object-fit: cover;
+        }
+    }
+    &__name {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 10px;
+    }
+    &__info {
+        font-size: 14px;
+        color: var(--lightColor);
+    }
+    &__col {
+        padding: 20px;
+        position: absolute;
+        height: 100%;
+        background-color: #ffffff;
+
+        &--car {
+            padding: 0;
+            max-width: 280px;
+            width: 100%;
+        }
+        &--info {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease-in-out;
+        }
+    }
+    &__fullname {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+    &__userinfo {
+        font-size: 14px;
+        color: var(--lightColor);
+    }
+    &__comment {
+        margin-top: 10px;
+        font-size: 14px;
+    }
+}

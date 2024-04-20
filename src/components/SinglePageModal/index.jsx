@@ -35,7 +35,7 @@ const SinglePageModal = () => {
     reset();
   }; // при нажатии на отправить
 
-  const moneyArr = { RUB: "₽", USD: "$", TRY: "₺",  EUR: "€"};
+  const moneyArr = { RUB: "₽", USD: "$", TRY: "₺", EUR: "€" };
   let money;
   let depo;
   let placePrice;

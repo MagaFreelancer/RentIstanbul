@@ -17,12 +17,17 @@ import {
   ImageModal,
 } from "../../components";
 import { setFilters } from "../../redux/slices/filterSlice";
-import { listSort } from "../../components/FilterSort";
 import closeIcon from "../../assets/icons/close.svg";
 import Pagination from "../../components/Pagintation";
 import { useTranslation } from "react-i18next";
 import {getFilterCar} from "../../redux/requests/getFilterCar"
+import { setSort } from "../../redux/slices/filterSlice";
 import "./Cars.scss";
+
+const listSort = [
+  { name: ["from_expensive", "От дешевых к дорогим"], sortProperty: "-price" },
+  { name: ["from_cheap", "От дорогих к дешевым"], sortProperty: "price" },
+];
 
 const Cars = () => {
   const { t } = useTranslation();
@@ -37,6 +42,10 @@ const Cars = () => {
   const [filterOpen, setFilterOpen] = React.useState(false);
   const dispatch = useDispatch();
 
+  const sortActiveObj = useSelector((e) => e.filter.sort); //для obj для sortFilter
+  const onChangeSort = (obj) => {
+    dispatch(setSort(obj));
+  };
   if (filterOpen) {
     document.body.classList.add("body-scroll");
   } else {
@@ -206,7 +215,11 @@ const Cars = () => {
             <div className="cars__top">
               <div className="cars__heading">
                 <h1 className="cars__name">{t("header_cars")}</h1>
-                <FilterSort />
+                <FilterSort
+                  sortActiveObj={sortActiveObj}
+                  listSort={listSort}
+                  onChangeSort={(value) => onChangeSort(value)}
+                />
               </div>
               <Search />
 
