@@ -30,7 +30,7 @@ const initialState = {
   ],
   box: 0,
   sort: {
-    name: ["from_expensive", "От дешевых к дорогим"],
+    name: "От дешевых к дорогим",
     sortProperty: "default",
   },
 };

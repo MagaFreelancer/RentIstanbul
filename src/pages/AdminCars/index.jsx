@@ -17,13 +17,14 @@ import closeIcon from "../../assets/icons/close.svg";
 import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import { getFilterCar } from "../../redux/requests/getFilterCar";
 import { setSort } from "../../redux/slices/filterSlice";
+
 export const listSort = [
-  { name: ["from_expensive", "По умолчанию"], sortProperty: "default" },
+  { name: "По умолчанию", sortProperty: "default" },
   {
-    name: ["from_expensive", "От дешевых к дорогим"],
+    name: "От дешевых к дорогим",
     sortProperty: "priceasc",
   },
-  { name: ["from_cheap", "От дорогих к дешевым"], sortProperty: "pricedesc" },
+  { name: "От дорогих к дешевым", sortProperty: "pricedesc" },
 ];
 
 const AdminCars = () => {
@@ -89,7 +90,10 @@ const AdminCars = () => {
               <div className="cars__heading">
                 <h1 className="cars__name">Машины</h1>
                 <FilterSort
-                  sortActiveObj={name}
+                  sortActiveObj={{
+                    sortProperty,
+                    name,
+                  }}
                   listSort={listSort}
                   onChangeSort={(value) => onChangeSort(value)}
                 />
