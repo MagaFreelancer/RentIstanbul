@@ -6,7 +6,7 @@ import { fetchCurrencies } from "../../redux/slices/currenciesSlice";
 import { getFilterCar } from "../../redux/requests/getFilterCar";
 
 
-const Admin = () => {
+const AdminCars = () => {
     const dispatch = useDispatch();
     const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector((e) => e.singleInfo);
     const [filterOpen, setFilterOpen] = React.useState(false);
@@ -94,4 +94,4 @@ const Admin = () => {
     );
 };
 
-export default Admin;
+export default AdminCars;
