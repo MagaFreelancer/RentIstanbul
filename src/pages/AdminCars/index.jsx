@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   AdminModal,
@@ -29,6 +30,7 @@ export const listSort = [
 
 const AdminCars = () => {
   const dispatch = useDispatch();
+
   const { showModal, showSlider, sliderIndex, sliderImgs } = useSelector(
     (e) => e.singleInfo
   );
@@ -55,7 +57,72 @@ const AdminCars = () => {
   const skeletons = [...new Array(9)].map((_, index) => (
     <CarSkeleton key={index} />
   ));
-
+  function onClickDelete() {
+    const host = "https://artemwebsites.ru/";
+    const deleteUrl = host + "api/cars/3";
+    const token = localStorage.getItem("tokenInfo");
+    console.log(token);
+    // if (email == "" || password == "") {
+    //   return console.log("неправильные данные");
+    // } else {
+    //   let loginData = {
+    //     email,
+    //     password,
+    //   };
+    axios
+      .delete(deleteUrl, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then(function (response) {
+        if (response.status === 204) {
+          console.log("Успешно удалено");
+        } else {
+          console.log("Успех!", response.data);
+        }
+      })
+      .catch(function (error) {
+        console.error("Ошибка!", error);
+      });
+  }
+  function onClickAdd() {
+    const host = "https://artemwebsites.ru";
+    const addUrl = host + "/api/cars";
+    const token = localStorage.getItem("tokenInfo");
+    const data = {
+      imageUrl:
+        "https://i.pinimg.com/736x/0e/55/78/0e5578828e707e5039e111d1f234e745.jpg",
+      box: "automatic",
+      volume: "1.3",
+      date: 2015,
+      engine: "Дзиель",
+      title: "МашЫна",
+      price: 777,
+      category: "string",
+      place: "4",
+      imgs: ["https://99px.ru/sstorage/53/2021/12/mid_337638_766538.jpg","https://i.pinimg.com/originals/45/b3/13/45b313a119fb52694be563b6131947b3.png"],
+    };
+    // if (email == "" || password == "") {
+    //   return console.log("неправильные данные");
+    // } else {
+    //   let loginData = {
+    //     email,
+    //     password,
+    //   };
+    axios
+      .post(addUrl, data, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then(function (response) {
+        console.log("Успешно добавлено или отправлено:", response.data);
+      })
+      .catch(function (error) {
+        console.error("Ошибка при добавлении или отправке:", error);
+      });
+  }
   return (
     <>
       <section className="cars">
@@ -89,6 +156,8 @@ const AdminCars = () => {
             <div className="cars__top">
               <div className="cars__heading">
                 <h1 className="cars__name">Машины</h1>
+                <button onClick={onClickDelete}>удалить </button>
+                <button onClick={onClickAdd}>добавить </button>
                 <FilterSort
                   sortActiveObj={{
                     sortProperty,
