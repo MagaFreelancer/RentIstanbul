@@ -43,6 +43,22 @@
             }
         }
     }
+    &__block-button {
+        display: flex;
+        justify-content: space-between;
+    }
+    &__delete-button {
+        padding: 5px 10px;
+        background-color: #49d0ff;
+        border: 1px solid #aaa9a7;
+        color: #fff;
+    }
+    &__change-button {
+        padding: 5px 10px;
+        background-color: #49d0ff;
+        border: 1px solid #aaa9a7;
+        color: #fff;
+    }
     &__inner-close {
         position: absolute;
         width: 30px;

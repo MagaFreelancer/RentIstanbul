@@ -14,6 +14,7 @@ const initialState = {
   id: null,
   days: 1,
   showModal: false,
+  statusAdmin: 'add', //add | added
   showSlider: false,
   sliderImgs: [],
   sliderIndex: [],

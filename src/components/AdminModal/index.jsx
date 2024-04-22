@@ -5,14 +5,37 @@ import {
     toggleShowModal,
 } from "../../redux/slices/singleInfoSlice";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { getCarsNodFilter } from "../../redux/requests/getCars";
 
 const AdminModal = () => {
     const dispatch = useDispatch();
     const { days, item, id, status } = useSelector((e) => e.singleInfo);
+    const { showModal } = useSelector((state) => state.singleInfo);
 
-    const onSubmit = (data) => {
-        console.log(data);
+    const removeCar = (event) => {
+        event.preventDefault();
+
+        const host = "https://artemwebsites.ru/";
+        const deleteUrl = host + `api/Cars/${id}`;
+        const token = localStorage.getItem("tokenInfo");
+      
+        axios
+            .delete(deleteUrl, {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            })
+            .then(function () {
+                dispatch(toggleShowModal(false));
+                document.body.classList.remove("modal-open");
+            })
+            .catch(function (error) {
+                console.error("Ошибка!", error);
+        });
     };
+
+    console.log(item);
 
     const {
         register,
@@ -40,7 +63,7 @@ const AdminModal = () => {
         }
     };
 
-    if(status !== 'success' && id !== null) {
+    if (status !== 'success' && id !== null) {
         return '';
     }
     return (
@@ -51,7 +74,7 @@ const AdminModal = () => {
                         <path d="m137.051 128 75.475-75.475c2.5-2.5 2.5-6.551 0-9.051s-6.551-2.5-9.051 0L128 118.949 52.525 43.475c-2.5-2.5-6.551-2.5-9.051 0s-2.5 6.551 0 9.051L118.949 128l-75.475 75.475a6.399 6.399 0 0 0 4.525 10.926 6.38 6.38 0 0 0 4.525-1.875L128 137.051l75.475 75.475c1.25 1.25 2.888 1.875 4.525 1.875s3.275-.625 4.525-1.875c2.5-2.5 2.5-6.551 0-9.051L137.051 128z" fill="#ffffff" className="fill-000000"></path>
                     </svg>
                 </div>
-                <form onSubmit={handleSubmit(onSubmit)}>
+                <form>
                     <h3 className="modal__title">MG 5</h3>
                     <h4 className="modal__heading">Характеристики</h4>
                     <ul className="modal__info">
@@ -59,66 +82,41 @@ const AdminModal = () => {
                             <div className="modal__info-heading">
                                 Коробка передач
                             </div>
-                            <input className="modal__info-input" type="input" defaultValue={item.title} 
-                                {...register('title', {
-                                    required: 'Пожалуйста, заполните поле',
-                                    minLength: {
-                                        value: 4,
-                                        message: 'миниму 4 символов'
-                                    }
-                                })} 
+                            <input className="modal__info-input" type="input" defaultValue={item.title}
+
                             />
                         </li>
                         <li className="modal__info-item">
                             <div className="modal__info-heading">Двигатель</div>
-                            <input className="modal__info-input" type="input" defaultValue={item.volume} 
-                                {...register('engine', {
-                                    required: 'Пожалуйста, заполните поле',
-                                    minLength: {
-                                        value: 2,
-                                        message: 'миниму 4 символов'
-                                    }
-                                })} 
+                            <input className="modal__info-input" type="input" defaultValue={item.volume}
+
                             />
                         </li>
                         <li className="modal__info-item">
                             <div className="modal__info-heading">Год выпуска</div>
-                            <input className="modal__info-input" type="input" defaultValue={item.date} 
-                                {...register('date', {
-                                    required: 'Пожалуйста, заполните поле',
-                                    minLength: {
-                                        value: 4,
-                                        message: 'миниму 4 символов'
-                                    }
-                                })} 
+                            <input className="modal__info-input" type="input" defaultValue={item.date}
+
                             />
                         </li>
                         <li className="modal__info-item">
                             <div className="modal__info-heading">Топливо</div>
-                            <input className="modal__info-input" type="input" defaultValue={item.engine} 
-                                {...register('engine', {
-                                    required: 'Пожалуйста, заполните поле',
-                                    minLength: {
-                                        value: 3,
-                                        message: 'миниму 4 символов'
-                                    }
-                                })} 
+                            <input className="modal__info-input" type="input" defaultValue={item.engine}
+
                             />
                         </li>
                         <li className="modal__info-item">
                             <div className="modal__info-heading">Цена</div>
-                            <input className="modal__info-input" type="input" defaultValue={item.price} 
-                                {...register('price', {
-                                    required: 'Пожалуйста, заполните поле',
-                                    minLength: {
-                                        value: 2,
-                                        message: 'миниму 4 символов'
-                                    }
-                                })} 
+                            <input className="modal__info-input" type="input" defaultValue={item.price}
+
                             />
                         </li>
                     </ul>
-                    <input type="submit" />
+
+                    <div className="modal__block-button">
+                        <button className="modal__change-button">Изменить</button>
+                        <button onClick={(event) => removeCar(event)} className="modal__delete-button">Delete car</button>
+                    </div>
+
                 </form>
             </div>
         </div>
