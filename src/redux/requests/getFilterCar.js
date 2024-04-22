@@ -3,10 +3,11 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getFilterCar = createAsyncThunk(
   "cars/fetchCarsStatus",
-  async (sortProperty) => {
+  async ({sortProperty, searchValue}) => {
     const { data } = await axios.get(
-      `https://artemwebsites.ru/api/Cars?sortorder=${sortProperty}`
+      `https://artemwebsites.ru/api/Cars?sortorder=${sortProperty}&title=${searchValue}`
     );
+    
     return data;
   }
 );

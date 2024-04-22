@@ -80,7 +80,7 @@ const AdminModal = () => {
                     <ul className="modal__info">
                         <li className="modal__info-item">
                             <div className="modal__info-heading">
-                                Коробка передач
+                                Машина
                             </div>
                             <input className="modal__info-input" type="input" defaultValue={item.title}
 

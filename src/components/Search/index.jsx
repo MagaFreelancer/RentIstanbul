@@ -9,8 +9,11 @@ const Search = () => {
   const inputRef = React.useRef();
   const dispatch = useDispatch();
 
+  
+
   const updateSearchValue = React.useCallback(
     debounce((value) => {
+      console.log(value);
       dispatch(setSearchValue(value));
     }, 1000),
     []
@@ -25,7 +28,6 @@ const Search = () => {
     inputRef.current.focus();
   };
 
-  React.useEffect(() => {}, []);
   return (
     <div className="cars__top-search">
       <input

@@ -11,6 +11,7 @@ const initialState = {
   ],
   price: [350, 650],
   yearCar: 2012,
+  brandCar: '',
   engine: [
     {
       sortProperty: "petrol",

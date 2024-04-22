@@ -23,10 +23,12 @@ import { useTranslation } from "react-i18next";
 import { getFilterCar } from "../../redux/requests/getFilterCar";
 import { setSort } from "../../redux/slices/filterSlice";
 import "./Cars.scss";
+import FilterBrand from "../../components/FilterBrand";
 
 const listSort = [
-  { name: ["from_expensive", "От дешевых к дорогим"], sortProperty: "-price" },
-  { name: ["from_cheap", "От дорогих к дешевым"], sortProperty: "price" },
+  { name: "По умолчаию", sortProperty: "default" },
+  { name: "От дешевых к дорогим", sortProperty: "priceasc" },
+  { name: "От дорогих к дешевым", sortProperty: "pricedesc" }
 ];
 
 const Cars = () => {
@@ -61,10 +63,8 @@ const Cars = () => {
     const currentPage2 = currentPage ? `page=${currentPage}` : "";
 
     dispatch(fetchCurrencies());
-    dispatch(getFilterCar(sort.sortProperty));
+    dispatch(getFilterCar({sortProperty: sort.sortProperty, searchValue}));
   };
-
-  console.log(currencies);
 
   React.useEffect(() => {
     getCars();
@@ -123,6 +123,7 @@ const Cars = () => {
             }`}
           >
             <FilterPrice />
+            <FilterBrand/>
             <FilterYears />
             <FilterBox />
             <FilterEngine />

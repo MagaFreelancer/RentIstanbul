@@ -22,10 +22,7 @@ import "./AdminCars.scss";
 
 export const listSort = [
   { name: "По умолчанию", sortProperty: "default" },
-  {
-    name: "От дешевых к дорогим",
-    sortProperty: "priceasc",
-  },
+  { name: "От дешевых к дорогим", sortProperty: "priceasc"},
   { name: "От дорогих к дешевым", sortProperty: "pricedesc" },
 ];
 
@@ -38,10 +35,12 @@ const AdminCars = () => {
   const [filterOpen, setFilterOpen] = React.useState(false);
   const { currencies, statusCur } = useSelector((state) => state.currencies);
   const { sortProperty, name } = useSelector((e) => e.filter.sort);
+  const { searchValue } = useSelector((e) => e.filter);
   const { items, status } = useSelector((state) => state.filterCars);
 
   const getCars = async () => {
-    dispatch(getFilterCar(sortProperty));
+    console.log(items);
+    dispatch(getFilterCar({sortProperty, searchValue}));
     dispatch(fetchCurrencies());
   };
   const onChangeSort = (obj) => {
@@ -49,7 +48,7 @@ const AdminCars = () => {
   };
   React.useEffect(() => {
     getCars();
-  }, [sortProperty]);
+  }, [sortProperty, searchValue]);
 
   const cars = items.map((obj) => (
     <CarBlock key={obj.id} {...obj} currencies={currencies} />
