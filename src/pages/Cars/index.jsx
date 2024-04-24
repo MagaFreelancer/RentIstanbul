@@ -24,6 +24,7 @@ import { getFilterCar } from "../../redux/requests/getFilterCar";
 import { setSort } from "../../redux/slices/filterSlice";
 import "./Cars.scss";
 import FilterBrand from "../../components/FilterBrand";
+import EmptyCars from "../../components/EmptyCars";
 
 const listSort = [
   { name: "По умолчаию", sortProperty: "default" },
@@ -61,14 +62,15 @@ const Cars = () => {
     const order = sort.sortProperty.includes("-") ? "asc" : "desc";
     const search = searchValue ? `&search=${searchValue}` : "";
     const currentPage2 = currentPage ? `page=${currentPage}` : "";
+    const sortBox = box === 'any' ? '' : box;
 
     dispatch(fetchCurrencies());
-    dispatch(getFilterCar({sortProperty: sort.sortProperty, searchValue}));
+    dispatch(getFilterCar({sortProperty: sort.sortProperty, searchValue, sortBox}));
   };
 
   React.useEffect(() => {
     getCars();
-  }, [searchValue, sort, currentPage]);
+  }, [searchValue, sort, currentPage, box]);
 
   React.useEffect(() => {
     if (window.location.search) {
@@ -90,7 +92,8 @@ const Cars = () => {
           active: JSON.parse(item.active),
         };
       });
-      dispatch(setFilters({ ...params, sort, engine, price, categoryIds }));
+
+      dispatch(setFilters({ ...params, sort, engine, price, categoryIds, box }));
     }
   }, []);
 
@@ -112,6 +115,8 @@ const Cars = () => {
   const skeletons = [...new Array(9)].map((_, index) => (
     <CarSkeleton key={index} />
   ));
+  const emptyCar = cars.length <= 0 ? <EmptyCars/> : '';
+  const togglePagin = cars.length >= 1 ? <Pagination onChangePage={(number) => dispatch(setCurrentPage(number))}/> : '';
 
   return (
     <>
@@ -162,11 +167,11 @@ const Cars = () => {
                 {status === "success" && statusCur === "success"
                   ? cars
                   : skeletons}
+                   
               </ul>
+              {emptyCar}
             </div>
-            <Pagination
-              onChangePage={(number) => dispatch(setCurrentPage(number))}
-            />
+            {togglePagin}
           </main>
         </div>
       </section>
@@ -179,3 +184,5 @@ const Cars = () => {
 };
 
 export default Cars;
+
+

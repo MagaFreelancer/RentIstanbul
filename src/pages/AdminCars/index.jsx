@@ -35,12 +35,13 @@ const AdminCars = () => {
   const [filterOpen, setFilterOpen] = React.useState(false);
   const { currencies, statusCur } = useSelector((state) => state.currencies);
   const { sortProperty, name } = useSelector((e) => e.filter.sort);
-  const { searchValue } = useSelector((e) => e.filter);
+  const { searchValue, box } = useSelector((e) => e.filter);
   const { items, status } = useSelector((state) => state.filterCars);
 
   const getCars = async () => {
-    console.log(items);
-    dispatch(getFilterCar({sortProperty, searchValue}));
+    const sortBox = box === 'any' ? '' : box;
+
+    dispatch(getFilterCar({sortProperty, searchValue, sortBox}));
     dispatch(fetchCurrencies());
   };
   const onChangeSort = (obj) => {

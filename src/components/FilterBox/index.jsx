@@ -7,7 +7,7 @@ const FilterBox = () => {
   const gear = useSelector((e) => e.filter.box);
   const dispatch = useDispatch();
   const gearboxs = [
-    { gearbox: "any", title: "Любая" },
+    { gearbox: 'any', title: "Любая" },
     { gearbox: "mechanical", title: "Механика" },
     { gearbox: "automatic", title: "Автомат" },
   ];
@@ -21,18 +21,18 @@ const FilterBox = () => {
             <li className="cars__gearbox" key={index}>
               <label className="cars__radio-label" htmlFor={obj.gearbox}>
                 <input
-                  onChange={() => dispatch(setBox(index))}
+                  onChange={() => dispatch(setBox(obj.gearbox))}
                   className={`cars__gearbox-radio ${
-                    gear == index ? "cars__gearbox-radio--active" : ""
+                    gear == obj.gearbox ? "cars__gearbox-radio--active" : ""
                   }`}
                   id={obj.gearbox}
                   type="radio"
                   value={obj.gearbox}
                   name="gearbox"
-                  checked={gear === index && true}
+                  checked={gear === obj.gearbox && true}
                 />
                 <span className="cars__radio-custom"></span>
-                {t(obj.gearbox)}
+                {obj.title}
               </label>
             </li>
           );

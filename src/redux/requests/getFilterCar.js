@@ -3,9 +3,9 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
 export const getFilterCar = createAsyncThunk(
   "cars/fetchCarsStatus",
-  async ({sortProperty, searchValue}) => {
+  async ({sortProperty, searchValue, sortBox}) => {
     const { data } = await axios.get(
-      `https://artemwebsites.ru/api/Cars?sortorder=${sortProperty}&title=${searchValue}`
+      `https://artemwebsites.ru/api/Cars?sortorder=${sortProperty}&title=${searchValue}&box=${sortBox}`
     );
     
     return data;

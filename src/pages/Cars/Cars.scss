@@ -3,6 +3,9 @@
     &__container {
         display: flex;
     }
+    &__main {
+        width: 100%;
+    }
     &__heading {
         display: flex;
         align-items: center;

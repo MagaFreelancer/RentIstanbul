@@ -1,0 +1,11 @@
+.empty {
+    text-align: center;
+    
+    &__img {
+        max-width: 270px;
+        max-height: 270px;
+    }
+    &__title {
+        line-height: 35px;
+    }
+}

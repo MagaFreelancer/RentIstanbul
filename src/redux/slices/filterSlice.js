@@ -11,7 +11,7 @@ const initialState = {
   ],
   price: [350, 650],
   yearCar: 2012,
-  brandCar: '',
+  brandCar: 'any',
   engine: [
     {
       sortProperty: "petrol",
@@ -29,7 +29,7 @@ const initialState = {
       checked: false,
     },
   ],
-  box: 0,
+  box: 'any',
   sort: {
     name: "От дешевых к дорогим",
     sortProperty: "default",
@@ -45,6 +45,9 @@ const filterSlice = createSlice({
     },
     setSearchValue(state, action) {
       state.searchValue = action.payload;
+    },
+    setBrandCar(state, action) {
+      state.brandCar = action.payload
     },
     setSort(state, action) {
       state.sort = action.payload;
@@ -84,6 +87,7 @@ export const {
   setYearCar,
   setEngine,
   setBox,
+  setBrandCar
 } = filterSlice.actions;
 
 export default filterSlice.reducer;
