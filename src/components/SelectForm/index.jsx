@@ -30,6 +30,7 @@ const SelectForm = ({  setPlace, register, errors }) => {
             padding: 4,
           }),
         }}
+        defaultValue={options[1]}
         options={options}
         onChange={(e) => handleChange(e)}
       />

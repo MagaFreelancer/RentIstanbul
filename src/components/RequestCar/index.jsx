@@ -17,6 +17,16 @@ const RequestCar = ({
   img,
   depo,
 }) => {
+  let dayDate = new Date(dateBirth).getDay();
+  let monthDate = new Date(dateBirth).getMonth();
+  let yearDate = new Date(dateBirth).getFullYear();
+  if (dayDate < 10) {
+    dayDate = "0" + dayDate;
+  }
+  if (monthDate < 10) {
+    monthDate = "0" + monthDate;
+  }
+const number = String(totalPrice).split('.').join('')
   return (
     <li className="requests__item">
       <div className="requests__col requests__col--car">
@@ -25,7 +35,7 @@ const RequestCar = ({
         </div>
         <div className="requests__autoinfo">
           <div className="requests__name">{title}</div>
-          <div className="requests__info">цена: {totalPrice / days}</div>
+          <div className="requests__info">цена: {Number(number) / days}</div>
           <div className="requests__info">Срок: {days} дней</div>
           <div className="requests__info">Депозит: {depo}</div>
           <div className="requests__info">Итого: {totalPrice}</div>
@@ -36,7 +46,9 @@ const RequestCar = ({
           <div className="requests__fullname">ФИО: {fullName}</div>
           <div className="requests__userinfo">Почта: {email}</div>
           <div className="requests__userinfo">Контакты: {numberPhone}</div>
-          <div className="requests__userinfo">Дата рождения:{dateBirth}</div>
+          <div className="requests__userinfo">
+            Дата рождения:{dayDate}.{monthDate}.{yearDate}
+          </div>
           <div className="requests__comment">{comment}</div>
         </div>
       </div>

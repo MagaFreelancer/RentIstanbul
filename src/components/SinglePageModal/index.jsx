@@ -102,20 +102,24 @@ const SinglePageModal = () => {
   };
   const onSubmit = (data) => {
     const { tel, ...data1 } = data;
+    delete data1.tel;
+    delete data1.place;
+
     const validateData = {
       ...data1,
+      dateBirth: new Date(data1.dateBirth),
+      address: data1.address ? data1.address : "Забрать из офиса",
       numberPhone: tel,
       id: item.id,
-      depo: item.depo ? item.depo : 0,
-      img: item.mainImg,
-      title: item.title,
-      year: item.year,
-      totalPrice: allPriceFormatted,
+      depo: item.depo ? Number(item.depo) : 0,
+      img: String(item.mainImg),
+      title: String(item.title),
+      year: Number(item.year),
+      totalPrice: String(allPriceFormatted),
       applicationDate: new Date(),
     };
-    console.log(validateData);
 
-    // sendOrder(data);
+    sendOrder(validateData);
     reset();
   }; // при нажатии на отправить
   const toggleModal = (e) => {
