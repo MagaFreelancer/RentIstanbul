@@ -1,5 +1,5 @@
 import React from "react";
-
+import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSingleCar,
@@ -32,6 +32,9 @@ const SinglePageModal = () => {
     },
   }); //Для собрании данных фреймворк react-hook
   const onSubmit = (data) => {
+    console.log(data);
+
+    // sendOrder(data);
     reset();
   }; // при нажатии на отправить
 
@@ -114,7 +117,25 @@ const SinglePageModal = () => {
       document.body.classList.remove("modal-open");
     }
   };
+  function sendOrder(data) {
+    const host = "https://artemwebsites.ru";
+    const addUrl = host + "/orders";
+    const token = localStorage.getItem("tokenInfo");
+    const validateData = null;
 
+    axios
+      .post(addUrl, data, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then(function (response) {
+        console.log("Успешно добавлено или отправлено:", response.data);
+      })
+      .catch(function (error) {
+        console.error("Ошибка при добавлении или отправке:", error);
+      });
+  }
   React.useEffect(() => {
     getSingleCar();
   }, []);

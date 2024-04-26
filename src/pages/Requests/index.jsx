@@ -1,12 +1,14 @@
 import React from "react";
 import { FilterSort, RequestCar } from "../../components";
 import "./Requests.scss";
+import axios from "axios";
 
 const listSort = [
   { name: "От дешевых к дорогим", sortProperty: "-price" },
   { name: "От дорогих к дешевым", sortProperty: "price" },
 ];
 const Requests = () => {
+  const [requests, setRequests] = React.useState([]);
   const [sortActiveObj, setSortActiveObj] = React.useState({
     name: "От дешевых к дорогим",
     sortProperty: "-price",
@@ -14,6 +16,18 @@ const Requests = () => {
   const onChangeSort = (obj) => {
     setSortActiveObj(obj);
   };
+  async function getRequests() {
+    const token = localStorage.getItem("tokenInfo");
+    const { data } = await axios.get("https://artemwebsites.ru/orders/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setRequests(data);
+  }
+  React.useEffect(() => {
+    getRequests();
+  }, []);
   return (
     <div className="requests">
       <div className="container requests__container">
@@ -26,9 +40,9 @@ const Requests = () => {
           />
         </div>
         <ul className="requests__list">
-          <RequestCar />
-          <RequestCar />
-          <RequestCar />
+          {requests.map((item, index) => (
+            <RequestCar key={index} {...item} />
+          ))}
         </ul>
       </div>
     </div>

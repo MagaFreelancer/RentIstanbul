@@ -58,6 +58,35 @@ const AdminCars = () => {
   const skeletons = [...new Array(9)].map((_, index) => (
     <CarSkeleton key={index} />
   ));
+  function onClickDelete() {
+    const host = "https://artemwebsites.ru/";
+    const deleteUrl = host + "api/cars/3";
+    const token = localStorage.getItem("tokenInfo");
+    console.log(token);
+    // if (email == "" || password == "") {
+    //   return console.log("неправильные данные");
+    // } else {
+    //   let loginData = {
+    //     email,
+    //     password,
+    //   };
+    axios
+      .delete(deleteUrl, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then(function (response) {
+        if (response.status === 204) {
+          console.log("Успешно удалено");
+        } else {
+          console.log("Успех!", response.data);
+        }
+      })
+      .catch(function (error) {
+        console.error("Ошибка!", error);
+      });
+  }
   function onClickAdd() {
     const host = "https://artemwebsites.ru";
     const addUrl = host + "/api/cars";
