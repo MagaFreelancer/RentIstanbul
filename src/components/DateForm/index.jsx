@@ -13,7 +13,7 @@ const DateForm = ({ register, errors }) => {
     >
       <span className="modal__form-place">Дата рождения</span>
       <input
-        {...register("date", {
+        {...register("dateBirth", {
           required: "Пожалуйста, заполните поля",
 
           validate: isFutureDate,

@@ -31,12 +31,6 @@ const SinglePageModal = () => {
       place: "Из офиса забрать",
     },
   }); //Для собрании данных фреймворк react-hook
-  const onSubmit = (data) => {
-    console.log(data);
-
-    // sendOrder(data);
-    reset();
-  }; // при нажатии на отправить
 
   const moneyArr = { RUB: "₽", USD: "$", TRY: "₺", EUR: "€" };
   let money;
@@ -106,7 +100,24 @@ const SinglePageModal = () => {
       handleSubmit(onSubmit)();
     }
   };
+  const onSubmit = (data) => {
+    const { tel, ...data1 } = data;
+    const validateData = {
+      ...data1,
+      numberPhone: tel,
+      id: item.id,
+      depo: item.depo ? item.depo : 0,
+      img: item.mainImg,
+      title: item.title,
+      year: item.year,
+      totalPrice: allPriceFormatted,
+      applicationDate: new Date(),
+    };
+    console.log(validateData);
 
+    // sendOrder(data);
+    reset();
+  }; // при нажатии на отправить
   const toggleModal = (e) => {
     if (
       e.target.classList.contains("modal-wrapper") ||
@@ -121,7 +132,6 @@ const SinglePageModal = () => {
     const host = "https://artemwebsites.ru";
     const addUrl = host + "/orders";
     const token = localStorage.getItem("tokenInfo");
-    const validateData = null;
 
     axios
       .post(addUrl, data, {
@@ -195,25 +205,25 @@ const SinglePageModal = () => {
             >
               <h3 className="modal__title">{item.title}</h3>
               <div className="modal__img-adap">
-                <img src={item.imageUrl} alt="car" />
+                <img src={item.mainImg} alt="car" />
               </div>
               <h4 className="modal__heading">{t("characteristics")}</h4>
               <ul className="modal__info">
                 <li className="modal__info-item">
                   <div className="modal__info-heading">{t("transmission")}</div>
-                  <div className="modal__info-text">{item.box}</div>
+                  <div className="modal__info-text">{item.transmission}</div>
                 </li>
                 <li className="modal__info-item">
                   <div className="modal__info-heading">{t("engine")}</div>
-                  <div className="modal__info-text">{item.volume} л</div>
+                  <div className="modal__info-text">{item.engine} л</div>
                 </li>
                 <li className="modal__info-item">
                   <div className="modal__info-heading">{t("year_issue")}</div>
-                  <div className="modal__info-text">{item.date}.</div>
+                  <div className="modal__info-text">{item.year}.</div>
                 </li>
                 <li className="modal__info-item">
                   <div className="modal__info-heading">{t("fuel")}</div>
-                  <div className="modal__info-text">{item.engine}</div>
+                  <div className="modal__info-text">{item.engineType}</div>
                 </li>
               </ul>
               <SliderModal imgs={item.imgs} />
@@ -234,7 +244,7 @@ const SinglePageModal = () => {
           </div>
           <div className="modal__col">
             <div className="modal__img">
-              <img src={item.imageUrl} alt="car" />
+              <img src={item.mainImg} alt="car" />
             </div>
             <div className="modal__last-info">
               <h4 className="modal__last-heading">{t("modal_price")}</h4>
