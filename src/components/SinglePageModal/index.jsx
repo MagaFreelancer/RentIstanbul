@@ -153,6 +153,7 @@ const SinglePageModal = () => {
   React.useEffect(() => {
     getSingleCar();
   }, []);
+
   if (status === "loading") {
     return (
       <div className="modal-wrapper">
