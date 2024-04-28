@@ -92,17 +92,19 @@ const AdminCars = () => {
     const addUrl = host + "/api/cars";
     const token = localStorage.getItem("tokenInfo");
     const data = {
-      imageUrl:
-        "https://i.pinimg.com/736x/0e/55/78/0e5578828e707e5039e111d1f234e745.jpg",
-      box: "automatic",
-      volume: "1.3",
-      date: 2015,
-      engine: "Дзиель",
-      title: "МашЫна",
-      price: 777,
-      category: "string",
-      place: "4",
-      imgs: ["https://99px.ru/sstorage/53/2021/12/mid_337638_766538.jpg","https://i.pinimg.com/originals/45/b3/13/45b313a119fb52694be563b6131947b3.png"],
+      mainImg: "https://i.pinimg.com/736x/0e/55/78/0e5578828e707e5039e111d1f234e745.jpg",
+      transmission: "Diesel",
+      engine: "2",
+      year: 2020,
+      engineType: "Auto",
+      title: "K5",
+      price: 700,
+      category: "luxy",
+      numberPlaces: 4,
+      imgs: [
+        "https://99px.ru/sstorage/53/2021/12/mid_337638_766538.jpg","https://i.pinimg.com/originals/45/b3/13/45b313a119fb52694be563b6131947b3.png"
+      ],
+      brand: "Kia"
     };
     
     axios

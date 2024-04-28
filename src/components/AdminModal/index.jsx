@@ -35,6 +35,27 @@ const AdminModal = () => {
       });
   };
 
+  const changeCar = (dataItem) => {
+    const host = "https://artemwebsites.ru/";
+    const deleteUrl = host + `api/Cars/${id}`;
+    const token = localStorage.getItem("tokenInfo");
+
+    axios
+      .put(deleteUrl, dataItem, {
+        headers: {
+          Authorization: "Bearer " + token,
+        }
+      })
+      .then(function () {
+        dispatch(toggleShowModal(false));
+        document.body.classList.remove("modal-open");
+      })
+      .catch(function (error) {
+        console.error("Ошибка!", error);
+      });
+  };
+
+
   const {
     register,
     handleSubmit,
@@ -47,7 +68,7 @@ const AdminModal = () => {
     dispatch(fetchSingleCar(id));
   };
   const onSubmit = (data) => {
-    console.log(data);
+    changeCar(data)
   };
   React.useEffect(() => {
     getSingleCar();
@@ -57,8 +78,14 @@ const AdminModal = () => {
       setValue("title", item.title);
       setValue("engineType", item.engineType);
       setValue("year", item.year);
-      console.log(item);
-      handleSubmit(onSubmit)();
+      setValue("engine", item.engine);
+      setValue("numberPlaces", item.numberPlaces);
+      setValue("price", item.price);
+      setValue("transmission", item.transmission);
+      setValue("imgs", item.imgs);
+      setValue("mainImg", item.mainImg);
+      setValue("category", item.category);
+      setValue("brand", item.brand);
     }
   }, [status]);
   const toggleModal = (e) => {
@@ -139,7 +166,7 @@ const AdminModal = () => {
           </ul>
 
           <div className="modal__block-button">
-            <button className="modal__change-button">Изменить</button>
+            <button onClick={handleSubmit(onSubmit)} className="modal__change-button">Изменить</button>
             <button
               onClick={(event) => removeCar(event)}
               className="modal__delete-button"

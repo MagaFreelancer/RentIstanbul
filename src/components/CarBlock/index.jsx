@@ -44,7 +44,7 @@ export default function CarBlock({
   return (
     <div onClick={onClickModal} className="car-block">
       <div className="car-block__img">
-        <img src={mainImg} alt="car" />
+        <img src="https://s3-eu-west-1.amazonaws.com/localrent.images/cars/image_titles/000/041/378/original/MG-ZS-2020-red_(1).jpg?1680090691" alt="car"/>
       </div>
 
       <h3 className="car-block__title">{title}</h3>
