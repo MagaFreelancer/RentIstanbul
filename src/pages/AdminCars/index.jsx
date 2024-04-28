@@ -62,14 +62,7 @@ const AdminCars = () => {
     const host = "https://artemwebsites.ru/";
     const deleteUrl = host + "api/cars/3";
     const token = localStorage.getItem("tokenInfo");
-    console.log(token);
-    // if (email == "" || password == "") {
-    //   return console.log("неправильные данные");
-    // } else {
-    //   let loginData = {
-    //     email,
-    //     password,
-    //   };
+    
     axios
       .delete(deleteUrl, {
         headers: {

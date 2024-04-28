@@ -12,7 +12,7 @@ const AdminModal = () => {
   const dispatch = useDispatch();
   const { days, item, id, status } = useSelector((e) => e.singleInfo);
   const { showModal } = useSelector((state) => state.singleInfo);
-
+  
   const removeCar = (event) => {
     event.preventDefault();
 
@@ -68,7 +68,11 @@ const AdminModal = () => {
     dispatch(fetchSingleCar(id));
   };
   const onSubmit = (data) => {
-    changeCar(data)
+    const imgs = [data.sliderImgOne, data.sliderImgTwo];
+    delete data.sliderImgOne, data.sliderImgTwo;
+    const newData = {...data, imgs, price: Number(data.price), numberPlaces: Number(data.numberPlaces)}
+    console.log(newData);
+    changeCar(newData)
   };
   React.useEffect(() => {
     getSingleCar();
@@ -76,16 +80,17 @@ const AdminModal = () => {
   React.useEffect(() => {
     if (status === "success") {
       setValue("title", item.title);
+      setValue("brand", item.brand);
       setValue("engineType", item.engineType);
       setValue("year", item.year);
       setValue("engine", item.engine);
       setValue("numberPlaces", item.numberPlaces);
       setValue("price", item.price);
       setValue("transmission", item.transmission);
-      setValue("imgs", item.imgs);
       setValue("mainImg", item.mainImg);
+      setValue("sliderImgOne", item.imgs[0]);
+      setValue("sliderImgTwo", item.imgs[1]);
       setValue("category", item.category);
-      setValue("brand", item.brand);
     }
   }, [status]);
   const toggleModal = (e) => {
@@ -123,36 +128,23 @@ const AdminModal = () => {
           <h4 className="modal__heading">Характеристики</h4>
           <ul className="modal__info">
             <li className="modal__info-item">
+              <div className="modal__info-heading">Марка</div>
+              <input
+                className="modal__info-input"
+                {...register("brand", {
+                  required: true,
+                })}
+                type="input"
+              />
+            </li>
+            <li className="modal__info-item">
               <div className="modal__info-heading">Машина</div>
               <input
                 className="modal__info-input"
-                {...register("title")}
                 type="input"
-              />
-            </li>
-            <li className="modal__info-item">
-              <div className="modal__info-heading">Двигатель</div>
-              <input
-                className="modal__info-input"
-                type="input"
-                {...register("engineType")}
-              />
-            </li>
-            <li className="modal__info-item">
-              <div className="modal__info-heading">Год выпуска</div>
-              <input
-                className="modal__info-input"
-                type="input"
-                {...register("year")}
-
-              />
-            </li>
-            <li className="modal__info-item">
-              <div className="modal__info-heading">Топливо</div>
-              <input
-                className="modal__info-input"
-                type="input"
-                defaultValue={item.engine}
+                {...register("title", {
+                  required: true
+                })}
               />
             </li>
             <li className="modal__info-item">
@@ -160,8 +152,109 @@ const AdminModal = () => {
               <input
                 className="modal__info-input"
                 type="input"
-                defaultValue={item.price}
+                {...register("price", {
+                  required: true
+                })}
+
               />
+            </li>
+            <li className="modal__info-item">
+              <div className="modal__info-heading">Цена</div>
+              <input
+                className="modal__info-input"
+                type="input"
+                {...register("engineType", {
+                  required: true
+                })}
+
+              />
+            </li>
+            <li className="modal__info-item">
+              <div className="modal__info-heading">Год выпуска</div>
+              <input
+                className="modal__info-input"
+                type="input"
+                {...register("year", {
+                  required: true
+                })}
+
+              />
+            </li>
+            <li className="modal__info-item">
+              <div className="modal__info-heading">Двигатель</div>
+              <input
+                className="modal__info-input"
+                type="input"
+                {...register("engine", {
+                  required: true
+                })}
+
+              />
+            </li>
+            <li className="modal__info-item">
+              <div className="modal__info-heading">Количесво мест</div>
+              <input
+                className="modal__info-input"
+                type="input"
+                {...register("numberPlaces", {
+                  required: true
+                })}
+
+              />
+            </li>
+            <li className="modal__info-item">
+              <div className="modal__info-heading">Двигатель</div>
+              <input
+                className="modal__info-input"
+                type="input"
+                {...register("transmission", {
+                  required: true
+                })}
+
+              />
+            </li>
+            <li className="modal__info-item">
+              <div className="modal__info-heading">Категория</div>
+              <input
+                className="modal__info-input"
+                type="input"
+                {...register("category", {
+                  required: true
+                })}
+
+              />
+            </li>
+            <li className="modal__info-item">
+              <div className="modal__info-heading">Главная картинка</div>
+              <input
+                className="modal__info-input"
+                type="input"
+                {...register("mainImg", {
+                  required: true,
+                  minLength: 10
+                })}
+
+              />
+            </li>
+            <li className="modal__info-item not-greed">
+              <div className="modal__info-heading">Для слайдера</div>
+              <input
+                className="modal__info-input"
+                type="input"
+                {...register("sliderImgOne", {
+                  required: true,
+                  minLength: 10
+                })}
+
+              />
+              <br></br>
+              <input
+                className="modal__info-input"
+                type="input"
+                {...register("sliderImgTwo")}
+
+              />
+              <br></br>
             </li>
           </ul>
 

@@ -8,7 +8,7 @@ import { getCarsNodFilter } from "../../redux/requests/getCars";
 import "./SliderBlocks.scss";
 
 const params = {
-  0: ["lux", "Люкс"],
+  0: ["luxy", "Люкс"],
   1: ["compact", "Компактные"],
   2: ["middle", "Средний класс"],
 };
@@ -42,7 +42,7 @@ export default function SliderBlocks({ category }) {
     <section className="slider-block">
       <div className="container slider-block__container">
         <div className="slider-block__heading">
-          <h2 className="slider-block__title title">{t(params[category][0])}</h2>
+          <h2 className="slider-block__title title">{t(params[category][1])}</h2>
           <Link to="/cars" className="slider-block__link">
             {t("more_cars")}
           </Link>

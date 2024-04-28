@@ -30,6 +30,11 @@
     background-color: var(--whiteColor);
     padding: 0 40px;
     padding-bottom: 30px;
+
+    .not-greed {
+        display: flex;
+    }
+
     &__close {
         position: absolute;
         width: 30px;
