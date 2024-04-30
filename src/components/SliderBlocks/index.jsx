@@ -42,7 +42,7 @@ export default function SliderBlocks({ category }) {
     <section className="slider-block">
       <div className="container slider-block__container">
         <div className="slider-block__heading">
-          <h2 className="slider-block__title title">{t(params[category][1])}</h2>
+          <h2 className="slider-block__title title">{params[category][1]}</h2>
           <Link to="/cars" className="slider-block__link">
             {t("more_cars")}
           </Link>

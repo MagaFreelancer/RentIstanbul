@@ -14,6 +14,7 @@ const initialState = {
   id: null,
   days: 1,
   showModal: false,
+  modalStatusAdmin: 'edit', //edit | add
   statusAdmin: 'add', //add | added
   showSlider: false,
   sliderImgs: [],
@@ -43,6 +44,9 @@ const singleInfoSlice = createSlice({
     setSliderIndex(state, action) {
       state.sliderIndex = action.payload;
     },
+    setModalStatusAdmin(state, action) {
+      state.modalStatusAdmin = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -68,6 +72,7 @@ export const {
   toggleShowSlider,
   setImgs,
   setSliderIndex,
+  setModalStatusAdmin
 } = singleInfoSlice.actions;
 
 export default singleInfoSlice.reducer;

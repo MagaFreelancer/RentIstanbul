@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchSingleCar,
+  setModalStatusAdmin,
   toggleShowModal,
 } from "../../redux/slices/singleInfoSlice";
 import { useForm } from "react-hook-form";
@@ -10,7 +11,7 @@ import { getCarsNodFilter } from "../../redux/requests/getCars";
 
 const AdminModal = () => {
   const dispatch = useDispatch();
-  const { days, item, id, status } = useSelector((e) => e.singleInfo);
+  const { days, item, id, status, modalStatusAdmin } = useSelector((e) => e.singleInfo);
   const { showModal } = useSelector((state) => state.singleInfo);
   
   const removeCar = (event) => {
@@ -55,12 +56,14 @@ const AdminModal = () => {
       });
   };
 
+ 
 
   const {
     register,
     handleSubmit,
     watch,
     setValue,
+    reset,
     formState: { errors },
   } = useForm();
 
@@ -71,28 +74,42 @@ const AdminModal = () => {
     const imgs = [data.sliderImgOne, data.sliderImgTwo];
     delete data.sliderImgOne, data.sliderImgTwo;
     const newData = {...data, imgs, price: Number(data.price), numberPlaces: Number(data.numberPlaces)}
-    console.log(newData);
-    changeCar(newData)
+
+    changeCar(newData);
   };
+
+
+
   React.useEffect(() => {
     getSingleCar();
   }, []);
   React.useEffect(() => {
     if (status === "success") {
-      setValue("title", item.title);
-      setValue("brand", item.brand);
-      setValue("engineType", item.engineType);
-      setValue("year", item.year);
-      setValue("engine", item.engine);
-      setValue("numberPlaces", item.numberPlaces);
-      setValue("price", item.price);
-      setValue("transmission", item.transmission);
-      setValue("mainImg", item.mainImg);
-      setValue("sliderImgOne", item.imgs[0]);
-      setValue("sliderImgTwo", item.imgs[1]);
-      setValue("category", item.category);
+      if(modalStatusAdmin === 'edit') {
+        setValue("title", item.title);
+        setValue("brand", item.brand);
+        setValue("engineType", item.engineType);
+        setValue("year", item.year);
+        setValue("engine", item.engine);
+        setValue("numberPlaces", item.numberPlaces);
+        setValue("price", item.price);
+        setValue("transmission", item.transmission);
+        setValue("mainImg", item.mainImg);
+        setValue("sliderImgOne", item.imgs[0]);
+        setValue("sliderImgTwo", item.imgs[1]);
+        setValue("category", item.category);
+      }else {
+        reset()
+      } 
+      
     }
   }, [status]);
+
+  const onClickEdit = () => {
+    handleSubmit(onSubmit)();
+    dispatch(setModalStatusAdmin('edit'));
+  };
+
   const toggleModal = (e) => {
     if (
       e.target.classList.contains("modal-wrapper") ||
@@ -259,7 +276,7 @@ const AdminModal = () => {
           </ul>
 
           <div className="modal__block-button">
-            <button onClick={handleSubmit(onSubmit)} className="modal__change-button">Изменить</button>
+            <button onClick={onClickEdit} className="modal__change-button">Изменить</button>
             <button
               onClick={(event) => removeCar(event)}
               className="modal__delete-button"
