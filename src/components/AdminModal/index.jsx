@@ -11,9 +11,11 @@ import { getCarsNodFilter } from "../../redux/requests/getCars";
 
 const AdminModal = () => {
   const dispatch = useDispatch();
-  const { days, item, id, status, modalStatusAdmin } = useSelector((e) => e.singleInfo);
+  const { days, item, id, status, modalStatusAdmin } = useSelector(
+    (e) => e.singleInfo
+  );
   const { showModal } = useSelector((state) => state.singleInfo);
-  
+
   const removeCar = (event) => {
     event.preventDefault();
 
@@ -45,7 +47,7 @@ const AdminModal = () => {
       .put(deleteUrl, dataItem, {
         headers: {
           Authorization: "Bearer " + token,
-        }
+        },
       })
       .then(function () {
         dispatch(toggleShowModal(false));
@@ -56,7 +58,30 @@ const AdminModal = () => {
       });
   };
 
- 
+  function addCarBk(data) {
+    const host = "https://artemwebsites.ru";
+    const addUrl = host + "/api/cars";
+    const token = localStorage.getItem("tokenInfo");
+
+    axios
+      .post(addUrl, data, {
+        headers: {
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then(function () {
+        dispatch(toggleShowModal(false));
+        document.body.classList.remove("modal-open");
+      })
+      .catch(function (error) {
+        console.error("Ошибка при добавлении или отправке:", error);
+      });
+  }
+  function addCar(e) {
+    e.preventDefault();
+    dispatch(setModalStatusAdmin("add"));
+    handleSubmit(onSubmit)();
+  }
 
   const {
     register,
@@ -73,19 +98,27 @@ const AdminModal = () => {
   const onSubmit = (data) => {
     const imgs = [data.sliderImgOne, data.sliderImgTwo];
     delete data.sliderImgOne, data.sliderImgTwo;
-    const newData = {...data, imgs, price: Number(data.price), numberPlaces: Number(data.numberPlaces)}
+    const newData = {
+      ...data,
+      imgs,
+      price: Number(data.price),
+      numberPlaces: Number(data.numberPlaces),
+    };
 
-    changeCar(newData);
+    if (modalStatusAdmin == "edit") {
+      changeCar(newData);
+    } else {
+      addCarBk(newData);
+    }
+    
   };
-
-
 
   React.useEffect(() => {
     getSingleCar();
   }, []);
   React.useEffect(() => {
     if (status === "success") {
-      if(modalStatusAdmin === 'edit') {
+      if (modalStatusAdmin === "edit") {
         setValue("title", item.title);
         setValue("brand", item.brand);
         setValue("engineType", item.engineType);
@@ -98,16 +131,27 @@ const AdminModal = () => {
         setValue("sliderImgOne", item.imgs[0]);
         setValue("sliderImgTwo", item.imgs[1]);
         setValue("category", item.category);
-      }else {
-        reset()
-      } 
-      
+      } else {
+        setValue("title", item.title);
+        setValue("brand", item.brand);
+        setValue("engineType", item.engineType);
+        setValue("year", item.year);
+        setValue("engine", item.engine);
+        setValue("numberPlaces", item.numberPlaces);
+        setValue("price", item.price);
+        setValue("transmission", item.transmission);
+        setValue("mainImg", item.mainImg);
+        setValue("sliderImgOne", item.imgs[0]);
+        setValue("sliderImgTwo", item.imgs[1]);
+        setValue("category", item.category);
+      }
     }
   }, [status]);
 
-  const onClickEdit = () => {
+  const onClickEdit = (e) => {
+    e.preventDefault()
+    dispatch(setModalStatusAdmin("edit"));
     handleSubmit(onSubmit)();
-    dispatch(setModalStatusAdmin('edit'));
   };
 
   const toggleModal = (e) => {
@@ -160,7 +204,7 @@ const AdminModal = () => {
                 className="modal__info-input"
                 type="input"
                 {...register("title", {
-                  required: true
+                  required: true,
                 })}
               />
             </li>
@@ -170,20 +214,18 @@ const AdminModal = () => {
                 className="modal__info-input"
                 type="input"
                 {...register("price", {
-                  required: true
+                  required: true,
                 })}
-
               />
             </li>
             <li className="modal__info-item">
-              <div className="modal__info-heading">Цена</div>
+              <div className="modal__info-heading">Топливо</div>
               <input
                 className="modal__info-input"
                 type="input"
                 {...register("engineType", {
-                  required: true
+                  required: true,
                 })}
-
               />
             </li>
             <li className="modal__info-item">
@@ -192,9 +234,8 @@ const AdminModal = () => {
                 className="modal__info-input"
                 type="input"
                 {...register("year", {
-                  required: true
+                  required: true,
                 })}
-
               />
             </li>
             <li className="modal__info-item">
@@ -203,9 +244,8 @@ const AdminModal = () => {
                 className="modal__info-input"
                 type="input"
                 {...register("engine", {
-                  required: true
+                  required: true,
                 })}
-
               />
             </li>
             <li className="modal__info-item">
@@ -214,20 +254,18 @@ const AdminModal = () => {
                 className="modal__info-input"
                 type="input"
                 {...register("numberPlaces", {
-                  required: true
+                  required: true,
                 })}
-
               />
             </li>
             <li className="modal__info-item">
-              <div className="modal__info-heading">Двигатель</div>
+              <div className="modal__info-heading">Коробка передач	</div>
               <input
                 className="modal__info-input"
                 type="input"
                 {...register("transmission", {
-                  required: true
+                  required: true,
                 })}
-
               />
             </li>
             <li className="modal__info-item">
@@ -236,9 +274,8 @@ const AdminModal = () => {
                 className="modal__info-input"
                 type="input"
                 {...register("category", {
-                  required: true
+                  required: true,
                 })}
-
               />
             </li>
             <li className="modal__info-item">
@@ -248,9 +285,8 @@ const AdminModal = () => {
                 type="input"
                 {...register("mainImg", {
                   required: true,
-                  minLength: 10
+                  minLength: 10,
                 })}
-
               />
             </li>
             <li className="modal__info-item not-greed">
@@ -260,27 +296,29 @@ const AdminModal = () => {
                 type="input"
                 {...register("sliderImgOne", {
                   required: true,
-                  minLength: 10
+                  minLength: 10,
                 })}
-
               />
               <br></br>
               <input
                 className="modal__info-input"
                 type="input"
                 {...register("sliderImgTwo")}
-
               />
               <br></br>
             </li>
           </ul>
 
           <div className="modal__block-button">
-            <button onClick={onClickEdit} className="modal__change-button">Изменить</button>
-            <button
-              onClick={(event) => removeCar(event)}
-              className="modal__delete-button"
-            >
+            <button onClick={onClickEdit} className="modal__change-button">
+              Изменить
+            </button>
+            {modalStatusAdmin === "add" && (
+              <button onClick={addCar} className="modal__delete-button">
+                Добавить
+              </button>
+            )}
+            <button onClick={removeCar} className="modal__delete-button">
               Delete car
             </button>
           </div>

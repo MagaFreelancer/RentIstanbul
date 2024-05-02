@@ -1,24 +1,18 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setId, toggleShowModal } from "../../redux/slices/singleInfoSlice";
+import { setId, toggleShowModal,setModalStatusAdmin } from "../../redux/slices/singleInfoSlice";
 import { useTranslation } from "react-i18next";
 import "./CarBlock.scss";
 // {obj, currencies}
 
-export default function CarBlock({
-  id,
-  mainImg,
-  title,
-  price,
-  category,
-
-}) {
+export default function CarBlock({ id, mainImg, title, price, category }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const { curren, currencies } = useSelector((state) => state.currencies);
   const moneyArr = { RUB: "₽", USD: "$", EUR: "€", TRY: "₺" };
   let money = 2;
   const onClickModal = () => {
+    dispatch(setModalStatusAdmin("edit"));
     dispatch(setId(id));
     document.body.classList.add("modal-open");
     dispatch(toggleShowModal(true));
@@ -46,7 +40,7 @@ export default function CarBlock({
   return (
     <div onClick={onClickModal} className="car-block">
       <div className="car-block__img">
-        <img src={mainImg} alt="car"/>
+        <img src={mainImg} alt="car" />
       </div>
 
       <h3 className="car-block__title">{title}</h3>
